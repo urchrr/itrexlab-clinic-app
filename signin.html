@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="author" content="urchrr"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="./pages/index.css"/>
+  <title>Sign In</title>
+</head>
+<body class="page">
+
+<div class="content">
+  <header class="header">
+    <h1 class="heading ">Sign In</h1>
+  </header>
+  <main class="main">
+    <form action="#" class="form">
+      <div class="form__input-wrapper">
+        <label>
+          <span></span>
+          <input class="form__input form__input_invalid form__input-icon_email" type="text" placeholder="Email"/>
+        </label>
+        <span class="form__input-error  ">Email not found. Please check the spelling</span>
+      </div>
+      <div class="form__input-wrapper">
+        <label>
+          <span></span>
+          <input class="form__input form__input_invalid form__input-icon_lock form__input_block-eye" type="text"
+                 placeholder="Password"/>
+          <button class="form__block-eye"></button>
+        </label>
+        <span class="form__input-error ">Password contain unsupported characters</span>
+      </div>
+      <button class="form__submit ">Sign In <span class="form__submit-schevron"></span></button>
+    </form>
+    <a class="restore-link " href="./restorePassword.html">
+      Forgot Password?
+    </a>
+  </main>
+  <footer class="footer">
+    <p class="footer__text ">Don`t have an account?</p>
+    <a class="footer__link " href="./signup.html">
+      Sign Up
+    </a>
+  </footer>
+</div>
+
+</body>
+</html>

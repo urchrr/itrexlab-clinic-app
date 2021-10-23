@@ -1,0 +1,15 @@
+.page {
+  background-image: url('../../images/bg.png');
+  height: 100vh;
+  position: relative;
+  background-repeat: no-repeat;
+  background-size: contain;
+  font-family: 'Poppins', 'Arial', sans-serif;
+  font-style: normal;
+  font-weight: normal;
+  color: #A1ABC9;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  margin:0;
+}
