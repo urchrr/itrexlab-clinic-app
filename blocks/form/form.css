@@ -1,0 +1,70 @@
+@import url(./form__input.css);
+@import url(./form__submit.css);
+
+.form {
+  display: flex;
+  flex-direction: column;
+  margin: 0 0 32px 0;
+  width: 100%;
+  flex: 1 0 auto;
+}
+
+.form__header {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  margin-bottom: 24px;
+}
+
+.form__header-text {
+  font-size: 20px;
+  line-height: 120%;
+  color: #202225;
+  font-weight: 600;
+  margin: 0;
+}
+
+.form__header-button {
+  outline: none;
+  border: none;
+  background-image: url(../../images/icon-schevron-grey.svg);
+  background-position: 50% 50%;
+  background-repeat: no-repeat;
+  width: 24px;
+  height: 24px;
+  margin-right: 16px;
+  background-color: inherit;
+}
+
+.form__text {
+  font-size: 15px;
+  line-height: 130%;
+  color: #A1ABC9;
+  margin-bottom: 24px;
+}
+
+.form__email {
+  color: #7297FF;
+  text-decoration-line: underline;
+}
+
+
+
+.form__restore-link {
+  margin-top: 32px;
+  font-size: 15px;
+  line-height: 22px;
+  color: #7297FF;
+  font-weight: 500;
+}
+
+@media only screen and (min-width: 560px){
+  .form__header-text{
+    font-size: 24px;
+    line-height: 110%;
+  }
+  .form__header{
+    margin-bottom: 40px;
+  }
+}

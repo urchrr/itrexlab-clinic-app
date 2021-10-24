@@ -1,0 +1,94 @@
+.form__input-wrapper {
+  margin-bottom: 24px;
+  position: relative;
+}
+
+.form__input-wrapper {
+  margin-bottom: 24px;
+  position: relative;
+}
+
+.form__input-icon_email {
+  background: url(../../images/icon-mail.svg) no-repeat;
+  background-size: 20px 20px;
+}
+
+.form__input-icon_accept {
+  background: url(../../images/icon-accept.svg) no-repeat;
+}
+
+.form__input-icon_person {
+  background: url(../../images/icon-person.svg) no-repeat;
+}
+
+.form__input-icon_lock {
+  background: url(../../images/icon-lock.svg) no-repeat;
+}
+
+.form__input {
+  width: 100%;
+  border: 1px solid #DCE0EC;
+  box-sizing: border-box;
+  border-radius: 8px;
+  color: #202225;
+  padding: 8px 47px;
+  position: relative;
+  background-position-y: center;
+  background-position-x: 18px;
+  background-color: inherit;
+}
+
+.form__input, .form__input::placeholder {
+  font-size: 15px;
+  line-height: 140%;
+}
+
+.form__input::placeholder {
+  color: #A1ABC9;
+}
+
+.form__input-error {
+  font-size: 13px;
+  line-height: 120%;
+  letter-spacing: -0.24px;
+  color: #F6657F;
+  margin-top: 16px;
+  display: block;
+}
+
+.form__input_invalid {
+  border: 1px solid #FF2567;
+}
+
+.form__input-block-eye {
+  padding: 2px;
+  box-sizing: border-box;
+  border: none;
+  cursor: pointer;
+  position: absolute;
+  right: 7.2%;
+  width: 24px;
+  height: 24px;
+  background: url(../../images/icon-block-eye.svg) no-repeat center;
+  top: 8px;
+}
+
+@media only screen and (min-width: 560px) {
+  .form__input, .form__input::placeholder {
+    font-size: 17px;
+    line-height: 141%;
+  }
+
+  .form__input-wrapper {
+    margin-bottom: 40px;
+  }
+
+  .form__input {
+    padding: 16px 64px;
+  }
+
+  .form__input-block-eye {
+    top: 16px;
+    right: 6.5%;
+  }
+}
