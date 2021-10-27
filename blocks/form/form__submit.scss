@@ -1,7 +1,9 @@
+@import '../constants';
+
 .form__submit {
   border-radius: 8px;
-  background: #7297FF;
-  color: #ffffff;
+  background: $blue;
+  color: $white;
   padding: 12px 16px 12px 16px;
   outline: none;
   border: none;
@@ -13,7 +15,6 @@
   justify-content: space-between;
   align-items: center;
 }
-
 .form__submit-schevron {
   display: block;
   background-image: url(../../images/schevron.svg);
@@ -21,12 +22,12 @@
   background-repeat: no-repeat;
   width: 24px;
   height: 24px;
-  color: #ffffff;
+  color: $white;
   padding: 5px;
   margin-left: 8px;
 }
 
-@media only screen and (min-width: 560px) {
+@media only screen and (min-width: 560px){
   .form__submit {
     font-size: 17px;
     line-height: 25px;
@@ -35,5 +36,3 @@
     padding: 16px 25px 16px 24px;
   }
 }
-
-/*# sourceMappingURL=form__submit.css.map */

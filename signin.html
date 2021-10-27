@@ -15,24 +15,26 @@
     <div class="form__header">
       <h1 class="form__header-text ">Sign In</h1>
     </div>
-    <label class="form__input-wrapper">
-      <input class="form__input form__input_invalid form__input-icon_email" type="text" placeholder="Email"/>
+    <div class="form__input-wrapper">
+      <label for="signin-email" class="form__input-icon icon-email"></label>
+      <input id='signin-email' class="form__input form__input_invalid" type="text" placeholder="Email"/>
       <span class="form__input-error  ">Email not found. Please check the spelling</span>
-    </label>
-    <label class="form__input-wrapper">
-      <input class="form__input form__input_invalid form__input-icon_lock form__input_block-eye" type="text"
+    </div>
+    <div class="form__input-wrapper">
+      <label for="signin-password" class="form__input-icon icon-lock"></label>
+      <input id="signin-password" class="form__input form__input_invalid" type="text"
              placeholder="Password"/>
-      <button class="form__input-block-eye"></button>
+      <button class="form__input-icon icon-eye"></button>
       <span class="form__input-error ">Password contain unsupported characters</span>
-    </label>
+    </div>
     <button class="form__submit">Sign In <span class="form__submit-schevron"></span></button>
     <a class="form__restore-link " href="./restorePassword.html">
       Forgot Password?
     </a>
   </form>
-  <div class="content__footer">
-    <p class="content__footer-text ">Don`t have an account?</p>
-    <a class="content__footer-link" href="./signup.html">
+  <div class='footer'>
+    <p class="footer-text ">Don`t have an account?</p>
+    <a class="footer-link" href="./signup.html">
       Sign Up
     </a>
   </div>

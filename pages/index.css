@@ -3,16 +3,9 @@
 @import url(../blocks/page/page.css);
 @import url(../blocks/form/form.css);
 @import url(../blocks/content/content.css);
+@import url(../blocks/footer/footer.css);
 
-
-
-
-
-
-
-
-
-
-
-
+*, *::before, *::after {
+  box-sizing: border-box;
+}
 

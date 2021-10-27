@@ -1,10 +1,12 @@
+@import '../constants';
+
 .form__input-wrapper {
   margin-bottom: 24px;
   position: relative;
 }
 
 .form__input-wrapper:last-of-type {
-  margin-bottom: 32px;
+  margin-bottom: 32px
 }
 
 .form__input-icon {
@@ -42,19 +44,20 @@
   background: url(../../images/icon-lock.svg) no-repeat center;
 }
 
+
 .form__input {
   width: 100%;
   border: 1px solid #dce0ec;
   border-radius: 8px;
-  color: #202225;
+  color: $dark-grey;
   padding: 7px 47px;
   background-position-y: center;
   background-position-x: 18px;
-  background-color: #ffffff;
+  background-color: $white;
 }
 
 .form__input:focus {
-  border: 1px solid #7297FF;
+  border: 1px solid $blue;
   outline: none;
 }
 
@@ -65,7 +68,7 @@
 }
 
 .form__input::placeholder {
-  color: #A1ABC9;
+  color: $grey;
 }
 
 .form__input-error {
@@ -81,9 +84,10 @@
   border: 1px solid #ff2567;
 }
 
+
 @media only screen and (min-width: 560px) {
   .form__input,
-.form__input::placeholder {
+  .form__input::placeholder {
     font-size: 17px;
   }
 
@@ -94,7 +98,6 @@
   .form__input {
     padding: 15px 64px;
   }
-
   .form__input-icon {
     top: 16px;
     left: 24px;
@@ -108,14 +111,12 @@
   .form__input-wrapper:last-of-type {
     margin-bottom: 40px;
   }
-
   .form__input-error {
     font-size: 13px;
     line-height: 16px;
     letter-spacing: -0.24px;
     color: #f6657f;
     margin-top: 8px;
+
   }
 }
-
-/*# sourceMappingURL=form__input.css.map */

@@ -1,5 +1,7 @@
 @import url(./form__input.css);
 @import url(./form__submit.css);
+@import '../constants';
+
 .form {
   display: flex;
   flex-direction: column;
@@ -17,7 +19,7 @@
 .form__header-text {
   font-size: 20px;
   line-height: 32px;
-  color: #202225;
+  color: $dark-grey;
   font-weight: 600;
   margin: 0;
 }
@@ -38,20 +40,21 @@
 .form__text {
   font-size: 15px;
   line-height: 130%;
-  color: #A1ABC9;
+  color: $grey;
   margin-bottom: 24px;
 }
 
 .form__email {
-  color: #7297FF;
+  color: $blue;
   text-decoration-line: underline;
 }
+
 
 .form__restore-link {
   margin-top: 32px;
   font-size: 15px;
   line-height: 22px;
-  color: #7297FF;
+  color: $blue;
   font-weight: 500;
 }
 
@@ -59,11 +62,8 @@
   .form__header {
     margin-bottom: 40px;
   }
-
   .form__header-text {
     width: 560px;
     font-size: 24px;
   }
 }
-
-/*# sourceMappingURL=form.css.map */

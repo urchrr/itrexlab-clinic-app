@@ -15,29 +15,34 @@
     <div class="form__header">
       <h1 class="form__header-text ">Sign Up</h1>
     </div>
-    <label class="form__input-wrapper">
-      <input class="form__input  form__input-icon_person" type="text" placeholder="First Name"/>
-    </label>
-    <label class="form__input-wrapper">
-      <input class="form__input  form__input-icon_person" type="text" placeholder="Last Name"/>
-    </label>
-    <label class="form__input-wrapper">
-      <input class="form__input  form__input-icon_email" type="text" placeholder="Email"/>
-    </label>
-    <label class="form__input-wrapper">
-      <input class="form__input  form__input-icon_lock form__input_block-eye" type="text" placeholder="Password"/>
-      <button class="form__input-block-eye"></button>
-    </label>
-    <label class="form__input-wrapper">
-      <input class="form__input  form__input-icon_accept form__input_block-eye" type="text"
+    <div class="form__input-wrapper">
+      <label for="signup-firstname" class="form__input-icon icon-person"></label>
+      <input id="signup-firstname" class="form__input" type="text" placeholder="First Name"/>
+    </div>
+    <div class="form__input-wrapper">
+      <label for="signup-secondname" class="form__input-icon icon-person"></label>
+      <input id="signup-secondname" class="form__input" type="text" placeholder="Last Name"/>
+    </div>
+    <div class="form__input-wrapper">
+      <label for="signup-email" class="form__input-icon icon-email"></label>
+      <input id="signup-email" class="form__input" type="text" placeholder="Email"/>
+    </div>
+    <div class="form__input-wrapper">
+      <label for="signup-password" class="form__input-icon icon-lock"></label>
+      <input id="signup-password"  class="form__input" type="text" placeholder="Password"/>
+      <button class="form__input-icon icon-eye"></button>
+    </div>
+    <div class="form__input-wrapper">
+      <label for="signup-retype-password" class="form__input-icon icon-accept"></label>
+      <input id="signup-retype-password" class="form__input" type="text"
              placeholder="Confirm Password"/>
-      <button class="form__input-block-eye"></button>
-    </label>
+      <button class="form__input-icon icon-eye"></button>
+    </div>
     <button class="form__submit ">Sign Up<span class="form__submit-schevron"></span></button>
   </form>
-  <div class="content__footer">
-    <p class="content__footer-text ">Already have an account?</p>
-    <a class="content__footer-link" href="./signin.html">
+  <div class='footer'>
+    <p class="footer-text ">Already have an account?</p>
+    <a class="footer-link" href="./signin.html">
       Sign In</a>
   </div>
 </div>
