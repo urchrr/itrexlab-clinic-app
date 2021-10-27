@@ -1,0 +1,21 @@
+@import '../constants';
+
+.footer-text {
+  font-size: 15px;
+  line-height: 21px;
+  margin: 0 12px 0 0;
+}
+
+.footer-link {
+  font-size: 15px;
+  line-height: 19px;
+  color: $blue;
+  font-weight: 600;
+}
+
+@media only screen and (min-width: 560px) {
+  .footer {
+    display: flex;
+    align-items: center;
+  }
+}

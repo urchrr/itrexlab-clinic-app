@@ -1,0 +1,121 @@
+.form__input-wrapper {
+  margin-bottom: 24px;
+  position: relative;
+}
+
+.form__input-wrapper:last-of-type {
+  margin-bottom: 32px;
+}
+
+.form__input-icon {
+  padding: 2px;
+  border: none;
+  cursor: pointer;
+  position: absolute;
+  width: 24px;
+  height: 24px;
+  top: 8px;
+  left: 16px;
+}
+
+.icon-eye {
+  background: url(../../images/icon-block-eye.svg) no-repeat center;
+  right: 7.2%;
+  left: auto;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+.icon-email {
+  background: url(../../images/icon-mail.svg) no-repeat center;
+}
+
+.icon-accept {
+  background: url(../../images/icon-accept.svg) no-repeat center;
+}
+
+.icon-person {
+  background: url(../../images/icon-person.svg) no-repeat center;
+}
+
+.icon-lock {
+  background: url(../../images/icon-lock.svg) no-repeat center;
+}
+
+.form__input {
+  width: 100%;
+  border: 1px solid #dce0ec;
+  border-radius: 8px;
+  color: #202225;
+  padding: 7px 47px;
+  background-position-y: center;
+  background-position-x: 18px;
+  background-color: #ffffff;
+}
+
+.form__input:focus {
+  border: 1px solid #7297FF;
+  outline: none;
+}
+
+.form__input,
+.form__input::placeholder {
+  font-size: 15px;
+  line-height: 24px;
+}
+
+.form__input::placeholder {
+  color: #A1ABC9;
+}
+
+.form__input-error {
+  font-size: 13px;
+  line-height: 16px;
+  letter-spacing: -0.24px;
+  color: #f6657f;
+  margin-top: 14px;
+  display: block;
+}
+
+.form__input_invalid {
+  border: 1px solid #ff2567;
+}
+
+@media only screen and (min-width: 560px) {
+  .form__input,
+.form__input::placeholder {
+    font-size: 17px;
+  }
+
+  .form__input-wrapper {
+    margin-bottom: 40px;
+  }
+
+  .form__input {
+    padding: 15px 64px;
+  }
+
+  .form__input-icon {
+    top: 16px;
+    left: 24px;
+  }
+
+  .icon-eye {
+    right: 6.5%;
+    left: auto;
+  }
+
+  .form__input-wrapper:last-of-type {
+    margin-bottom: 40px;
+  }
+
+  .form__input-error {
+    font-size: 13px;
+    line-height: 16px;
+    letter-spacing: -0.24px;
+    color: #f6657f;
+    margin-top: 8px;
+  }
+}
+
+/*# sourceMappingURL=form__input.css.map */
