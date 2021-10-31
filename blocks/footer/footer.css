@@ -1,5 +1,3 @@
-@import '../constants';
-
 .footer__text {
   font-size: 15px;
   line-height: 21px;
@@ -9,7 +7,7 @@
 .footer__link {
   font-size: 15px;
   line-height: 19px;
-  color: $blue;
+  color: #7297FF;
   font-weight: 600;
 }
 
@@ -19,3 +17,5 @@
     align-items: center;
   }
 }
+
+/*# sourceMappingURL=footer.css.map */

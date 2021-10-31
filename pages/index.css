@@ -4,6 +4,8 @@
 @import url(../blocks/form/form.css);
 @import url(../blocks/content/content.css);
 @import url(../blocks/footer/footer.css);
+@import url(../blocks/clinic/clinic.css);
+@import url(../blocks/patient/patient.css);
 
 *, *::before, *::after {
   box-sizing: border-box;
