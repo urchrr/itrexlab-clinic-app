@@ -3,7 +3,7 @@
  *
  * Manages the data of the application.
  */
-export default class Model {
+class Model {
   //не отвечает за отображение
   //описывает данные и методы по их изменению
   constructor() {

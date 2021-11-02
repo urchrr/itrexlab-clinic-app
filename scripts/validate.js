@@ -4,12 +4,14 @@ function showError(form, input, config) {
   error.textContent = input.validationMessage;
   input.classList.add(config.inputInvalidClass);
 }
+
 //скрыть ощибку
 function hideError(form, input, config) {
   const error = form.querySelector(`#${input.id}-error`);
   error.textContent = '';
   input.classList.remove(config.inputInvalidClass);
 }
+
 //триггер валидации инпута
 function checkInputValidity(form, input, config) {
   if (!input.validity.valid) {
@@ -18,6 +20,7 @@ function checkInputValidity(form, input, config) {
     hideError(form, input, config);
   }
 }
+
 //функция проверки состояния сабмита
 function setButtonState(button, isActive, config) {
   if (isActive) {
@@ -28,19 +31,26 @@ function setButtonState(button, isActive, config) {
     button.disabled = true;
   }
 }
+
 //функция добавления слушателей на каждый элемент формы
 function setEventListeners(form, config) {
   const inputsList = form.querySelectorAll(config.inputSelector);
   const submitButton = form.querySelector(config.submitButtonSelector);
   inputsList.forEach((input) => {
-    input.addEventListener('input', () => {
+    input.addEventListener('blur', () => {
       checkInputValidity(form, input, config);
+    });
+    input.addEventListener('input', () => {
+      if (input.validity.valid) {
+        hideError(form, input, config);
+      }
       setButtonState(submitButton, form.checkValidity(), config);
     });
   });
 }
+
 //запуск валидации
-export default function enableValidation(config) {
+function enableValidation(config) {
   const forms = document.querySelectorAll(config.formSelector);
   forms.forEach((form) => {
     setEventListeners(form, config);
@@ -51,7 +61,7 @@ export default function enableValidation(config) {
     setButtonState(submitButton, form.checkValidity(), config)
   });
 }
-//параметры
+
 
 
 
