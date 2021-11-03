@@ -82,7 +82,7 @@ const clinicTemplate = `
   </div>
   <div class="clinic__content-container">
 
-    <article class="patient__card">
+    <!--<article class="patient__card">
       <div class="patient__bio">
         <img src="./images/avatar.png" alt="avatar" class="patient__bio-avatar">
         <h3 class="patient__bio-name">Zachary AdkiAdkiAdki</h3>
@@ -121,7 +121,7 @@ const clinicTemplate = `
           and more
           frequently if you are struggling with blood sugar levels</p>
       </div>
-    </article>
+    </article>-->
 
   </div>
 </div>

@@ -11,77 +11,25 @@ class View {
     this.signupInputList = signupInputList
     this.signinInputList = signinInputList
     this.restorePasswordInputList = restorePasswordInputList
-    this.render = this.render.bind(this)
-    this.render(window.location.pathname)
-    this.state = {}
+    this.onNavigate = null
+    this.onInputChanged = null
+    this.clearState = null
     this.signIn = null
     this.signUp = null
-    this._init()
-  }
-
-  _init() {
-    const {render} = this
-    window.addEventListener('popstate', function(e)  {
-      // alert("location: " + document.location + ", state: " + JSON.stringify(e.state));
-      console.log(e, ' eve')
-      console.log('history', history)
-      if (e.state && e.state.pathname) {
-        console.log('go')
-        let state = e.state;
-        render(e.state.pathname)
-      }
-      e.stopPropagation()
-    })
-
-  }
-
-  onInputChanged(e) {
-    const {name, value} = e.target
-    this.state = {...this.state, [name]: value}
-  }
-
-  render(route) {
-
-    console.log('this render', this)
-    switch (route) {
-      case '/':
-        return this.renderSignUp()
-      case '/signup':
-        return this.renderSignUp()
-      case '/signin':
-        return this.renderSignIn()
-      case '/restore-password':
-        return this.renderRestorePassword()
-      case '/restore-password-message':
-        return this.renderRestorePasswordMessage()
-      case '/clinic':
-        return this.renderClinic()
-      default:
-        return this.renderSignUp()
-    }
+    this.getPatientCards = null
   }
 
 
   clearView(rootElement) {
-    console.log('clear?')
-    this.state = {}
+    console.log('clear view')
+    this.clearState()
     while (rootElement.firstChild) {
       rootElement.removeChild(rootElement.firstChild)
     }
   }
 
-
   eyeButtonHandler(input) {
     input.type = input.type === 'text' ? 'password' : 'text'
-  }
-
-  onNavigate = (pathname) => {
-    window.history.pushState(
-      {pathname},
-      null,
-      window.location.origin + pathname
-    )
-    this.render(pathname)
   }
 
   createInput(element) {
@@ -144,10 +92,53 @@ class View {
     return element
   }
 
+  createPatientCard(data, container) {
+    const {name, avatar, status, time, result} = data
+    const st = {
+      1: {
+        color: 'green',
+        text: 'Appointment is confirmed'
+      },
+      2: {
+        color: 'blue',
+        text: 'Waiting for confirmation...'
+      },
+      3: {
+        color: 'red',
+        text: 'Appointment is canceled'
+      }
+    }
+    const article = this.createElement('article', 'patient__card')
+    article.innerHTML = `<div class="patient__bio">
+        <img src="${avatar}" alt="avatar" class="patient__bio-avatar">
+        <h3 class="patient__bio-name">${name}</h3>
+        <span class="patient__bio-status-indicator ${st[status].color}"></span>
+        <p class="patient__bio-status">${st[status].text}</p>
+        <button class="patient__bio-dotburger icon-dorburger"></button>
+      </div>
+      <div class="patient__info">
+        <span class="patient__info-icon icon-clock"></span>
+        <p class="patient__time">
+          ${time}</p>
+        <span class="patient__info-icon icon-clipboard"></span>
+        <p style="margin: 0">
+          ${result}</p>
+      </div>`
+    const button = article.querySelector('.patient__bio-dotburger')
+    button.addEventListener('click', (e) => {
+      console.log('burger!->', e.target)
+    })
+    container.append(article)
+  }
+
   renderClinic() {
     this.clearView(this.app)
     this.app.classList.add('clinic')
     this.app.innerHTML = clinicTemplate
+    const container = this.app.querySelector('.clinic__content-container')
+    this.getPatientCards().map(card => {
+      this.createPatientCard(card, container)
+    })
   }
 
   renderRestorePasswordMessage() {
@@ -196,7 +187,7 @@ class View {
     this.form = this.createElement('form', 'form')
     this.form.addEventListener('submit', (e) => {
       e.preventDefault()
-      this.signIn(this.state).then(m => {
+      this.signIn().then(m => {
         console.log(m)
         this.onNavigate('/clinic')
       }).catch(err => console.log(err))
@@ -207,13 +198,11 @@ class View {
     this.footerText = this.createElement('p', 'footer__text')
     this.footerText.textContent = 'Don`t have an account?'
     this.formLink = this.createElement('a', 'form__restore-link')
-    this.formLink.href = '#'
     this.formLink.textContent = 'Forgot Password?'
     this.formLink.addEventListener('click', () => {
       this.onNavigate('/restore-password')
     })
     this.footerLink = this.createElement('a', 'footer__link')
-    this.footerLink.href = '#'
     this.footerLink.textContent = `Sign up`
     this.footerLink.addEventListener('click', () => {
       this.onNavigate('/signup')
@@ -233,7 +222,7 @@ class View {
     this.form = this.createElement('form', 'form')
     this.form.addEventListener('submit', (e) => {
       e.preventDefault()
-      this.signUp(this.state).then(_ => {
+      this.signUp().then(_ => {
         this.onNavigate('/signin')
       })
     })
@@ -243,10 +232,8 @@ class View {
     this.footerText = this.createElement('p', 'footer__text')
     this.footerText.textContent = 'Already have an account?'
     this.footerLink = this.createElement('a', 'footer__link')
-    this.footerLink.href = '#'
     this.footerLink.textContent = `Sign in`
     this.footerLink.addEventListener('click', () => {
-      console.log('ha!')
       this.onNavigate('/signin')
     })
     this.footer.append(this.footerText, this.footerLink)
