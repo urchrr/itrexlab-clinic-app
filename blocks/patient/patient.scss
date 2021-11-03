@@ -2,16 +2,17 @@
 
 .patient__card {
   background-color: $white;
-  border-radius: 12px;
   margin-bottom: 24px;
-  margin-right: 20px;
+  box-shadow: 0 4px 32px rgba(218, 228, 255, 0.24);
+  border-radius: 12px;
 }
 
 .patient__bio {
+  position: relative;
   padding: 16px 24px;
   border-bottom: 1px solid $grey-solid;
   display: grid;
-  grid-template-columns: 64px 16px auto 24px;
+  grid-template-columns: 64px 16px auto 40px;
   grid-template-rows:repeat(2, 32px);
 
   grid-template-areas:
@@ -43,10 +44,22 @@
   border-radius: 50%;
   width: 8px;
   height: 8px;
-  background-color: $green;
+
   grid-area: indicator;
   margin-top: 4px;
   margin-right: 8px;
+}
+
+.green {
+  background-color: $green;
+}
+
+.red {
+  background-color: $red;
+}
+
+.blue {
+  background-color: $blue;
 }
 
 .patient__bio-status {
@@ -61,12 +74,66 @@
 .patient__bio-dotburger {
   grid-area: button;
   border: none;
-  width: 24px;
-  height: 24px;
+  width: 40px;
+  height: 40px;
   background-color: transparent;
   outline: none;
   cursor: pointer;
   align-self: center;
+  border-radius: 6px;
+}
+
+.icon-dorburger {
+  background: url(../../images/icon-dotburger.svg) no-repeat center;
+}
+
+.icon-dorburger_active {
+  background: url(../../images/icon-dotburger-active.svg) no-repeat center;
+}
+
+.patient__bio-dotburger_active {
+  background-color: $form-background-color;
+  color: $blue;
+}
+
+.patient__menu {
+  visibility: hidden;
+  overflow: hidden;
+  position: absolute;
+  width: 272px;
+  height: 0;
+  background-color: $white;
+  transition: height .3s ease-out;
+  top: 72px;
+  right: 16px;
+  border-radius: 8px;
+  //border: 1px solid red;
+  box-shadow: 0 4px 32px rgba(218, 228, 255, 0.54);
+  padding: 4px;
+}
+
+.patient__menu-button {
+  outline: none;
+  border: none;
+  width: 100%;
+  height: 40px;
+  padding-left: 20px;
+  padding-right: 20px;
+  color: $dark-grey;
+  font-size: 15px;
+  line-height: 21px;
+  margin: 0;
+  background-color: transparent;
+  text-align: start;
+}
+
+.patient__menu-button:hover {
+  background-color: $form-background-color;
+}
+
+.patient__menu_visible {
+  visibility: visible;
+  height: 128px;
 }
 
 .patient__info {
@@ -110,5 +177,11 @@
   }
   .patient__info {
     padding: 24px 32px 40px 32px;
+  }
+}
+
+@media only screen and (min-width: 1024px) {
+  .patient__card {
+    margin-bottom: 0;
   }
 }

@@ -15,31 +15,6 @@ class Model {
     this.signIn = this.signIn.bind(this)
   }
 
-  getCards() {
-    return [
-      {
-      name: 'Zachary AdkiAdkiAdki',
-      avatar: "./images/avatar.png",
-      status: 1,
-      time: 'Thu Sept 10, 2021 4 pm – 5 pm',
-      result: 'We will invite you in for a full review every\n          year\n          and more\n          frequently if you are struggling with blood sugar levels'
-      },
-      {
-        name: 'Zachary AdkiAdkiAdki',
-        avatar: "./images/avatar.png",
-        status: 2,
-        time: 'Thu Sept 10, 2021 4 pm – 5 pm',
-        result: 'We will invite you in for a full review every\n          year\n          and more\n          frequently if you are struggling with blood sugar levels'
-      },
-      {
-        name: 'Zachary AdkiAdkiAdki',
-        avatar: "./images/avatar.png",
-        status: 3,
-        time: 'Thu Sept 10, 2021 4 pm – 5 pm',
-        result: 'We will invite you in for a full review every\n          year\n          and more\n          frequently if you are struggling with blood sugar levels'
-      },
-    ]
-  }
 
   clearState() {
     this.state = {}
@@ -74,4 +49,73 @@ class Model {
       }
     })
   }
+
+  getCards() {
+    return [
+      {
+        name: 'Zachary AdkiAdkiAdki',
+        avatar: "./images/avatar.png",
+        status: 1,
+        time: 'Thu Sept 10, 2021 4 pm – 5 pm',
+        result: 'We will invite you in for a full review every\n          year\n          and more\n          frequently if you are struggling with blood sugar levels'
+      },
+      {
+        name: 'Zachary AdkiAdkiAdki',
+        avatar: "./images/avatar.png",
+        status: 2,
+        time: 'Thu Sept 10, 2021 4 pm – 5 pm',
+        result: 'We will invite you in for a full review every\n          year\n          and more\n          frequently if you are struggling with blood sugar levels'
+      },
+      {
+        name: 'Zachary AdkiAdkiAdki',
+        avatar: "./images/avatar.png",
+        status: 3,
+        time: 'Thu Sept 10, 2021 4 pm – 5 pm',
+        result: 'We will invite you in for a full review every\n          year\n          and more\n          frequently if you are struggling with blood sugar levels'
+      },
+      {
+        name: 'Zachary AdkiAdkiAdki',
+        avatar: "./images/avatar.png",
+        status: 1,
+        time: 'Thu Sept 10, 2021 4 pm – 5 pm',
+        result: 'We will invite you in for a full review every\n          year\n          and more\n          frequently if you are struggling with blood sugar levels'
+      },
+      {
+        name: 'Zachary AdkiAdkiAdki',
+        avatar: "./images/avatar.png",
+        status: 2,
+        time: 'Thu Sept 10, 2021 4 pm – 5 pm',
+        result: 'We will invite you in for a full review every\n          year\n          and more\n          frequently if you are struggling with blood sugar levels'
+      },
+      {
+        name: 'Zachary AdkiAdkiAdki',
+        avatar: "./images/avatar.png",
+        status: 3,
+        time: 'Thu Sept 10, 2021 4 pm – 5 pm',
+        result: 'We will invite you in for a full review every\n          year\n          and more\n          frequently if you are struggling with blood sugar levels'
+      },
+      {
+        name: 'Zachary AdkiAdkiAdki',
+        avatar: "./images/avatar.png",
+        status: 1,
+        time: 'Thu Sept 10, 2021 4 pm – 5 pm',
+        result: 'We will invite you in for a full review every\n          year\n          and more\n          frequently if you are struggling with blood sugar levels'
+      },
+      {
+        name: 'Zachary AdkiAdkiAdki',
+        avatar: "./images/avatar.png",
+        status: 2,
+        time: 'Thu Sept 10, 2021 4 pm – 5 pm',
+        result: 'We will invite you in for a full review every\n          year\n          and more\n          frequently if you are struggling with blood sugar levels'
+      },
+      {
+        name: 'Zachary AdkiAdkiAdki',
+        avatar: "./images/avatar.png",
+        status: 3,
+        time: 'Thu Sept 10, 2021 4 pm – 5 pm',
+        result: 'We will invite you in for a full review every\n          year\n          and more\n          frequently if you are struggling with blood sugar levels'
+      },
+    ]
+  }
+
 }

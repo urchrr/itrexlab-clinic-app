@@ -115,18 +115,26 @@ class View {
         <span class="patient__bio-status-indicator ${st[status].color}"></span>
         <p class="patient__bio-status">${st[status].text}</p>
         <button class="patient__bio-dotburger icon-dorburger"></button>
+        <div class="patient__menu">
+            <button class="patient__menu-button">Create a resolution</button>
+            <button class="patient__menu-button">Edit an appointment</button>
+            <button class="patient__menu-button" style="color: #FF2567;">Delete</button>
+        </div>
       </div>
       <div class="patient__info">
         <span class="patient__info-icon icon-clock"></span>
         <p class="patient__time">
           ${time}</p>
-        <span class="patient__info-icon icon-clipboard"></span>
-        <p style="margin: 0">
-          ${result}</p>
-      </div>`
+          ${result ?
+      `<span class="patient__info-icon icon-clipboard"></span>
+                    <p style="margin: 0">${result}</p></div>` : ''}`
     const button = article.querySelector('.patient__bio-dotburger')
+    const menu = article.querySelector('.patient__menu')
     button.addEventListener('click', (e) => {
-      console.log('burger!->', e.target)
+      console.log('burger!->', e)
+      button.classList.toggle('patient__bio-dotburger_active')
+      button.classList.toggle('icon-dorburger_active')
+      menu.classList.toggle('patient__menu_visible')
     })
     container.append(article)
   }

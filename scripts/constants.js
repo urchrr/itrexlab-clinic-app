@@ -81,48 +81,6 @@ const clinicTemplate = `
     <button class="clinic__content-ctrl-btn icon-settings"></button>
   </div>
   <div class="clinic__content-container">
-
-    <!--<article class="patient__card">
-      <div class="patient__bio">
-        <img src="./images/avatar.png" alt="avatar" class="patient__bio-avatar">
-        <h3 class="patient__bio-name">Zachary AdkiAdkiAdki</h3>
-        <span class="patient__bio-status-indicator"></span>
-        <p class="patient__bio-status">Appointment is confirmed</p>
-        <button class="patient__bio-dotburger icon-dorburger"></button>
-      </div>
-      <div class="patient__info">
-        <span class="patient__info-icon icon-clock"></span>
-        <p class="patient__time">
-          Thu Sept 10, 2021 4 pm – 5 pm</p>
-        <span class="patient__info-icon icon-clipboard"></span>
-        <p style="margin: 0">
-          We will invite you in for a full review every
-          year
-          and more
-          frequently if you are struggling with blood sugar levels</p>
-      </div>
-    </article>
-    <article class="patient__card">
-      <div class="patient__bio">
-        <img src="./images/avatar.png" alt="avatar" class="patient__bio-avatar">
-        <h3 class="patient__bio-name">Zachary AdkiAdkiAdki</h3>
-        <span class="patient__bio-status-indicator"></span>
-        <p class="patient__bio-status">Appointment is confirmed</p>
-        <button class="patient__bio-dotburger icon-dorburger"></button>
-      </div>
-      <div class="patient__info">
-        <span class="patient__info-icon icon-clock"></span>
-        <p class="patient__time">
-          Thu Sept 10, 2021 4 pm – 5 pm</p>
-        <span class="patient__info-icon icon-clipboard"></span>
-        <p style="margin: 0">
-          We will invite you in for a full review every
-          year
-          and more
-          frequently if you are struggling with blood sugar levels</p>
-      </div>
-    </article>-->
-
   </div>
 </div>
 
