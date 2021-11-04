@@ -1,73 +1,65 @@
-//показать ошибку
-function showError(form, input, config) {
-  const error = form.querySelector(`#${input.id}-error`);
-  error.textContent = input.validationMessage;
-  input.classList.add(config.inputInvalidClass);
-}
-
-//скрыть ощибку
-function hideError(form, input, config) {
-  const error = form.querySelector(`#${input.id}-error`);
-  error.textContent = '';
-  input.classList.remove(config.inputInvalidClass);
-}
-
-//триггер валидации инпута
-function checkInputValidity(form, input, config) {
-  if (!input.validity.valid) {
-    showError(form, input, config);
-  } else {
-    hideError(form, input, config);
+class Validation {
+  constructor(validationConfig, form) {
+    this.config = validationConfig
+    this.form = form
+    this.submitButton = this.form.querySelector(this.config.submitButtonSelector);
+    this.inputsList = this.form.querySelectorAll(this.config.inputSelector);
+    this.showError = this.showError.bind(this)
+    this.hideError = this.hideError.bind(this)
+    this.checkInputValidity = this.checkInputValidity.bind(this)
+    this.setButtonState = this.setButtonState.bind(this)
+    this.setEventListeners = this.setEventListeners.bind(this)
   }
-}
 
-//функция проверки состояния сабмита
-function setButtonState(button, isActive, config) {
-  if (isActive) {
-    button.classList.remove(config.buttonInvalidClass);
-    button.disabled = false;
-  } else {
-    button.classList.add(config.buttonInvalidClass);
-    button.disabled = true;
+  showError(input, customText) {
+    const error = this.form.querySelector(`#${input.id}-error`);
+    error.textContent = customText ? customText : input.validationMessage;
+    input.classList.add(this.config.inputInvalidClass);
   }
-}
 
-//функция добавления слушателей на каждый элемент формы
-function setEventListeners(form, config) {
-  const inputsList = form.querySelectorAll(config.inputSelector);
-  const submitButton = form.querySelector(config.submitButtonSelector);
-  inputsList.forEach((input) => {
-    input.addEventListener('blur', () => {
-      checkInputValidity(form, input, config);
-    });
-    input.addEventListener('input', () => {
-      if (input.validity.valid) {
-        hideError(form, input, config);
-      }
-      setButtonState(submitButton, form.checkValidity(), config);
-    });
-  });
-}
+  hideError(input) {
+    const error = this.form.querySelector(`#${input.id}-error`);
+    error.textContent = '';
+    input.classList.remove(this.config.inputInvalidClass);
+  }
 
-//запуск валидации
-function enableValidation(config) {
-  const forms = document.querySelectorAll(config.formSelector);
-  forms.forEach((form) => {
-    setEventListeners(form, config);
-    form.addEventListener('submit', (evt) => {
+  checkInputValidity(input) {
+    if (!input.validity.valid) {
+      this.showError(input);
+    } else {
+      this.hideError(input);
+    }
+  }
+
+  setButtonState(isActive) {
+    if (isActive) {
+      this.submitButton.classList.remove(this.config.buttonInvalidClass);
+      this.submitButton.disabled = false;
+    } else {
+      this.submitButton.classList.add(this.config.buttonInvalidClass);
+      this.submitButton.disabled = true;
+    }
+  }
+
+  setEventListeners() {
+    this.inputsList.forEach((input) => {
+      input.addEventListener('blur', () => {
+        this.checkInputValidity(input);
+      });
+      input.addEventListener('input', () => {
+        if (input.validity.valid) {
+          this.hideError(input);
+        }
+        this.setButtonState(this.form.checkValidity());
+      });
+    });
+  }
+
+  enableValidation() {
+    this.setEventListeners();
+    this.form.addEventListener('submit', (evt) => {
       evt.preventDefault();
-    });
-    const submitButton = form.querySelector(config.submitButtonSelector);
-    setButtonState(submitButton, form.checkValidity(), config)
-  });
+    })
+    this.setButtonState(this.form.checkValidity())
+  }
 }
-
-
-
-
-
-
-
-
-
-

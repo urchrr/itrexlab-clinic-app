@@ -46,6 +46,7 @@ class Controller {
   }
 
   router(route) {
+    console.log('go route', route)
     switch (route) {
       case '/':
         return this.view.renderSignUp()

@@ -3,11 +3,12 @@
  *
  * Visual representation of the model.
  */
+
 class View {
   constructor() {
     this.app = this.getElement('#root')
-    this.content = this.createElement('div', 'content')
-    this.app.append(this.content)
+    // this.content = this.createElement('div', 'content')
+    // this.app.append(this.content)
     this.signupInputList = signupInputList
     this.signinInputList = signinInputList
     this.restorePasswordInputList = restorePasswordInputList
@@ -22,6 +23,7 @@ class View {
 
   clearView(rootElement) {
     console.log('clear view')
+    this.app.classList.contains('clinic') ? this.app.classList.remove('clinic') : ''
     this.clearState()
     while (rootElement.firstChild) {
       rootElement.removeChild(rootElement.firstChild)
@@ -42,7 +44,7 @@ class View {
     input.placeholder = placeholder
     input.name = name
     input.id = name
-    input.minLength = 4
+    input.minLength = minInputLength
     input.autocomplete = 'off'
     input.required = true
     input.noValidate = true
@@ -150,7 +152,8 @@ class View {
   }
 
   renderRestorePasswordMessage() {
-    this.clearView(this.content)
+    this.clearView(this.app)
+    this.content = this.createElement('div', 'content')
     this.form = this.createElement('form', 'form')
     this.form.innerHTML =
       `<p class="form__text">An email has been sent to <span class="form__email">example@exam.com</span>. Check your
@@ -166,10 +169,12 @@ class View {
     this.header.prepend(this.button)
     this.form.prepend(this.header)
     this.content.append(this.form)
+    this.app.append(this.content)
   }
 
   renderRestorePassword() {
-    this.clearView(this.content)
+    this.clearView(this.app)
+    this.content = this.createElement('div', 'content')
     this.form = this.createElement('form', 'form')
     this.form.addEventListener('submit', () => {
       this.onNavigate('/restore-password-message')
@@ -188,18 +193,17 @@ class View {
     this.form.prepend(this.header, this.textEl)
     this.form.append(this.submitButton)
     this.content.append(this.form)
+    this.app.append(this.content)
+
+    const validation = new Validation(validationConfig, this.form)
+    validation.enableValidation();
+
   }
 
   renderSignIn() {
-    this.clearView(this.content)
+    this.clearView(this.app)
+    this.content = this.createElement('div', 'content')
     this.form = this.createElement('form', 'form')
-    this.form.addEventListener('submit', (e) => {
-      e.preventDefault()
-      this.signIn().then(m => {
-        console.log(m)
-        this.onNavigate('/clinic')
-      }).catch(err => console.log(err))
-    })
     this.header = this.createHeader('Sign in')
     this.submitButton = this.createSubmitButton('Sign in')
     this.footer = this.createElement('div', 'footer')
@@ -218,15 +222,39 @@ class View {
     this.footer.append(this.footerText, this.footerLink)
     this.inputList = this.signinInputList.map(input => this.createInput(input))
     this.inputList.forEach(input => this.form.append(input))
+    this.emailInput = this.form.querySelector("input[name='email']")
+    this.passwdInput = this.form.querySelector("input[name='password']")
+
+
     this.form.prepend(this.header)
     this.form.append(this.submitButton, this.formLink)
     this.content.append(this.form, this.footer)
+    this.app.append(this.content)
 
-    enableValidation(validationConfig);
+    const validation = new Validation(validationConfig, this.form)
+
+    this.form.addEventListener('submit', (e) => {
+      e.preventDefault()
+      this.signIn().then(m => {
+        console.log(m)
+        this.onNavigate('/clinic')
+      }).catch(err => {
+          if (err === 'email') {
+            validation.showError(this.emailInput, wrongEmailMessage)
+          } else if (err === 'password') {
+            validation.showError(this.passwdInput, wrongPasswordMessage)
+          }
+        }
+      )
+    })
+
+    validation.enableValidation();
+
   }
 
   renderSignUp() {
-    this.clearView(this.content)
+    this.clearView(this.app)
+    this.content = this.createElement('div', 'content')
     this.form = this.createElement('form', 'form')
     this.form.addEventListener('submit', (e) => {
       e.preventDefault()
@@ -250,7 +278,16 @@ class View {
     this.form.prepend(this.header)
     this.form.append(this.submitButton)
     this.content.append(this.header, this.form, this.footer)
+    this.app.append(this.content)
+    this.passwdInput = this.form.querySelector("input[name='password']")
+    this.confirmPassword = this.form.querySelector("input[name='confirmPassword']")
+    const validation = new Validation(validationConfig, this.form)
+    validation.enableValidation();
 
-    enableValidation(validationConfig);
+    this.confirmPassword.addEventListener('blur', (e) => {
+      if (this.passwdInput.value !== this.confirmPassword.value) {
+        validation.showError(this.confirmPassword, passwdDidntMatchMessage)
+      }
+    })
   }
 }

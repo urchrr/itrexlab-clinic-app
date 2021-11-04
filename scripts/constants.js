@@ -85,3 +85,9 @@ const clinicTemplate = `
 </div>
 
 `
+
+const minInputLength = 4
+
+const passwdDidntMatchMessage = 'Пароли не совпадают'
+const wrongEmailMessage = 'Почта не найдена'
+const wrongPasswordMessage = 'Пароль не верный'

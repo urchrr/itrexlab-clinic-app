@@ -44,8 +44,10 @@ class Model {
       }, {})
       if (hash[this.state.email] && hash[this.state.email] === this.state.password) {
         resolve('signin')
-      } else {
-        reject('error')
+      } else if (!hash[this.state.email]) {
+        reject('email')
+      } else if (hash[this.state.email] && hash[this.state.email] !== this.state.password) {
+        reject('password')
       }
     })
   }
