@@ -15,6 +15,11 @@
   justify-content: space-between;
   align-items: center;
 }
+
+.form__submit:disabled {
+  background: $grey
+}
+
 .form__submit-schevron {
   display: block;
   background-image: url(../../images/schevron.svg);
@@ -27,7 +32,7 @@
   margin-left: 8px;
 }
 
-@media only screen and (min-width: 560px){
+@media only screen and (min-width: 560px) {
   .form__submit {
     font-size: 17px;
     line-height: 25px;

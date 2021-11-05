@@ -3,7 +3,6 @@
 .form {
   display: flex;
   flex-direction: column;
-  margin: 0;
   flex: 1 0 auto;
 }
 
@@ -53,6 +52,7 @@
   line-height: 22px;
   color: #7297FF;
   font-weight: 500;
+  text-decoration: underline;
 }
 
 @media only screen and (min-width: 560px) {

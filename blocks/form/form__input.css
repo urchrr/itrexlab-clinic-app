@@ -1,5 +1,5 @@
 .form__input-wrapper {
-  margin-bottom: 24px;
+  margin-bottom: 16px;
   position: relative;
 }
 
@@ -81,6 +81,11 @@
   border: 1px solid #ff2567;
 }
 
+.form__input_invalid:focus {
+  border: 1px solid #ff2567;
+  outline: none;
+}
+
 @media only screen and (min-width: 560px) {
   .form__input,
 .form__input::placeholder {
@@ -88,7 +93,7 @@
   }
 
   .form__input-wrapper {
-    margin-bottom: 40px;
+    margin-bottom: 32px;
   }
 
   .form__input {
