@@ -1,0 +1,14 @@
+@import url(./vendor/normalize.css);
+@import url(./fonts/fonts.css);
+
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+body{
+  font-family: 'Poppins', 'Arial', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  font-weight: normal;
+}
