@@ -3,6 +3,7 @@ import styled from "styled-components";
 import StyledInput from '../core/StyledInput'
 import iconEye from "../images/icon-block-eye.svg";
 
+
 const InputWrapper = styled.div`
   margin-bottom: 16px;
   position: relative;
@@ -18,6 +19,19 @@ const InputWrapper = styled.div`
     }
   }
 `
+
+const InputError = styled.span`
+  font-size: 13px;
+  line-height: 16px;
+  letter-spacing: -0.24px;
+  color: #f6657f;
+  margin-top: 14px;
+  display: block;
+  @media only screen and (min-width: 560px) {
+    margin-top: 8px;
+  }
+`
+
 const InputIcon = styled.img`
   box-sizing: border-box;
   border: none;
@@ -42,34 +56,22 @@ const InputBlockEye = styled(InputIcon)`
   }
 `
 
-const InputError = styled.span`
-  font-size: 13px;
-  line-height: 16px;
-  letter-spacing: -0.24px;
-  color: #f6657f;
-  margin-top: 14px;
-  display: block;
-  @media only screen and (min-width: 560px) {
-    margin-top: 8px;
-  }
-`
-
-const Input = props => {
+const Input = ({icon, placeholder, type = 'text', touched, error, ...props}) => {
     const [isShow, setShow] = useState(false)
     const handleShow = _ => {
         setShow(!isShow)
     }
     return (
         <InputWrapper>
-            <InputIcon src={props.icon}/>
-            <StyledInput placeholder={props.placeholder}
-                         type={props.type === 'password' ? (isShow ? 'password' : 'text') : props.type}
+            <InputIcon src={icon}/>
+            <StyledInput placeholder={placeholder}
+                         type={type === 'password' ? (isShow ? 'text' : 'password') : type}
                          {...props}
             />
-            {props.touched && props.error ? (
-                <InputError>{props.error}</InputError>
+            {touched && error ? (
+                <InputError>{error}</InputError>
             ) : null}
-            {props.type === 'password' &&
+            {type === 'password' &&
             <InputBlockEye src={iconEye} onClick={handleShow}/>
             }
         </InputWrapper>

@@ -10,6 +10,9 @@ import StyledSubmitButton from "../core/StyledSubmitButton";
 import {signinInputList} from "../services/inputLists";
 import * as constants from "../services/constants";
 import {useNavigate} from "react-router-dom";
+import {signIn, signUp} from "../services/mockApi";
+import {useDispatch} from "react-redux";
+import {SET_LOGGED_IN} from "../../../services/redux/actionTypes";
 
 const Link = styled.a`
   margin-top: 32px;
@@ -23,6 +26,7 @@ const Link = styled.a`
 
 const SignInForm = props => {
     const navigate = useNavigate()
+    const dispatch = useDispatch()
     const handleRestore = _ => {
         navigate('/restore-password')
     }
@@ -33,7 +37,14 @@ const SignInForm = props => {
             },
             validationSchema: signInSchema,
             onSubmit: values => {
-                alert(JSON.stringify(values, null, 2));
+                signIn(values)
+                    .then((res) => {
+                        dispatch({type: SET_LOGGED_IN, payload: true})
+                        navigate('/clinic')
+                    })
+                    .catch(err => {
+                        console.log(err)
+                    })
             }
         }
     )

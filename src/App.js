@@ -1,22 +1,29 @@
-import React, {useState} from 'react';
-import {Route, Routes} from 'react-router-dom';
+import React from 'react';
+import AuthPage from "./features/UserAuth";
+import ClinicPage from "./features/ClinicDashboard";
+import {useRoutes, Navigate} from 'react-router-dom';
+import {useSelector} from "react-redux";
 
-import {routes} from './services/routes'
-import UserAuth from "./features/UserAuth";
+const routes = (isLoggedIn) => [
+    {
+        path: '/clinic',
+        element: isLoggedIn ? <ClinicPage/> : <Navigate to="/"/>,
+    },
+    {
+        path: '/',
+        element: !isLoggedIn ? <AuthPage/> : <Navigate to="/clinic"/>,
+    },
+];
 
 function App() {
-    const [loggedIn, setLoggedIn] = useState(false)
+
+    const {isLoggedIn} = useSelector(state => state.userAuthReducer)
+    const routing = useRoutes(routes(isLoggedIn));
+
+
     return (
         <>
-            {!loggedIn ?
-                <UserAuth/>
-                :
-                <Routes>
-                    {/*<Route path="" element={<Patients/>}/>*/}
-                    {/*<Route path="patients" element={<Patients/>}/>*/}
-                    {/*<Route path="appointments" element={<Appointments/>}/>*/}
-                </Routes>
-            }
+            {routing}
         </>
 
     );

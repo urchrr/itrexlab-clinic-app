@@ -7,8 +7,11 @@ import StyledHeader from "../core/StyledHeader";
 import StyledHeaderTitle from "../core/StyledHeaderTitle";
 import StyledSubmitButton from "../core/StyledSubmitButton";
 import {signupInputList} from "../services/inputLists";
+import {signUp} from "../services/mockApi";
+import {useNavigate, Navigate} from "react-router-dom";
 
 const SignUpForm = props => {
+    const navigate = useNavigate()
     const formik = useFormik({
             initialValues: {
                 firstName: '',
@@ -19,7 +22,13 @@ const SignUpForm = props => {
             },
             validationSchema: signUpSchema,
             onSubmit: values => {
-                alert(JSON.stringify(values, null, 2));
+                signUp(values)
+                    .then((res) => {
+                        navigate("/sign-in")
+                    })
+                    .catch(err => {
+                        console.log(err)
+                    })
             }
         }
     )
