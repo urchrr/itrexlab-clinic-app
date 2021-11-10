@@ -1,7 +1,7 @@
 import React, {useState} from 'react'
 import ClinicDashboardLayout from "../layouts/DashboardLayout";
 import NavigationButton from "./NavigationButton";
-import {Route, Routes} from "react-router-dom";
+import {Navigate, Route, Routes} from "react-router-dom";
 import Patients from "./Patients";
 import styled from "styled-components";
 import * as constants from "../services/constants";
@@ -39,7 +39,8 @@ const ClinicDashboard = () => {
         patients: 'patients',
         resolutions: 'resolutions'
     }
-    const [activePath, setActivePath] = useState(Object.values(routes)[0])
+    const firstRoute = Object.values(routes)[0]
+    const [activePath, setActivePath] = useState(firstRoute)
 
 
     const handleNavigate = (name) => {
@@ -63,6 +64,7 @@ const ClinicDashboard = () => {
                     />
                 </NavigationArea>
                 <Routes>
+                    <Route path={''} element={<Navigate to={firstRoute}/>}/>
                     <Route path={routes.patients} element={<Patients cards={cards}/>}/>
                     <Route path={routes.resolutions} element={<></>}/>
                 </Routes>

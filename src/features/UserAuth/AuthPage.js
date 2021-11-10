@@ -6,7 +6,7 @@ import {Route, Routes} from "react-router-dom";
 import {routes} from "./services/routes";
 import React from "react";
 
-const AuthPage = props => {
+const AuthPage = () => {
     return (
         <AuthPageLayout>
             <Routes>
