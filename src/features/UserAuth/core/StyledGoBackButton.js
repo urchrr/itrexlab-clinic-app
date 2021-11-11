@@ -2,6 +2,7 @@ import styled from "styled-components";
 import iconChevron from '../images/icon-schevron-grey.svg'
 
 const StyledGoBackButton = styled.button`
+  cursor: pointer;
   outline: none;
   border: none;
   background: url(${iconChevron}) no-repeat center;

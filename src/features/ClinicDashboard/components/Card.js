@@ -6,6 +6,7 @@ import {ReactComponent as IconClock} from "../images/icon-clock.svg";
 import {ReactComponent as IconClipboard} from "../images/icon-clipboard.svg";
 import StyledStatusIndicator from "../core/StyledStatusIndicator";
 import caseStatuses from "../../UserAuth/services/caseStatuses";
+import CardToggleButton from "./CardToogleButton";
 
 const Card = styled.article`
   background-color: ${constants.white};
@@ -68,17 +69,7 @@ const CardStatusDescription = styled.p`
   margin: 0;
 `
 
-const CardSettingsToggleButton = styled(StyledButton)`
-  grid-area: button;
-  border: none;
-  width: 40px;
-  height: 40px;
-  background-color: transparent;
-  outline: none;
-  cursor: pointer;
-  align-self: center;
-  border-radius: 6px;
-`
+
 
 const CardSettings = styled.div`
   visibility: hidden;
@@ -113,6 +104,9 @@ const CardSettingsButton = styled(StyledButton)`
   &:hover {
     background-color: ${constants.formBackgroundColor};
   }
+`
+const CardSettingsDeleteButton = styled(CardSettingsButton)`
+  color: #FF2567
 `
 
 const CardCaseArea = styled.div`
@@ -150,11 +144,11 @@ const CaseCard = ({avatar, name, status, time, result}) => {
                 <CardTitle>{name}</CardTitle>
                 <CardStatusIndicator className={caseStatuses[status].color}/>
                 <CardStatusDescription>{caseStatuses[status].text}</CardStatusDescription>
-                <CardSettingsToggleButton onClick={handleShowSettings}/>
+                <CardToggleButton onClick={handleShowSettings}/>
                 <CardSettings className={`${isShow ? 'visible' : ''}`}>
                     <CardSettingsButton>Create a resolution</CardSettingsButton>
                     <CardSettingsButton>Edit an appointment</CardSettingsButton>
-                    <CardSettingsButton style={{color: '#FF2567;'}}>Delete</CardSettingsButton>
+                    <CardSettingsDeleteButton>Delete</CardSettingsDeleteButton>
                 </CardSettings>
             </CardUserArea>
             <CardCaseArea>
