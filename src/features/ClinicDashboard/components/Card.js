@@ -1,9 +1,9 @@
-import React, {useState} from 'react';
+import React, { useState } from "react";
 import styled from "styled-components";
 import StyledButton from "../core/StyledButton";
 import * as constants from "../services/constants";
-import {ReactComponent as IconClock} from "../images/icon-clock.svg";
-import {ReactComponent as IconClipboard} from "../images/icon-clipboard.svg";
+import { ReactComponent as IconClock } from "../images/icon-clock.svg";
+import { ReactComponent as IconClipboard } from "../images/icon-clipboard.svg";
 import StyledStatusIndicator from "../core/StyledStatusIndicator";
 import caseStatuses from "../../UserAuth/services/caseStatuses";
 import CardToggleButton from "./CardToogleButton";
@@ -16,7 +16,7 @@ const Card = styled.article`
   @media only screen and (min-width: 1024px) {
     margin-bottom: 0;
   }
-`
+`;
 
 const CardUserArea = styled.div`
   position: relative;
@@ -24,22 +24,22 @@ const CardUserArea = styled.div`
   border-bottom: 1px solid ${constants.greySolid};
   display: grid;
   grid-template-columns: 64px 16px auto 40px;
-  grid-template-rows:repeat(2, 32px);
+  grid-template-rows: repeat(2, 32px);
   grid-template-areas:
-  'avatar title title button'
-  'avatar indicator status button';
+    "avatar title title button"
+    "avatar indicator status button";
   @media only screen and (min-width: 560px) {
     padding: 24px 32px;
-    grid-template-rows:32px 16px;
+    grid-template-rows: 32px 16px;
   }
-`
+`;
 
 const CardAvatar = styled.img`
   grid-area: avatar;
   width: 48px;
   height: 48px;
   border-radius: 50%;
-`
+`;
 
 const CardTitle = styled.h3`
   grid-area: title;
@@ -52,13 +52,13 @@ const CardTitle = styled.h3`
   white-space: nowrap;
   text-overflow: ellipsis;
   align-self: center;
-`
+`;
 
 const CardStatusIndicator = styled(StyledStatusIndicator)`
   grid-area: indicator;
   margin-top: 4px;
   margin-right: 8px;
-`
+`;
 
 const CardStatusDescription = styled.p`
   grid-area: status;
@@ -67,9 +67,7 @@ const CardStatusDescription = styled.p`
   line-height: 17px;
   color: ${constants.grey};
   margin: 0;
-`
-
-
+`;
 
 const CardSettings = styled.div`
   visibility: hidden;
@@ -78,7 +76,7 @@ const CardSettings = styled.div`
   width: 272px;
   height: 0;
   background-color: ${constants.white};
-  transition: height .3s ease-out;
+  transition: height 0.3s ease-out;
   top: 72px;
   right: 16px;
   border-radius: 8px;
@@ -89,7 +87,7 @@ const CardSettings = styled.div`
     visibility: visible;
     height: 128px;
   }
-`
+`;
 
 const CardSettingsButton = styled(StyledButton)`
   width: 100%;
@@ -104,10 +102,10 @@ const CardSettingsButton = styled(StyledButton)`
   &:hover {
     background-color: ${constants.formBackgroundColor};
   }
-`
+`;
 const CardSettingsDeleteButton = styled(CardSettingsButton)`
-  color: #FF2567
-`
+  color: #ff2567;
+`;
 
 const CardCaseArea = styled.div`
   padding: 16px 24px;
@@ -120,7 +118,7 @@ const CardCaseArea = styled.div`
   @media only screen and (min-width: 560px) {
     padding: 24px 32px 40px 32px;
   }
-`
+`;
 
 const CardCaseTime = styled.p`
   margin: 0;
@@ -128,41 +126,45 @@ const CardCaseTime = styled.p`
   font-size: 15px;
   line-height: 19px;
   color: ${constants.darkGrey};
-`
+`;
 
-const CaseCard = ({avatar, name, status, time, result}) => {
-    const [isShow, setShow] = useState(false);
+const CaseCard = ({ avatar, name, status, time, result }) => {
+  const [isShow, setShow] = useState(false);
 
-    const handleShowSettings = () => {
-        setShow(!isShow)
-    }
+  const handleShowSettings = () => {
+    setShow(!isShow);
+  };
 
-    return (
-        <Card>
-            <CardUserArea>
-                <CardAvatar src={avatar} alt="avatar"/>
-                <CardTitle>{name}</CardTitle>
-                <CardStatusIndicator className={caseStatuses[status].color}/>
-                <CardStatusDescription>{caseStatuses[status].text}</CardStatusDescription>
-                <CardToggleButton onClick={handleShowSettings}/>
-                <CardSettings className={`${isShow ? 'visible' : ''}`}>
-                    <CardSettingsButton>Create a resolution</CardSettingsButton>
-                    <CardSettingsButton>Edit an appointment</CardSettingsButton>
-                    <CardSettingsDeleteButton>Delete</CardSettingsDeleteButton>
-                </CardSettings>
-            </CardUserArea>
-            <CardCaseArea>
-                <IconClock style={{width: '24px', height: '24px'}}/>
-                <CardCaseTime>{time}</CardCaseTime>
-                {result ?
-                    <>
-                        <IconClipboard style={{width: '24px', height: '24px'}}/>
-                        <p style={{margin: '0'}}>{result}</p>
-                    </>
-                    : ''}
-            </CardCaseArea>
-        </Card>
-    );
-}
+  return (
+    <Card>
+      <CardUserArea>
+        <CardAvatar src={avatar} alt="avatar" />
+        <CardTitle>{name}</CardTitle>
+        <CardStatusIndicator className={caseStatuses[status].color} />
+        <CardStatusDescription>
+          {caseStatuses[status].text}
+        </CardStatusDescription>
+        <CardToggleButton onClick={handleShowSettings} />
+        <CardSettings className={`${isShow ? "visible" : ""}`}>
+          <CardSettingsButton>Create a resolution</CardSettingsButton>
+          <CardSettingsButton>Edit an appointment</CardSettingsButton>
+          <CardSettingsDeleteButton>Delete</CardSettingsDeleteButton>
+        </CardSettings>
+      </CardUserArea>
+      <CardCaseArea>
+        <IconClock style={{ width: "24px", height: "24px" }} />
+        <CardCaseTime>{time}</CardCaseTime>
+        {result ? (
+          <>
+            <IconClipboard style={{ width: "24px", height: "24px" }} />
+            <p style={{ margin: "0" }}>{result}</p>
+          </>
+        ) : (
+          ""
+        )}
+      </CardCaseArea>
+    </Card>
+  );
+};
 
-export default CaseCard
+export default CaseCard;

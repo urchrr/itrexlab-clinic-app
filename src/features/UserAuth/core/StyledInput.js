@@ -1,12 +1,11 @@
 import styled from "styled-components";
 import * as constants from "../services/constants";
 
-
-const StyledInput = styled.input.attrs((props) => ({
-    minLength: `${constants.minNameLength}`,
-    autoComplete: 'off',
-    required: true,
-    noValidate: true
+const StyledInput = styled.input.attrs(() => ({
+  minLength: `${constants.minNameLength}`,
+  autoComplete: "off",
+  required: true,
+  noValidate: true,
 }))`
   width: 100%;
   border: 1px solid ${constants.greySolid};
@@ -46,6 +45,6 @@ const StyledInput = styled.input.attrs((props) => ({
       font-size: 17px;
     }
   }
-`
+`;
 
-export default StyledInput
+export default StyledInput;

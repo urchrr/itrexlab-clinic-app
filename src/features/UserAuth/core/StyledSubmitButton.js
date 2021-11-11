@@ -1,10 +1,10 @@
-import React from 'react'
+import React from "react";
 import styled from "styled-components";
 import * as constants from "../services/constants";
 import imgChevron from "../images/schevron.svg";
 
-const StyledSubmitButton = styled.button.attrs((props) => ({
-    type: 'submit',
+const StyledSubmitButton = styled.button.attrs(() => ({
+  type: "submit",
 }))`
   cursor: pointer;
   border-radius: 8px;
@@ -22,7 +22,7 @@ const StyledSubmitButton = styled.button.attrs((props) => ({
   align-items: center;
 
   &:disabled {
-    background: ${constants.grey}
+    background: ${constants.grey};
   }
 
   @media only screen and (min-width: 560px) {
@@ -32,7 +32,7 @@ const StyledSubmitButton = styled.button.attrs((props) => ({
     margin-bottom: 32px;
     padding: 16px 25px 16px 24px;
   }
-`
+`;
 const Chevron = styled.span`
   display: block;
   background-image: url(${imgChevron});
@@ -43,11 +43,12 @@ const Chevron = styled.span`
   color: ${constants.white};
   padding: 5px;
   margin-left: 8px;
-`
-const SubmitButton = props =>
-    <StyledSubmitButton {...props}>
-        {props.children}
-        <Chevron/>
-    </StyledSubmitButton>
+`;
+const SubmitButton = (props) => (
+  <StyledSubmitButton {...props}>
+    {props.children}
+    <Chevron />
+  </StyledSubmitButton>
+);
 
-export default SubmitButton
+export default SubmitButton;

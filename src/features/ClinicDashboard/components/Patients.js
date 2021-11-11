@@ -6,34 +6,37 @@ import StyledControlButton from "../core/StyledControlButton";
 import iconSearch from "../images/icon-search.svg";
 import iconSettings from "../images/icon-settings.svg";
 import ContentContainer from "./ContentContainer";
+import { nanoid } from "nanoid";
 
 const SearchButton = styled(StyledControlButton)`
   background: url(${iconSearch}) no-repeat center;
-`
+`;
 
 const SettingsButton = styled(StyledControlButton)`
   background: url(${iconSettings}) no-repeat center;
-`
+`;
 
-const Patients = ({cards}) => {
-    return (
-        <>
-            <ContentHeaderHoc title={'My Patients'}>
-                <SearchButton/>
-                <SettingsButton/>
-            </ContentHeaderHoc>
-            <ContentContainer>
-                {cards.map(card =>
-                    <Card
-                        avatar={card.avatar}
-                        status={card.status}
-                        name={card.name}
-                        result={card.result}
-                        time={card.time}/>
-                )}
-            </ContentContainer>
-        </>
-    )
-}
+const Patients = ({ cards }) => {
+  return (
+    <>
+      <ContentHeaderHoc title={"My Patients"}>
+        <SearchButton />
+        <SettingsButton />
+      </ContentHeaderHoc>
+      <ContentContainer>
+        {cards.map((card) => (
+          <Card
+            key={nanoid()}
+            avatar={card.avatar}
+            status={card.status}
+            name={card.name}
+            result={card.result}
+            time={card.time}
+          />
+        ))}
+      </ContentContainer>
+    </>
+  );
+};
 
-export default Patients
+export default Patients;

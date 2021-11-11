@@ -1,8 +1,7 @@
-import React, {useState} from 'react'
+import React from "react";
 import styled from "styled-components";
 import Header from "../components/PageHeader";
 import * as constants from "../services/constants";
-
 
 const Page = styled.div`
   height: 100vh;
@@ -16,14 +15,13 @@ const Page = styled.div`
   }
 `;
 
+const ClinicDashboard = ({ user, children }) => {
+  return (
+    <Page>
+      <Header user={user} />
+      {children}
+    </Page>
+  );
+};
 
-const ClinicDashboard = ({user, children}) => {
-    return (
-        <Page>
-            <Header user={user}/>
-            {children}
-        </Page>
-    )
-}
-
-export default ClinicDashboard
+export default ClinicDashboard;
