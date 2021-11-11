@@ -68,14 +68,14 @@ const Input = ({
     const handleShow = () => {
         setShow(!isShow)
     }
+    const qt = isShow ? 'text' : 'password'
+
     return (
         <InputWrapper>
             <InputIcon src={icon} />
             <StyledInput
                 placeholder={placeholder}
-                type={
-                    type === 'password' ? (isShow ? 'text' : 'password') : type
-                }
+                type={type === 'password' ? qt : type}
                 {...props}
             />
             {touched && error ? <InputError>{error}</InputError> : null}
