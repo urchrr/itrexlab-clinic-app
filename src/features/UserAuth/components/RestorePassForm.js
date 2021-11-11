@@ -1,16 +1,16 @@
-import React, { useState } from "react";
-import { useFormik } from "formik";
-import Input from "./Input";
-import StyledForm from "../core/StyledForm";
-import styled from "styled-components";
-import { restorePassSchema } from "../services/validationSchemas";
-import StyledHeader from "../core/StyledHeader";
-import StyledHeaderTitle from "../core/StyledHeaderTitle";
-import StyledSubmitButton from "../core/StyledSubmitButton";
-import { restorePasswordInputList } from "../services/inputLists";
-import * as constants from "../services/constants";
-import StyledGoBackButton from "../core/StyledGoBackButton";
-import { useNavigate } from "react-router-dom";
+import React, { useState } from 'react';
+import { useFormik } from 'formik';
+import styled from 'styled-components';
+import { useNavigate } from 'react-router-dom';
+import Input from './Input';
+import StyledForm from '../core/StyledForm';
+import { restorePassSchema } from '../services/validationSchemas';
+import StyledHeader from '../core/StyledHeader';
+import StyledHeaderTitle from '../core/StyledHeaderTitle';
+import StyledSubmitButton from '../core/StyledSubmitButton';
+import { restorePasswordInputList } from '../services/inputLists';
+import * as constants from '../services/constants';
+import StyledGoBackButton from '../core/StyledGoBackButton';
 
 const FormText = styled.p`
   font-size: 15px;
@@ -26,13 +26,13 @@ const SpanEmail = styled.span`
 const RestorePassForm = () => {
   const navigate = useNavigate();
   const handleGoBack = () => {
-    navigate("/sign-in");
+    navigate('/sign-in');
   };
   const [isSubmitted, setSubmitted] = useState(false);
-  const [email, setEmail] = useState("example@exam.com");
+  const [email, setEmail] = useState('example@exam.com');
   const formik = useFormik({
     initialValues: {
-      email: "",
+      email: '',
     },
     validationSchema: restorePassSchema,
     onSubmit: (values) => {
@@ -52,8 +52,7 @@ const RestorePassForm = () => {
             Please use your email address, and we`ll send you the link to reset
             your password
           </FormText>
-          {restorePasswordInputList.map((input) => {
-            return (
+          {restorePasswordInputList.map((input) => (
               <Input
                 key={`RestorePassForm-${input.name}`}
                 icon={input.icon}
@@ -66,8 +65,7 @@ const RestorePassForm = () => {
                 touched={formik.touched[input.name]}
                 error={formik.errors[input.name]}
               />
-            );
-          })}
+          ))}
           <StyledSubmitButton>Send Reset link</StyledSubmitButton>
         </>
       ) : (

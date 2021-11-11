@@ -1,30 +1,30 @@
-import React from "react";
-import { useFormik } from "formik";
-import Input from "./Input";
-import StyledForm from "../core/StyledForm";
-import { signUpSchema } from "../services/validationSchemas";
-import StyledHeader from "../core/StyledHeader";
-import StyledHeaderTitle from "../core/StyledHeaderTitle";
-import StyledSubmitButton from "../core/StyledSubmitButton";
-import { signupInputList } from "../services/inputLists";
-import { signUp } from "../services/mockApi";
-import { useNavigate } from "react-router-dom";
+import React from 'react';
+import { useFormik } from 'formik';
+import { useNavigate } from 'react-router-dom';
+import Input from './Input';
+import StyledForm from '../core/StyledForm';
+import { signUpSchema } from '../services/validationSchemas';
+import StyledHeader from '../core/StyledHeader';
+import StyledHeaderTitle from '../core/StyledHeaderTitle';
+import StyledSubmitButton from '../core/StyledSubmitButton';
+import { signupInputList } from '../services/inputLists';
+import { signUp } from '../services/mockApi';
 
 const SignUpForm = () => {
   const navigate = useNavigate();
   const formik = useFormik({
     initialValues: {
-      firstName: "",
-      lastName: "",
-      email: "",
-      password: "",
-      passwordConfirm: "",
+      firstName: '',
+      lastName: '',
+      email: '',
+      password: '',
+      passwordConfirm: '',
     },
     validationSchema: signUpSchema,
     onSubmit: (values) => {
       signUp(values)
         .then(() => {
-          navigate("/sign-in");
+          navigate('/sign-in');
         })
         .catch((err) => {
           console.log(err);
@@ -36,8 +36,7 @@ const SignUpForm = () => {
       <StyledHeader>
         <StyledHeaderTitle>Sign Up</StyledHeaderTitle>
       </StyledHeader>
-      {signupInputList.map((input) => {
-        return (
+      {signupInputList.map((input) => (
           <Input
             key={`signupform-${input.name}`}
             icon={input.icon}
@@ -50,8 +49,7 @@ const SignUpForm = () => {
             touched={formik.touched[input.name]}
             error={formik.errors[input.name]}
           />
-        );
-      })}
+      ))}
       <StyledSubmitButton>Sign Up</StyledSubmitButton>
     </StyledForm>
   );

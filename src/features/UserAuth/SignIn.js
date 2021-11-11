@@ -1,10 +1,10 @@
-import React from 'react'
-import FooterLayout from "./layouts/Footer";
-import SignInForm from "./components/SignInForm";
-import NavigationLink from "./components/NavigationLink";
+import React from 'react';
+import FooterLayout from './layouts/Footer';
+import SignInForm from './components/SignInForm';
+import NavigationLink from './components/NavigationLink';
 
 function SignIn() {
-    return (
+  return (
         <>
             <SignInForm/>
             <FooterLayout text={'Don`t have an account?'}
@@ -12,7 +12,7 @@ function SignIn() {
             >
             </FooterLayout>
         </>
-    )
+  );
 }
 
-export default SignIn
+export default SignIn;

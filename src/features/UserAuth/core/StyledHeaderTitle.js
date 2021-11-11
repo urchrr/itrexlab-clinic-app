@@ -1,5 +1,5 @@
-import styled from "styled-components";
-import * as constants from "../services/constants";
+import styled from 'styled-components';
+import * as constants from '../services/constants';
 
 const StyledHeaderTitle = styled.h1`
   font-size: 20px;
@@ -11,6 +11,6 @@ const StyledHeaderTitle = styled.h1`
     width: 560px;
     font-size: 24px;
   }
-`
+`;
 
-export default StyledHeaderTitle
+export default StyledHeaderTitle;

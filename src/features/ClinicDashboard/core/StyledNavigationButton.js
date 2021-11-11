@@ -1,6 +1,6 @@
-import styled from "styled-components";
-import StyledButton from "./StyledButton";
-import * as constants from "../services/constants";
+import styled from 'styled-components';
+import StyledButton from './StyledButton';
+import * as constants from '../services/constants';
 
 const StyledNavigationButton = styled(StyledButton)`
   padding-top: 12px;
@@ -23,6 +23,6 @@ const StyledNavigationButton = styled(StyledButton)`
     margin-right: 12px;
     min-width: 160px;
   }
-`
+`;
 
-export default StyledNavigationButton
+export default StyledNavigationButton;

@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 const StyledHeader = styled.div`
       display: flex;
@@ -8,6 +8,6 @@ const StyledHeader = styled.div`
       @media only screen and (min-width: 560px) {
         margin-bottom: 40px;
       }
-    `
+    `;
 
-export default StyledHeader
+export default StyledHeader;

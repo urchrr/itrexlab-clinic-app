@@ -1,2 +1,3 @@
-import ClinicDashboard from "./components/ClinicDashboard";
-export default ClinicDashboard
+import ClinicDashboard from './components/ClinicDashboard';
+
+export default ClinicDashboard;

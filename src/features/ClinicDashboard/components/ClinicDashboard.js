@@ -1,13 +1,12 @@
-import React, {useState} from 'react'
-import ClinicDashboardLayout from "../layouts/DashboardLayout";
-import NavigationButton from "./NavigationButton";
-import {Navigate, Route, Routes} from "react-router-dom";
-import Patients from "./Patients";
-import styled from "styled-components";
-import * as constants from "../services/constants";
-import getUser from "../services/getUser";
-import getCards from "../services/getCards";
-
+import React, { useState } from 'react';
+import { Navigate, Route, Routes } from 'react-router-dom';
+import styled from 'styled-components';
+import ClinicDashboardLayout from '../layouts/DashboardLayout';
+import NavigationButton from './NavigationButton';
+import Patients from './Patients';
+import * as constants from '../services/constants';
+import getUser from '../services/getUser';
+import getCards from '../services/getCards';
 
 const Content = styled.section`
   background-color: ${constants.formBackgroundColor};
@@ -30,23 +29,22 @@ const NavigationArea = styled.div`
   @media only screen and (min-width: 1480px) {
     padding-right: 44px;
   }
-`
+`;
 
 const ClinicDashboard = () => {
-    const cards = getCards()
-    const user = getUser()
-    const routes = {
-        patients: 'patients',
-        resolutions: 'resolutions'
-    }
-    const firstRoute = Object.values(routes)[0]
-    const [activePath, setActivePath] = useState(firstRoute)
+  const cards = getCards();
+  const user = getUser();
+  const routes = {
+    patients: 'patients',
+    resolutions: 'resolutions',
+  };
+  const firstRoute = Object.values(routes)[0];
+  const [activePath, setActivePath] = useState(firstRoute);
 
-
-    const handleNavigate = (name) => {
-        setActivePath(name)
-    }
-    return (
+  const handleNavigate = (name) => {
+    setActivePath(name);
+  };
+  return (
         <ClinicDashboardLayout user={user}>
             <Content>
                 <NavigationArea>
@@ -70,7 +68,7 @@ const ClinicDashboard = () => {
                 </Routes>
             </Content>
         </ClinicDashboardLayout>
-    )
-}
+  );
+};
 
-export default ClinicDashboard
+export default ClinicDashboard;

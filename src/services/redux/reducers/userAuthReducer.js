@@ -1,17 +1,16 @@
-import {SET_LOGGED_IN} from "../actionTypes";
+import SET_LOGGED_IN from "../actionTypes";
 
 const initialState = {
-    isLoggedIn: false
+  isLoggedIn: false,
+};
+
+function userAuthReducer(action, state = initialState) {
+  switch (action.type) {
+    case SET_LOGGED_IN:
+      return { ...state, isLoggedIn: action.payload };
+    default:
+      return state;
+  }
 }
 
-function userAuthReducer(state = initialState, action) {
-    switch (action.type) {
-        case(SET_LOGGED_IN):
-            return {...state, isLoggedIn: action.payload}
-        default:
-            return state
-    }
-
-}
-
-export default userAuthReducer
+export default userAuthReducer;

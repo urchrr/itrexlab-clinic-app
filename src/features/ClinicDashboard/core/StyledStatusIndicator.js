@@ -1,5 +1,5 @@
-import styled from "styled-components";
-import * as constants from "../services/constants";
+import styled from 'styled-components';
+import * as constants from '../services/constants';
 
 const StyledStatusIndicator = styled.span`
   border-radius: 50%;
@@ -17,6 +17,6 @@ const StyledStatusIndicator = styled.span`
   &.blue {
     background-color: ${constants.blue};
   }
-`
+`;
 
-export default StyledStatusIndicator
+export default StyledStatusIndicator;

@@ -1,9 +1,9 @@
-import styled from "styled-components";
-import * as constants from "../services/constants";
+import styled from 'styled-components';
+import * as constants from '../services/constants';
 
 const StyledInput = styled.input.attrs(() => ({
   minLength: `${constants.minNameLength}`,
-  autoComplete: "off",
+  autoComplete: 'off',
   required: true,
   noValidate: true,
 }))`

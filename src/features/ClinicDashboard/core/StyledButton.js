@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 const StyledButton = styled.button`
   border: none;
@@ -10,6 +10,6 @@ const StyledButton = styled.button`
   &:last-of-type {
     margin-right: 0;
   }
-`
+`;
 
-export default StyledButton
+export default StyledButton;

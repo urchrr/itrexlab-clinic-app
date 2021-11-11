@@ -1,5 +1,5 @@
-import styled from "styled-components";
-import iconChevron from '../images/icon-schevron-grey.svg'
+import styled from 'styled-components';
+import iconChevron from '../images/icon-schevron-grey.svg';
 
 const StyledGoBackButton = styled.button`
   cursor: pointer;
@@ -11,6 +11,6 @@ const StyledGoBackButton = styled.button`
   margin-right: 16px;
   background-color: inherit;
   display: block;
-`
+`;
 
-export default StyledGoBackButton
+export default StyledGoBackButton;
