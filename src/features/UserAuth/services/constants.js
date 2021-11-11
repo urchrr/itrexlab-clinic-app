@@ -9,6 +9,6 @@ export const darkGrey = `#202225`;
 export const lightBlue = `#E3EBFF`
 export const greySolid = `#dce0ec`;
 
-export const minNameLength = 4
+export const minNameLength = 3
 export const maxNameLength = 15
 export const minPassLength = 4
