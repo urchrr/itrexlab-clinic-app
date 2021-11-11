@@ -1,4 +1,4 @@
-import CardLayout from "../layouts/CardLayout";
+import Card from "../components/Card";
 import React from "react";
 import ContentHeaderHoc from "../components/ContentHeaderHoc";
 import styled from "styled-components";
@@ -24,7 +24,7 @@ const Patients = ({cards}) => {
             </ContentHeaderHoc>
             <ContentContainer>
                 {cards.map(card =>
-                    <CardLayout
+                    <Card
                         avatar={card.avatar}
                         status={card.status}
                         name={card.name}

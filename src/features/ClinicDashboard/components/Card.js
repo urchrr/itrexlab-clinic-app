@@ -136,7 +136,7 @@ const CardCaseTime = styled.p`
   color: ${constants.darkGrey};
 `
 
-const CardLayout = ({avatar, name, status, time, result}) => {
+const CaseCard = ({avatar, name, status, time, result}) => {
     const [isShow, setShow] = useState(false);
 
     const handleShowSettings = () => {
@@ -171,4 +171,4 @@ const CardLayout = ({avatar, name, status, time, result}) => {
     );
 }
 
-export default CardLayout
+export default CaseCard
