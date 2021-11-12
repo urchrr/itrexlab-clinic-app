@@ -1,29 +1,50 @@
-import React from 'react'
-import styled from 'styled-components'
+import React, { useState } from 'react'
 import PropTypes from 'prop-types'
-import Header from '../components/PageHeader'
-import * as constants from '../services/constants'
+import { Outlet, useNavigate } from 'react-router-dom'
+import Header from '../components/PageHeader/PageHeader'
+import NavigationButton from '../components/NavigationButton'
+import {
+    Page,
+    PageNavigationArea,
+    PageContent,
+} from '../core/PageContentStyles'
 
-const Page = styled.div`
-    height: 100vh;
-    display: flex;
-    background-color: ${constants.lightBlue};
-    background-image: none;
-    flex-direction: column;
-    justify-content: space-between;
-    @media only screen and (min-width: 560px) {
-        padding: 20px 64px 48px 64px;
+const ClinicDashboard = ({ user }) => {
+    const navigate = useNavigate()
+    const routes = {
+        doctor: ['patients', 'resolutions'],
+        patient: ['profile', 'appointments', 'resolutions'],
+        admin: {},
     }
-`
 
-const ClinicDashboard = ({ user, children }) => (
-    <Page>
-        <Header user={user} />
-        {children}
-    </Page>
-)
+    const firstRoute = routes[user.role][0]
+    const [activePath, setActivePath] = useState(firstRoute)
+
+    const handleNavigate = (path) => {
+        setActivePath(path)
+        navigate(path)
+    }
+
+    return (
+        <Page>
+            <Header user={user} />
+            <PageContent>
+                <PageNavigationArea>
+                    {routes[user.role].map((path) => (
+                        <NavigationButton
+                            isActive={activePath === path}
+                            key={path}
+                            path={path}
+                            action={handleNavigate}
+                        />
+                    ))}
+                </PageNavigationArea>
+                <Outlet />
+            </PageContent>
+        </Page>
+    )
+}
 ClinicDashboard.propTypes = {
     user: PropTypes.object,
-    children: PropTypes.array,
 }
 export default ClinicDashboard

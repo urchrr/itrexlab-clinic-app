@@ -7,7 +7,7 @@ import { signUpSchema } from '../services/validationSchemas'
 import StyledHeader from '../core/StyledHeader'
 import StyledHeaderTitle from '../core/StyledHeaderTitle'
 import StyledSubmitButton from '../core/StyledSubmitButton'
-import { signupInputList } from '../services/inputLists'
+import { signUpInputList } from '../services/inputLists'
 import { signUp } from '../services/mockApi'
 
 const SignUpForm = () => {
@@ -37,7 +37,7 @@ const SignUpForm = () => {
             <StyledHeader>
                 <StyledHeaderTitle>Sign Up</StyledHeaderTitle>
             </StyledHeader>
-            {signupInputList.map((input) => (
+            {signUpInputList.map((input) => (
                 <Input
                     key={`signupform-${input.name}`}
                     icon={input.icon}
@@ -51,7 +51,7 @@ const SignUpForm = () => {
                     error={formik.errors[input.name]}
                 />
             ))}
-            <StyledSubmitButton>Sign Up</StyledSubmitButton>
+            <StyledSubmitButton title={'Sign Up'} />
         </StyledForm>
     )
 }

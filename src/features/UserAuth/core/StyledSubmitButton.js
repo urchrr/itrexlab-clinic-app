@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import PropTypes from 'prop-types'
-import * as constants from '../services/constants'
+import * as constants from '../../../services/constants'
 import imgChevron from '../images/schevron.svg'
 
 const StyledSubmitButton = styled.button.attrs(() => ({
@@ -21,11 +21,9 @@ const StyledSubmitButton = styled.button.attrs(() => ({
     display: flex;
     justify-content: space-between;
     align-items: center;
-
     &:disabled {
         background: ${constants.grey};
     }
-
     @media only screen and (min-width: 560px) {
         font-size: 17px;
         line-height: 25px;
@@ -34,6 +32,7 @@ const StyledSubmitButton = styled.button.attrs(() => ({
         padding: 16px 25px 16px 24px;
     }
 `
+
 const Chevron = styled.span`
     display: block;
     background-image: url(${imgChevron});
@@ -45,13 +44,16 @@ const Chevron = styled.span`
     padding: 5px;
     margin-left: 8px;
 `
-const SubmitButton = ({ children, ...props }) => (
+
+const SubmitButton = ({ title, ...props }) => (
     <StyledSubmitButton {...props}>
-        {children}
+        {title}
         <Chevron />
     </StyledSubmitButton>
 )
+
 SubmitButton.propTypes = {
-    children: PropTypes.array,
+    title: PropTypes.string,
 }
+
 export default SubmitButton

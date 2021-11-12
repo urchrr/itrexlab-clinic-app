@@ -9,8 +9,8 @@ import { signInSchema } from '../services/validationSchemas'
 import StyledHeader from '../core/StyledHeader'
 import StyledHeaderTitle from '../core/StyledHeaderTitle'
 import StyledSubmitButton from '../core/StyledSubmitButton'
-import { signinInputList } from '../services/inputLists'
-import * as constants from '../services/constants'
+import { signInInputList } from '../services/inputLists'
+import * as constants from '../../../services/constants'
 import { signIn } from '../services/mockApi'
 import SET_LOGGED_IN from '../../../services/redux/actionTypes'
 
@@ -53,7 +53,7 @@ const SignInForm = () => {
             <StyledHeader>
                 <StyledHeaderTitle>Sign In</StyledHeaderTitle>
             </StyledHeader>
-            {signinInputList.map((input) => (
+            {signInInputList.map((input) => (
                 <Input
                     key={`signinform-${input.name}`}
                     icon={input.icon}
@@ -67,7 +67,7 @@ const SignInForm = () => {
                     error={formik.errors[input.name]}
                 />
             ))}
-            <StyledSubmitButton>Sign In</StyledSubmitButton>
+            <StyledSubmitButton title={'Sign In'} />
             <Link onClick={handleRestore}>Forgot Password?</Link>
         </StyledForm>
     )

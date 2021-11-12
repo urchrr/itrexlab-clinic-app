@@ -26,5 +26,6 @@
         "react-redux"
     ],
     "rules": {
+        "no-console": ["error", { "allow": ["warn", "error"] }]
     }
 }

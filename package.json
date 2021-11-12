@@ -26,7 +26,8 @@
     "eject": "react-scripts eject",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build",
-    "lint": "npx eslint . --ignore-pattern 'node_modules' --fix"
+    "lint": "eslint --ext .js,.jsx src",
+    "lint:fix": "eslint --fix --ext .js,.jsx src"
   },
   "eslintConfig": {
     "extends": [
@@ -50,7 +51,6 @@
     "styled-components": "^5"
   },
   "devDependencies": {
-    "babel-eslint": "^10.1.0",
     "eslint": "^8.2.0",
     "eslint-config-airbnb": "^19.0.0",
     "eslint-config-airbnb-base": "^15.0.0",

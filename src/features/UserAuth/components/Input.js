@@ -91,7 +91,7 @@ Input.propTypes = {
     placeholder: PropTypes.string,
     type: PropTypes.string,
     touched: PropTypes.bool,
-    error: PropTypes.object,
+    error: PropTypes.string,
 }
 
 export default Input

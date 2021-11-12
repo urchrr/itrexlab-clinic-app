@@ -2,12 +2,15 @@ import React from 'react'
 import styled from 'styled-components'
 import { nanoid } from 'nanoid'
 import PropTypes from 'prop-types'
-import Card from './Card'
-import ContentHeaderHoc from './ContentHeaderHoc'
+import Card from './Cards/PatientsCard'
 import StyledControlButton from '../core/StyledControlButton'
 import iconSearch from '../images/icon-search.svg'
 import iconSettings from '../images/icon-settings.svg'
-import ContentContainer from './ContentContainer'
+import {
+    ContentContainer,
+    ContentHeaderTitle,
+    ContentHeader,
+} from '../core/ContentStyles'
 
 const SearchButton = styled(StyledControlButton)`
     background: url(${iconSearch}) no-repeat center;
@@ -19,10 +22,11 @@ const SettingsButton = styled(StyledControlButton)`
 
 const Patients = ({ cards }) => (
     <>
-        <ContentHeaderHoc title={'My Patients'}>
+        <ContentHeader>
+            <ContentHeaderTitle>My Patients</ContentHeaderTitle>
             <SearchButton />
             <SettingsButton />
-        </ContentHeaderHoc>
+        </ContentHeader>
         <ContentContainer>
             {cards.map((card) => (
                 <Card

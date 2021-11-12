@@ -1,5 +1,9 @@
 import * as Yup from 'yup'
-import { minNameLength, maxNameLength, minPassLength } from './constants'
+import {
+    minNameLength,
+    maxNameLength,
+    minPassLength,
+} from '../../../services/constants'
 
 function equalTo(ref, msg) {
     return Yup.mixed().test({

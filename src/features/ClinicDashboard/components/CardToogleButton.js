@@ -4,7 +4,7 @@ import PropTypes from 'prop-types'
 import StyledButton from '../core/StyledButton'
 import iconDotBurger from '../images/icon-dotburger.svg'
 import iconDotBurgerActive from '../images/icon-dotburger-active.svg'
-import * as constants from '../services/constants'
+import * as constants from '../../../services/constants'
 
 const StyledToggleButton = styled(StyledButton)`
     grid-area: button;

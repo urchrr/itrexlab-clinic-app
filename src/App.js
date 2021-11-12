@@ -1,42 +1,75 @@
 import React from 'react'
-import { useRoutes, Navigate } from 'react-router-dom'
+import { Navigate, Routes, Route } from 'react-router-dom'
 import { useSelector } from 'react-redux'
-import AuthPage from './features/UserAuth'
-import ClinicPage from './features/ClinicDashboard'
+import PropTypes from 'prop-types'
+import ClinicDashboardLayout from './features/ClinicDashboard/layouts/DashboardLayout'
+import AuthPageLayout from './features/UserAuth/layouts/AuthPageLayout'
+import SignUp from './features/UserAuth/SignUp'
+import SignIn from './features/UserAuth/SignIn'
+import RestorePassForm from './features/UserAuth/components/RestorePassForm'
+import Patients from './features/ClinicDashboard/components/Patients'
+import getUser from './features/ClinicDashboard/services/getUser'
+import getCards from './features/ClinicDashboard/services/getCards'
+import getPatient from './features/ClinicDashboard/services/getPatient'
+import Appointments from './features/ClinicDashboard/components/Appointments'
+import getAppointments from './features/ClinicDashboard/services/getAppointments'
 
-const routes = (isLoggedIn) => [
-    {
-        path: '/clinic',
-        element: isLoggedIn ? <ClinicPage /> : <Navigate to="/" />,
-        children: [
-            { path: 'patients', element: <Navigate to="/clinic/patients" /> },
-            {
-                path: 'resolutions',
-                element: <Navigate to="/clinic/resolutions" />,
-            },
-        ],
-    },
-    {
-        path: '/',
-        element: !isLoggedIn ? <AuthPage /> : <Navigate to="/clinic" />,
-        children: [
-            {
-                path: 'restore-password',
-                element: <Navigate to="/restore-password" />,
-            },
-            { path: 'sign-up', element: <Navigate to="/sign-up" /> },
-            { path: 'sign-in', element: <Navigate to="/sign-in" /> },
-            { path: '/', element: <Navigate to="/sign-in" /> },
-        ],
-    },
-]
 const userAuthReducer = (state) => state.userAuthReducer
 
-function App() {
+const RequireAuth = ({ children }) => {
     const { isLoggedIn } = useSelector(userAuthReducer)
-    const routing = useRoutes(routes(isLoggedIn))
+    if (!isLoggedIn) {
+        return <Navigate to={'/sign-in'} />
+    }
+    return children
+}
 
-    return <>{routing}</>
+const doctor = getUser()
+const patient = getPatient()
+
+function App() {
+    return (
+        <>
+            <Routes>
+                <Route element={<AuthPageLayout />}>
+                    <Route exact path={'/'} element={<SignUp />} />
+                    <Route path={'/sign-up'} element={<SignUp />} />
+                    <Route path={'/sign-in'} element={<SignIn />} />
+                    <Route
+                        path={'/restore-password'}
+                        element={<RestorePassForm />}
+                    />
+                </Route>
+                <Route
+                    path={'clinic'}
+                    element={
+                        <RequireAuth>
+                            <ClinicDashboardLayout user={patient} />
+                        </RequireAuth>
+                    }
+                >
+                    <Route
+                        path={'patients'}
+                        element={<Patients cards={getCards()} />}
+                    />
+                    <Route path={'resolutions'} element={<></>} />
+                    <Route path={'profile'} element={<></>} />
+                    <Route
+                        path={'appointments'}
+                        element={<Appointments cards={getAppointments()} />}
+                    />
+                    <Route path={'resolutions'} element={<></>} />
+                </Route>
+            </Routes>
+        </>
+    )
+}
+
+RequireAuth.propTypes = {
+    children: PropTypes.oneOfType([
+        PropTypes.arrayOf(PropTypes.element),
+        PropTypes.element,
+    ]).isRequired,
 }
 
 export default App

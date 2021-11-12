@@ -1,8 +1,8 @@
 import React from 'react'
 import styled from 'styled-components'
-import PropTypes from 'prop-types'
+import { Outlet } from 'react-router-dom'
 import imgAuthPageBackground from '../images/bg.png'
-import * as constants from '../services/constants'
+import * as constants from '../../../services/constants'
 
 const AuthPage = styled.div`
     background-image: url(${imgAuthPageBackground});
@@ -34,14 +34,12 @@ const AuthContent = styled.div`
     }
 `
 
-const AuthPageLayout = ({ children }) => (
+const AuthPageLayout = () => (
     <AuthPage>
-        <AuthContent>{children}</AuthContent>
+        <AuthContent>
+            <Outlet />
+        </AuthContent>
     </AuthPage>
 )
-
-AuthPageLayout.propTypes = {
-    children: PropTypes.array,
-}
 
 export default AuthPageLayout
