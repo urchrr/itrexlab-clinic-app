@@ -25,7 +25,7 @@ export const PageContent = styled.section`
 
 export const PageNavigationArea = styled.nav`
     display: flex;
-    margin-bottom: 40px;
+    margin-bottom: 60px;
     margin-right: 8px;
     @media only screen and (min-width: 560px) {
         padding-right: 32px;

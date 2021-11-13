@@ -21,7 +21,7 @@ export const ContentHeader = styled.div`
     margin-bottom: 16px;
     padding-right: 8px;
     @media only screen and (min-width: 560px) {
-        margin-bottom: 32px;
+        margin-bottom: 28px;
         padding-right: 32px;
     }
     @media only screen and (min-width: 1480px) {
@@ -33,7 +33,7 @@ export const ContentContainer = styled.div`
     display: flex;
     flex-direction: column;
     overflow-y: scroll;
-    height: calc(100% - 110px);
+    height: calc(100% - 140px);
     @media only screen and (min-width: 560px) {
         padding-right: 32px;
     }

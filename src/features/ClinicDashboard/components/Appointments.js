@@ -1,6 +1,4 @@
 import React from 'react'
-import { nanoid } from 'nanoid'
-
 import PropTypes from 'prop-types'
 import {
     ContentContainer,
@@ -11,24 +9,20 @@ import AppointmentsCard from './Cards/AppointmentsCard'
 import SortSelector from './SortSelector/SortSelector'
 import CreateButton from './CreateButton/CreateButton'
 
-const key = nanoid()
-
-const Appointments = ({ cards }) => {
-    return (
-        <>
-            <ContentHeader>
-                <ContentHeaderTitle>My Patients</ContentHeaderTitle>
-                <SortSelector />
-                <CreateButton />
-            </ContentHeader>
-            <ContentContainer>
-                {cards.map((card) => (
-                    <AppointmentsCard data={card} key={key} />
-                ))}
-            </ContentContainer>
-        </>
-    )
-}
+const Appointments = ({ cards }) => (
+    <>
+        <ContentHeader>
+            <ContentHeaderTitle>My Appointments</ContentHeaderTitle>
+            <SortSelector />
+            <CreateButton />
+        </ContentHeader>
+        <ContentContainer>
+            {cards.map((card, index) => (
+                <AppointmentsCard data={card} key={index} />
+            ))}
+        </ContentContainer>
+    </>
+)
 
 Appointments.propTypes = {
     cards: PropTypes.array,

@@ -19,7 +19,7 @@ import {
     StyledIconClock,
 } from './CardStyles'
 
-const CaseCard = ({ avatar, name, status, time, result }) => {
+const CaseCard = ({ data: { avatar, name, status, time, result } }) => {
     const [isShow, setShow] = useState(false)
 
     const handleShowSettings = () => {
@@ -57,6 +57,7 @@ const CaseCard = ({ avatar, name, status, time, result }) => {
 }
 
 CaseCard.propTypes = {
+    data: PropTypes.object,
     avatar: PropTypes.string,
     name: PropTypes.string,
     status: PropTypes.number,
