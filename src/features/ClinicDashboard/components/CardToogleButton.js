@@ -25,11 +25,11 @@ const StyledToggleButton = styled(StyledButton)`
 
 const CardToggleButton = ({ onClick }) => {
     const [isActive, setActive] = useState(false)
-    const handler = () => {
+    const handleButtonClick = () => {
         setActive(!isActive)
         onClick()
     }
-    return <StyledToggleButton onClick={handler} active={isActive} />
+    return <StyledToggleButton onClick={handleButtonClick} active={isActive} />
 }
 
 CardToggleButton.propTypes = {

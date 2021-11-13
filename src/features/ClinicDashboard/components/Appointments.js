@@ -1,5 +1,4 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 import {
     ContentContainer,
     ContentHeaderTitle,
@@ -8,24 +7,21 @@ import {
 import AppointmentsCard from './Cards/AppointmentsCard'
 import SortSelector from './SortSelector/SortSelector'
 import CreateButton from './CreateButton/CreateButton'
+import getAppointments from '../services/getAppointments'
 
-const Appointments = ({ cards }) => (
+const Appointments = () => (
     <>
         <ContentHeader>
             <ContentHeaderTitle>My Appointments</ContentHeaderTitle>
-            <SortSelector />
+            <SortSelector label={'Show:'} text={'Upcoming'} />
             <CreateButton />
         </ContentHeader>
         <ContentContainer>
-            {cards.map((card, index) => (
+            {getAppointments().map((card, index) => (
                 <AppointmentsCard data={card} key={index} />
             ))}
         </ContentContainer>
     </>
 )
-
-Appointments.propTypes = {
-    cards: PropTypes.array,
-}
 
 export default Appointments

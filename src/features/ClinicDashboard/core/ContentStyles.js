@@ -40,7 +40,7 @@ export const ContentContainer = styled.div`
     @media only screen and (min-width: 1024px) {
         display: grid;
         grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
-        grid-template-rows: repeat(auto-fill, minmax(217px, 1fr));
+        //grid-template-rows: repeat(auto-fill, minmax(217px, 1fr));
         grid-gap: 24px 20px;
     }
     @media only screen and (min-width: 1920px) {

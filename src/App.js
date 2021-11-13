@@ -24,9 +24,6 @@ const RequireAuth = ({ children }) => {
     return children
 }
 
-const doctor = getUser()
-const patient = getPatient()
-
 function App() {
     return (
         <>
@@ -44,20 +41,14 @@ function App() {
                     path={'clinic'}
                     element={
                         <RequireAuth>
-                            <ClinicDashboardLayout user={patient} />
+                            <ClinicDashboardLayout />
                         </RequireAuth>
                     }
                 >
-                    <Route
-                        path={'patients'}
-                        element={<Patients cards={getCards()} />}
-                    />
+                    <Route path={'patients'} element={<Patients />} />
                     <Route path={'resolutions'} element={<></>} />
                     <Route path={'profile'} element={<></>} />
-                    <Route
-                        path={'appointments'}
-                        element={<Appointments cards={getAppointments()} />}
-                    />
+                    <Route path={'appointments'} element={<Appointments />} />
                     <Route path={'resolutions'} element={<></>} />
                 </Route>
             </Routes>

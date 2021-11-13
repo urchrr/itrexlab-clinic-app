@@ -1,39 +1,54 @@
 import React from 'react'
 import styled from 'styled-components'
-import PropTypes from 'prop-types'
+
 import PatientsCard from './Cards/PatientsCard'
-import StyledControlButton from '../core/StyledControlButton'
-import iconSearch from '../images/icon-search.svg'
-import iconSettings from '../images/icon-settings.svg'
+
+import { ReactComponent as IconSearch } from '../images/icon-search.svg'
+import { ReactComponent as IconSettings } from '../images/icon-settings.svg'
+
 import {
     ContentContainer,
     ContentHeaderTitle,
     ContentHeader,
 } from '../core/ContentStyles'
+import SortSelector from './SortSelector/SortSelector'
+import StyledButton from '../core/StyledButton'
+import getCards from '../services/getCards'
 
-const SearchButton = styled(StyledControlButton)`
-    background: url(${iconSearch}) no-repeat center;
+const StyledIconSearch = styled(IconSearch)`
+    margin-right: 10px;
 `
 
-const SettingsButton = styled(StyledControlButton)`
-    background: url(${iconSettings}) no-repeat center;
+const StyledSearchButton = styled(StyledButton)`
+    color: #a1abc9;
+
+    &:last-of-type {
+        margin-right: 48px;
+    }
 `
 
-const Patients = ({ cards }) => (
+function SearchButton() {
+    return (
+        <StyledSearchButton>
+            <StyledIconSearch />
+            Search
+        </StyledSearchButton>
+    )
+}
+
+const Patients = () => (
     <>
         <ContentHeader>
             <ContentHeaderTitle>My Patients</ContentHeaderTitle>
             <SearchButton />
-            <SettingsButton />
+            <SortSelector label={'Sort by:'} text={'Date'} />
         </ContentHeader>
         <ContentContainer>
-            {cards.map((card, index) => (
+            {getCards().map((card, index) => (
                 <PatientsCard key={index} data={card} />
             ))}
         </ContentContainer>
     </>
 )
-Patients.propTypes = {
-    cards: PropTypes.array,
-}
+
 export default Patients

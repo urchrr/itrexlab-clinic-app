@@ -1,7 +1,7 @@
 import React from 'react'
 import { useFormik } from 'formik'
 import { useNavigate } from 'react-router-dom'
-import Input from './Input'
+import Input from './Input/Input'
 import StyledForm from '../core/StyledForm'
 import { signUpSchema } from '../services/validationSchemas'
 import StyledHeader from '../core/StyledHeader'
