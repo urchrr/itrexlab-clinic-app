@@ -12,8 +12,10 @@ import getUser from '../services/getUser'
 import getPatient from '../services/getPatient'
 
 const ClinicDashboard = () => {
+    //выбор от лица кого открывать клинику
     const doctor = getUser()
     const patient = getPatient()
+    //
     const navigate = useNavigate()
     const routes = {
         doctor: ['patients', 'resolutions'],
