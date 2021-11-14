@@ -1,6 +1,6 @@
-# HW-itrexlab
-* Сдесь будет проект написанный на React.js
-*
-*
-*
-* [Открыть в Github.io](https://urchrr.github.io/HW1-itrexlab/)
+
+# HW3-itrexlab
+* Создание приложения на react.js
+* Добавление валидации формы
+
+* [Открыть в Github.io](https://urchrr.github.io/itrexlab-clinic-app/)
