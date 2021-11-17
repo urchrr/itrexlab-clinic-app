@@ -7,6 +7,8 @@ export const StyledHeader = styled.header`
     padding: 16px 24px;
     justify-content: space-between;
     align-items: center;
+    margin-bottom: 20px;
+
     @media only screen and (min-width: 560px) {
         padding: 0;
     }

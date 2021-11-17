@@ -21,7 +21,7 @@ const ClinicDashboard = () => {
         patient: ['profile', 'appointments', 'resolutions'],
         admin: {},
     }
-    const [user] = useState(doctor)
+    const [user] = useState(patient)
 
     const firstRoute = routes[user.role][0]
     const [activePath, setActivePath] = useState(firstRoute)

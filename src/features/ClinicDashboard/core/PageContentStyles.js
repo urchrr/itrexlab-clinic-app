@@ -12,10 +12,12 @@ export const Page = styled.div`
         padding: 20px 64px 48px 64px;
     }
 `
+
 export const PageContent = styled.section`
     background-color: ${constants.formBackgroundColor};
     border-radius: 24px 24px 0 0;
-    height: calc(100% - 72px);
+    //height: calc(100% - 72px);
+    height: 100%;
     padding: 40px 16px;
     @media only screen and (min-width: 560px) {
         padding: 40px 16px 40px 48px;

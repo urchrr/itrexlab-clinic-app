@@ -20,7 +20,7 @@ export const InputWrapper = styled.div`
 export const InputError = styled.span`
     font-size: 13px;
     line-height: 16px;
-    letter-spacing: -0.24px;
+    letter-spacing: 0;
     color: #f6657f;
     margin-top: 14px;
     display: block;
@@ -28,6 +28,7 @@ export const InputError = styled.span`
         margin-top: 8px;
     }
 `
+
 export const iconStyles = css`
     box-sizing: border-box;
     border: none;
@@ -54,9 +55,13 @@ export const InputIcon = styled.img`
         left: 24px;
     }
 `
+
 export const StyledIconEye = styled(IconEye)`
     ${iconStyles};
     cursor: pointer;
     right: 18px;
     left: auto;
+    @media only screen and (min-width: 560px) {
+        left: auto;
+    }
 `

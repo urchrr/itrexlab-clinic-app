@@ -10,9 +10,9 @@ const StyledIcon = styled(IconPlus)`
     background-position: center;
 `
 
-function CreateButton() {
+function CreateButton({ onClick }) {
     return (
-        <StyledButton>
+        <StyledButton onClick={onClick}>
             <StyledIcon />
             Create an appointment
         </StyledButton>

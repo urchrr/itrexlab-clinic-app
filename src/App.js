@@ -8,11 +8,8 @@ import SignUp from './features/UserAuth/SignUp'
 import SignIn from './features/UserAuth/SignIn'
 import RestorePassForm from './features/UserAuth/components/RestorePassForm'
 import Patients from './features/ClinicDashboard/components/Patients'
-import getUser from './features/ClinicDashboard/services/getUser'
-import getCards from './features/ClinicDashboard/services/getCards'
-import getPatient from './features/ClinicDashboard/services/getPatient'
 import Appointments from './features/ClinicDashboard/components/Appointments'
-import getAppointments from './features/ClinicDashboard/services/getAppointments'
+import CreateAppointment from './features/ClinicDashboard/components/CreateAppointment/CreateAppointment'
 
 const userAuthReducer = (state) => state.userAuthReducer
 
@@ -50,6 +47,10 @@ function App() {
                     <Route path={'profile'} element={<></>} />
                     <Route path={'appointments'} element={<Appointments />} />
                     <Route path={'resolutions'} element={<></>} />
+                    <Route
+                        path={'create-appointment'}
+                        element={<CreateAppointment />}
+                    />
                 </Route>
             </Routes>
         </>
