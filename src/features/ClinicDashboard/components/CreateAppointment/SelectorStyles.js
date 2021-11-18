@@ -1,12 +1,6 @@
 import React from 'react'
 import Select from 'react-select'
 
-const options = [
-    { value: 'chocolate', label: 'Chocolate' },
-    { value: 'strawberry', label: 'Strawberry' },
-    { value: 'vanilla', label: 'Vanilla' },
-]
-
 const customStyles = {
     option: (provided, state) => ({
         ...provided,
@@ -63,6 +57,4 @@ const customStyles = {
     },
 }
 
-const Selector = () => <Select options={options} styles={customStyles} />
-
-export default Selector
+export default customStyles

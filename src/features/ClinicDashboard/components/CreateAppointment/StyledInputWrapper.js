@@ -1,6 +1,7 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import styled from 'styled-components'
 import * as PropTypes from 'prop-types'
+import { InputError } from '../../../UserAuth/components/Input/InputStyles'
 
 const StyledLabel = styled.label`
     font-weight: 500;
@@ -20,12 +21,19 @@ const StyledWrapper = styled.div`
     }
 `
 
-const StyledInputWrapper = ({ label, children, errors }) => (
-    <StyledWrapper>
-        <StyledLabel>{label}</StyledLabel>
-        {children}
-    </StyledWrapper>
-)
+const StyledInputWrapper = ({ label, children, error, touched }) => {
+    useEffect(() => {
+        console.log(error, touched, label, 'ii')
+    }, [error, touched])
+
+    return (
+        <StyledWrapper>
+            <StyledLabel>{label}</StyledLabel>
+            {children}
+            {touched && error ? <InputError>{error}</InputError> : null}
+        </StyledWrapper>
+    )
+}
 StyledWrapper.propTypes = { children: PropTypes.node }
 StyledInputWrapper.propTypes = {
     children: PropTypes.node,
