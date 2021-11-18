@@ -25,24 +25,21 @@ import {
 import { createAppointmentSchema } from './validationSchema'
 import Select from 'react-select'
 import { InputError } from '../../../UserAuth/components/Input/InputStyles'
+import getTimeSlots from './getTimeSlots'
+import occupations from './occupations'
+import doctorsNames from './doctorsNames'
 
 const CreateAppointment = () => {
-    const [time, setTime] = useState(null)
+    const timeSlots = getTimeSlots()
 
-    const timeSlots = [
-        { time: '12:00 am', inUse: false },
-        { time: '1:00 pm', inUse: false },
-        { time: '2:00 pm', inUse: true },
-        { time: '3:00 pm', inUse: false },
-        { time: '4:00 pm', inUse: false },
-        { time: '5:00 pm', inUse: false },
-    ]
-    const options = [
-        { value: 'chocolate', label: 'Chocolate' },
-        { value: 'strawberry', label: 'Strawberry' },
-        { value: 'vanilla', label: 'Vanilla' },
-    ]
+    const getOptions = (array) =>
+        array.map((value) => ({
+            value,
+            label: value.charAt(0).toUpperCase() + value.slice(1),
+        }))
 
+    const occupationsOptions = getOptions(occupations)
+    const doctorsNamesOptions = getOptions(doctorsNames)
     const formik = useFormik({
         initialValues: {
             occupation: '',
@@ -77,10 +74,10 @@ const CreateAppointment = () => {
                         <Select
                             name={'occupation'}
                             styles={SelectorStyles}
-                            options={options}
+                            options={occupationsOptions}
                             value={
-                                options
-                                    ? options.find(
+                                occupationsOptions
+                                    ? occupationsOptions.find(
                                           (option) =>
                                               option.value ===
                                               formik.values.occupation
@@ -103,10 +100,10 @@ const CreateAppointment = () => {
                         <Select
                             name={'doctor'}
                             styles={SelectorStyles}
-                            options={options}
+                            options={doctorsNamesOptions}
                             value={
-                                options
-                                    ? options.find(
+                                doctorsNamesOptions
+                                    ? doctorsNamesOptions.find(
                                           (option) =>
                                               option.value ===
                                               formik.values.doctor
