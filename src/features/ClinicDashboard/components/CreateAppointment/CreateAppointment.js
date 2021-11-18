@@ -51,7 +51,7 @@ const CreateAppointment = () => {
         },
         validationSchema: createAppointmentSchema,
         onSubmit: (values) => {
-            console.log(values)
+            alert(JSON.stringify(values))
         },
     })
 
