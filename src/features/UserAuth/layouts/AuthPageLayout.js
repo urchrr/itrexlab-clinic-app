@@ -1,8 +1,8 @@
-import React from 'react'
-import styled from 'styled-components'
-import { Outlet } from 'react-router-dom'
-import imgAuthPageBackground from '../images/bg.png'
-import * as constants from '../../../services/constants'
+import React from 'react';
+import styled from 'styled-components';
+import { Outlet } from 'react-router-dom';
+import imgAuthPageBackground from '../images/bg.png';
+import * as constants from '../../../services/constants';
 
 const AuthPage = styled.div`
     background-image: url(${imgAuthPageBackground});
@@ -17,7 +17,7 @@ const AuthPage = styled.div`
         background-size: cover;
         flex-direction: row-reverse;
     }
-`
+`;
 
 const AuthContent = styled.div`
     max-width: 560px;
@@ -32,14 +32,16 @@ const AuthContent = styled.div`
         height: 100%;
         padding: 168px 96px 80px 96px;
     }
-`
+`;
 
-const AuthPageLayout = () => (
+const AuthPageLayout = function () {
+  return (
     <AuthPage>
-        <AuthContent>
-            <Outlet />
-        </AuthContent>
+      <AuthContent>
+        <Outlet />
+      </AuthContent>
     </AuthPage>
-)
+  );
+};
 
-export default AuthPageLayout
+export default AuthPageLayout;

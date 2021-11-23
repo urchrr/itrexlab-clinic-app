@@ -1,5 +1,5 @@
-import styled, { css } from 'styled-components'
-import * as constants from '../../../../services/constants'
+import styled, { css } from 'styled-components';
+import * as constants from '../../../../services/constants';
 
 export const StyledWrapper = styled.div`
     display: flex;
@@ -9,7 +9,7 @@ export const StyledWrapper = styled.div`
     &:nth-of-type(3) {
         margin-right: 0;
     }
-`
+`;
 export const sectionHeadingStyles = css`
     font-size: 17px;
     line-height: 24px;
@@ -17,11 +17,11 @@ export const sectionHeadingStyles = css`
     display: flex;
     align-items: center;
     color: #a1abc9;
-`
+`;
 export const StyledHeading = styled.h3`
     ${sectionHeadingStyles};
     margin-bottom: 40px;
-`
+`;
 
 export const StyledNumber = styled.span`
     ${sectionHeadingStyles};
@@ -32,7 +32,7 @@ export const StyledNumber = styled.span`
     text-align: center;
     margin-right: 16px;
     justify-content: center;
-`
+`;
 
 export const StyledForm = styled.form`
     display: flex;
@@ -41,7 +41,7 @@ export const StyledForm = styled.form`
     justify-content: space-between;
     padding-right: 32px;
     height: calc(100% - 180px);
-`
+`;
 
 export const StyledInput = styled.input`
     width: 100%;
@@ -55,15 +55,15 @@ export const StyledInput = styled.input`
     &::placeholder {
         color: #a1abc9;
     }
-`
+`;
 
 export const StyledSubmitWrapper = styled.div`
     width: 100%;
     display: flex;
     flex-direction: row-reverse;
-`
+`;
 export const StyledSubmitButton = styled.button.attrs(() => ({
-    type: 'submit',
+  type: 'submit',
 }))`
     cursor: pointer;
     border-radius: 8px;
@@ -85,4 +85,4 @@ export const StyledSubmitButton = styled.button.attrs(() => ({
         background: #dce0ec;
         cursor: default;
     }
-`
+`;

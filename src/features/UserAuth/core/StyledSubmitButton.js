@@ -1,11 +1,11 @@
-import React from 'react'
-import styled from 'styled-components'
-import PropTypes from 'prop-types'
-import * as constants from '../../../services/constants'
-import imgChevron from '../images/schevron.svg'
+import React from 'react';
+import styled from 'styled-components';
+import PropTypes from 'prop-types';
+import * as constants from '../../../services/constants';
+import imgChevron from '../images/schevron.svg';
 
 const StyledSubmitButton = styled.button.attrs(() => ({
-    type: 'submit',
+  type: 'submit',
 }))`
     cursor: pointer;
     border-radius: 8px;
@@ -21,9 +21,11 @@ const StyledSubmitButton = styled.button.attrs(() => ({
     display: flex;
     justify-content: space-between;
     align-items: center;
+
     &:disabled {
         background: ${constants.grey};
     }
+
     @media only screen and (min-width: 560px) {
         font-size: 17px;
         line-height: 25px;
@@ -31,7 +33,7 @@ const StyledSubmitButton = styled.button.attrs(() => ({
         margin-bottom: 32px;
         padding: 16px 25px 16px 24px;
     }
-`
+`;
 
 const Chevron = styled.span`
     display: block;
@@ -43,17 +45,19 @@ const Chevron = styled.span`
     color: ${constants.white};
     padding: 5px;
     margin-left: 8px;
-`
+`;
 
-const SubmitButton = ({ title, ...props }) => (
+const SubmitButton = function ({ title, ...props }) {
+  return (
     <StyledSubmitButton {...props}>
-        {title}
-        <Chevron />
+      {title}
+      <Chevron />
     </StyledSubmitButton>
-)
+  );
+};
 
 SubmitButton.propTypes = {
-    title: PropTypes.string,
-}
+  title: PropTypes.string,
+};
 
-export default SubmitButton
+export default SubmitButton;

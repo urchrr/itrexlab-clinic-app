@@ -1,6 +1,6 @@
-import styled from 'styled-components'
-import StyledButton from './StyledButton'
-import * as constants from '../../../services/constants'
+import styled from 'styled-components';
+import StyledButton from './StyledButton';
+import * as constants from '../../../services/constants';
 
 const StyledNavigationButton = styled(StyledButton)`
     padding-top: 12px;
@@ -9,8 +9,7 @@ const StyledNavigationButton = styled(StyledButton)`
     min-width: 120px;
     max-width: 160px;
     height: 40px;
-    background-color: ${(props) =>
-        props.isActive ? constants.blue : constants.white};
+    background-color: ${(props) => (props.isActive ? constants.blue : constants.white)};
     color: ${(props) => (props.isActive ? constants.white : constants.blue)};
     border-radius: 8px;
     margin-right: 24px;
@@ -22,6 +21,6 @@ const StyledNavigationButton = styled(StyledButton)`
         margin-right: 12px;
         min-width: 160px;
     }
-`
+`;
 
-export default StyledNavigationButton
+export default StyledNavigationButton;

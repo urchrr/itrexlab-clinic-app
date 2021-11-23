@@ -1,3 +1,3 @@
-const occupations = ['therapist', 'oculist', 'cardiologist', 'dermatologist']
+const occupations = ['therapist', 'oculist', 'cardiologist', 'dermatologist'];
 
-export default occupations
+export default occupations;

@@ -1,3 +1,3 @@
-const doctorsNames = ['Joe Milton', 'Sara Chock', 'Jhon Bidon']
+const doctorsNames = ['Joe Milton', 'Sara Chock', 'Jhon Bidon'];
 
-export default doctorsNames
+export default doctorsNames;

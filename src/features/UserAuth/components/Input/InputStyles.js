@@ -1,5 +1,5 @@
-import styled, { css } from 'styled-components'
-import { ReactComponent as IconEye } from '../../images/icon-block-eye.svg'
+import styled, { css } from 'styled-components';
+import { ReactComponent as IconEye } from '../../images/icon-block-eye.svg';
 
 export const InputWrapper = styled.div`
     margin-bottom: 16px;
@@ -15,7 +15,7 @@ export const InputWrapper = styled.div`
             margin-bottom: 40px;
         }
     }
-`
+`;
 
 export const InputError = styled.span`
     font-size: 13px;
@@ -27,7 +27,7 @@ export const InputError = styled.span`
     @media only screen and (min-width: 560px) {
         margin-top: 8px;
     }
-`
+`;
 
 export const iconStyles = css`
     box-sizing: border-box;
@@ -41,7 +41,7 @@ export const iconStyles = css`
         top: 16px;
         left: 24px;
     }
-`
+`;
 export const InputIcon = styled.img`
     box-sizing: border-box;
     border: none;
@@ -54,7 +54,7 @@ export const InputIcon = styled.img`
         top: 16px;
         left: 24px;
     }
-`
+`;
 
 export const StyledIconEye = styled(IconEye)`
     ${iconStyles};
@@ -64,4 +64,4 @@ export const StyledIconEye = styled(IconEye)`
     @media only screen and (min-width: 560px) {
         left: auto;
     }
-`
+`;

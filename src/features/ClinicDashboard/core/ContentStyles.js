@@ -1,5 +1,5 @@
-import styled from 'styled-components'
-import * as constants from '../../../services/constants'
+import styled from 'styled-components';
+import * as constants from '../../../services/constants';
 
 export const ContentHeaderTitle = styled.h2`
     color: ${constants.darkGrey};
@@ -12,7 +12,7 @@ export const ContentHeaderTitle = styled.h2`
         font-size: 24px;
         line-height: 26px;
     }
-`
+`;
 
 export const ContentHeader = styled.div`
     display: flex;
@@ -27,7 +27,7 @@ export const ContentHeader = styled.div`
     @media only screen and (min-width: 1480px) {
         padding-right: 44px;
     }
-`
+`;
 
 export const ContentContainer = styled.div`
     display: flex;
@@ -48,4 +48,4 @@ export const ContentContainer = styled.div`
         grid-template-columns: 1fr 1fr 1fr 1fr;
         padding-right: 44px;
     }
-`
+`;

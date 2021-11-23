@@ -1,10 +1,10 @@
-import avatar from '../images/patient-avatar.png'
+import avatar from '../images/patient-avatar.png';
 
 const getPatient = () => ({
-    name: 'Lary Lazy',
-    avatar,
-    status: 1,
-    role: 'patient',
-})
+  name: 'Lary Lazy',
+  avatar,
+  status: 1,
+  role: 'patient',
+});
 
-export default getPatient
+export default getPatient;
