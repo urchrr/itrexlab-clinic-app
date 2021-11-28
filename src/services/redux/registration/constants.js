@@ -1,0 +1,2 @@
+const USER_REGISTERED = 'USER_REGISTERED';
+export default USER_REGISTERED;

@@ -1,5 +1,9 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { userDataSelector } from 'services/redux/authorization/selectors';
+import { receiveAppointments } from 'services/redux/appointments/actions';
+import { appointmentsSelector } from 'services/redux/appointments/selectors';
 import {
   ContentContainer,
   ContentHeaderTitle,
@@ -8,10 +12,15 @@ import {
 import AppointmentsCard from './Cards/AppointmentsCard';
 import SortSelector from './SortSelector/SortSelector';
 import CreateButton from './CreateButton/CreateButton';
-import getAppointments from '../services/getAppointments';
 
 const Appointments = function () {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const { role } = useSelector(userDataSelector);
+  const appointments = useSelector(appointmentsSelector);
+  useEffect(() => {
+    dispatch(receiveAppointments({ role }));
+  }, []);
   return (
     <>
       <ContentHeader>
@@ -24,9 +33,8 @@ const Appointments = function () {
         />
       </ContentHeader>
       <ContentContainer>
-        {getAppointments().map((card, index) => (
-          // eslint-disable-next-line react/no-array-index-key
-          <AppointmentsCard data={card} key={index} />
+        {appointments.map((card) => (
+          <AppointmentsCard data={card} key={card.id} />
         ))}
       </ContentContainer>
     </>

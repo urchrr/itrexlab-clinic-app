@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import { Outlet, useNavigate } from 'react-router-dom';
+import { userDataSelector } from 'services/redux/authorization/selectors';
+import { useSelector } from 'react-redux';
 import Header from '../components/PageHeader/PageHeader';
 import NavigationButton from '../components/NavigationButton';
 import {
@@ -7,24 +9,19 @@ import {
   PageNavigationArea,
   PageContent,
 } from '../core/PageContentStyles';
-import getUser from '../services/getUser';
-import getPatient from '../services/getPatient';
 
 const ClinicDashboard = function () {
-  // выбор от лица кого открывать клинику
-  // eslint-disable-next-line no-unused-vars
-  const doctor = getUser();
-  const patient = getPatient();
-  //
+  const {
+    firstName, secondName, role, avatar,
+  } = useSelector(userDataSelector);
   const navigate = useNavigate();
   const routes = {
-    doctor: ['patients', 'resolutions'],
-    patient: ['profile', 'appointments', 'resolutions'],
-    admin: {},
+    Doctor: ['patients', 'resolutions'],
+    Patient: ['profile', 'appointments', 'resolutions'],
+    admin: [],
   };
-  const [user] = useState(patient);
 
-  const firstRoute = routes[user.role][0];
+  const firstRoute = routes[role][0];
   const [activePath, setActivePath] = useState(firstRoute);
 
   const handleNavigate = (path) => {
@@ -34,10 +31,13 @@ const ClinicDashboard = function () {
 
   return (
     <Page>
-      <Header user={user} />
+      <Header user={{
+        firstName, secondName, role, avatar,
+      }}
+      />
       <PageContent>
         <PageNavigationArea>
-          {routes[user.role].map((path) => (
+          {routes[role].map((path) => (
             <NavigationButton
               isActive={activePath === path}
               key={path}

@@ -1,17 +1,19 @@
 import React from 'react';
 import { useFormik } from 'formik';
 import { useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import StyledSubmitButton from 'features/UserAuth/core/StyledSubmitButton';
+import { signUpInputList } from 'features/UserAuth/services/inputLists';
+import { onUserRegistration } from 'services/redux/registration/actions';
+import StyledForm from 'features/UserAuth/core/StyledForm';
+import { signUpSchema } from 'features/UserAuth/services/validationSchemas';
+import StyledHeader from 'features/UserAuth/core/StyledHeader';
+import StyledHeaderTitle from 'features/UserAuth/core/StyledHeaderTitle';
 import Input from './Input/Input';
-import StyledForm from '../core/StyledForm';
-import { signUpSchema } from '../services/validationSchemas';
-import StyledHeader from '../core/StyledHeader';
-import StyledHeaderTitle from '../core/StyledHeaderTitle';
-import StyledSubmitButton from '../core/StyledSubmitButton';
-import { signUpInputList } from '../services/inputLists';
-import { signUp } from '../services/mockApi';
 
 const SignUpForm = function () {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   const formik = useFormik({
     initialValues: {
       firstName: '',
@@ -22,14 +24,7 @@ const SignUpForm = function () {
     },
     validationSchema: signUpSchema,
     onSubmit: (values) => {
-      signUp(values)
-        .then(() => {
-          navigate('/sign-in');
-        })
-        .catch((err) => {
-          // eslint-disable-next-line no-console
-          console.error(err);
-        });
+      dispatch(onUserRegistration({ values, navigate: () => { navigate('/sign-in'); } }));
     },
   });
   return (

@@ -24,6 +24,8 @@ const CreateAppointment = function () {
     },
     validationSchema: createAppointmentSchema,
     onSubmit: (values) => {
+      // eslint-disable-next-line no-console
+      console.log(values);
       alert(JSON.stringify(values));
     },
   });

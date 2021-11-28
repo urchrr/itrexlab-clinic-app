@@ -11,8 +11,7 @@ import StyledHeaderTitle from '../core/StyledHeaderTitle';
 import StyledSubmitButton from '../core/StyledSubmitButton';
 import { signInInputList } from '../services/inputLists';
 import * as constants from '../../../services/constants';
-import { signIn } from '../services/mockApi';
-import SET_LOGGED_IN from '../../../services/redux/actionTypes';
+import { onUserLogin } from '../../../services/redux/authorization/actions';
 
 const StyledLink = styled.button`
     margin-top: 32px;
@@ -37,15 +36,7 @@ const SignInForm = function () {
     },
     validationSchema: signInSchema,
     onSubmit: (values) => {
-      signIn(values)
-        .then(() => {
-          dispatch({ type: SET_LOGGED_IN, payload: true });
-          navigate('/clinic');
-        })
-        .catch((err) => {
-          // eslint-disable-next-line no-console
-          console.error(err);
-        });
+      dispatch(onUserLogin({ values, navigate: () => { navigate('/clinic'); } }));
     },
   });
   return (

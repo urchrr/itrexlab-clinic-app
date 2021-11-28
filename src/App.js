@@ -2,19 +2,18 @@ import React from 'react';
 import { Navigate, Routes, Route } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
-import ClinicDashboardLayout from './features/ClinicDashboard/layouts/DashboardLayout';
-import AuthPageLayout from './features/UserAuth/layouts/AuthPageLayout';
-import SignUp from './features/UserAuth/SignUp';
-import SignIn from './features/UserAuth/SignIn';
-import RestorePassForm from './features/UserAuth/components/RestorePassForm';
-import Patients from './features/ClinicDashboard/components/Patients';
-import Appointments from './features/ClinicDashboard/components/Appointments';
-import CreateAppointment from './features/ClinicDashboard/components/CreateAppointment/CreateAppointment';
-
-const userAuthReducer = (state) => state.userAuthReducer;
+import ClinicDashboardLayout from 'features/ClinicDashboard/layouts/DashboardLayout';
+import AuthPageLayout from 'features/UserAuth/layouts/AuthPageLayout';
+import SignUp from 'features/UserAuth/SignUp';
+import SignIn from 'features/UserAuth/SignIn';
+import RestorePassForm from 'features/UserAuth/components/RestorePassForm';
+import Patients from 'features/ClinicDashboard/components/Patients';
+import Appointments from 'features/ClinicDashboard/components/Appointments';
+import CreateAppointment from 'features/ClinicDashboard/components/CreateAppointment/CreateAppointment';
+import { isLoggedInSelector } from 'services/redux/authorization/selectors';
 
 const RequireAuth = function ({ children }) {
-  const { isLoggedIn } = useSelector(userAuthReducer);
+  const isLoggedIn = useSelector(isLoggedInSelector);
   if (!isLoggedIn) {
     return <Navigate to="/sign-in" />;
   }

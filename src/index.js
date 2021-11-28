@@ -1,15 +1,30 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { createStore, compose } from 'redux';
 import { Provider } from 'react-redux';
 import { BrowserRouter } from 'react-router-dom';
 import './index.css';
+/* import { configureStore } from '@reduxjs/toolkit';
+import createSagaMiddleware from 'redux-saga'; */
 import App from './App';
-import rootReducer from './services/redux/rootReducer';
 
-// eslint-disable-next-line no-underscore-dangle
-const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
-const store = createStore(rootReducer, composeEnhancers());
+import store from './services/redux/store';
+
+/* import userAuth from './services/redux/authorization';
+import sagaWatcher from './services/redux/authorization/saga';
+
+const sagaMiddleware = createSagaMiddleware();
+
+const middleware = [sagaMiddleware];
+
+const store = configureStore({
+  reducer: {
+    userAuth,
+  },
+  devTools: process.env.NODE_ENV !== 'production',
+  middleware,
+});
+
+sagaMiddleware.run(sagaWatcher); */
 
 ReactDOM.render(
   <React.StrictMode>
