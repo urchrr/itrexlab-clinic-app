@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 
+import firstLetterToUpperCase from 'features/ClinicDashboard/services/helpers';
+import moment from 'moment';
 import CardToggleButton from '../CardToogleButton';
 import {
   Card,
@@ -27,7 +29,9 @@ const AppointmentUserArea = styled(CardUserArea)`
 
 const AppointmentsCard = function ({
   data: {
-    avatar, name, specialist, time, symptoms,
+    doctor: {
+      photo, first_name, last_name, specialization_name,
+    }, visit_date, reason,
   },
 }) {
   const [isShow, setShow] = useState(false);
@@ -35,16 +39,17 @@ const AppointmentsCard = function ({
   const handleShowSettings = () => {
     setShow(!isShow);
   };
-  const doctor = {
-    1: 'Therapist',
-  };
+  const date = new Date(visit_date);
+  const h = parseInt(moment(date).format('h'), 10);
+  const time = moment(date).format(`ddd MMM D, YYYY ${h} a - ${h + 1} a`);
+  const name = `${first_name} ${last_name}`;
   return (
     <Card>
       <AppointmentUserArea>
-        <CardAvatar src={avatar} alt="avatar" />
+        <CardAvatar src={photo} alt="avatar" />
         <CardTitle>{name}</CardTitle>
         <CardStatusDescription>
-          {doctor[specialist]}
+          {firstLetterToUpperCase(specialization_name)}
         </CardStatusDescription>
         <CardToggleButton onClick={handleShowSettings} />
         <CardSettings visible={isShow}>
@@ -56,10 +61,10 @@ const AppointmentsCard = function ({
       <CardCaseArea>
         <StyledIconClock />
         <CardCaseHighlightedText>{time}</CardCaseHighlightedText>
-        {symptoms && (
+        {reason && (
         <>
           <StyledIconHeart />
-          <CardCaseText>{symptoms}</CardCaseText>
+          <CardCaseText>{firstLetterToUpperCase(reason)}</CardCaseText>
         </>
         )}
       </CardCaseArea>
@@ -69,11 +74,12 @@ const AppointmentsCard = function ({
 
 AppointmentsCard.propTypes = {
   data: PropTypes.object,
-  avatar: PropTypes.string,
-  name: PropTypes.string,
-  specialist: PropTypes.number,
-  time: PropTypes.string,
-  symptoms: PropTypes.string,
+  photo: PropTypes.string,
+  first_name: PropTypes.string,
+  last_name: PropTypes.string,
+  specialization_name: PropTypes.number,
+  visit_date: PropTypes.string,
+  reason: PropTypes.string,
 };
 
 export default AppointmentsCard;

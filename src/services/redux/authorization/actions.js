@@ -1,5 +1,5 @@
 import { slice } from 'services/redux/authorization/reducers';
-import USER_LOGGED_IN from './constants';
+import USER_LOGIN from './constants';
 
-export const onUserLogin = (payload) => ({ type: USER_LOGGED_IN, payload });
-export const { onSuccessLoggedIn, onFailLoggedIn, onUpdateProfile } = slice.actions;
+export const onUserLogin = (payload) => ({ type: USER_LOGIN, payload });
+export const { onSuccessLogin, onFailLogin, onUpdateProfile } = slice.actions;

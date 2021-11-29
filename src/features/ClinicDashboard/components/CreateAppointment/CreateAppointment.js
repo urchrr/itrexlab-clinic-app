@@ -1,5 +1,9 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useFormik } from 'formik';
+import { useDispatch } from 'react-redux';
+import { daySelected, occupationSelected } from 'services/redux/doctors/actions';
+import { addAppointment } from 'services/redux/appointments/actions';
+import { useNavigate } from 'react-router-dom';
 import { ContentHeader, ContentHeaderTitle } from '../../core/ContentStyles';
 import './Calendar/Calendar.css';
 import {
@@ -13,22 +17,30 @@ import SecondStep from './SecondStep';
 import ThirdStep from './ThirdStep';
 
 const CreateAppointment = function () {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
   const formik = useFormik({
     initialValues: {
       occupation: '',
-      doctor: '',
+      doctorID: '',
       reason: '',
       note: '',
       day: new Date(),
-      time: '',
+      date: '',
     },
     validationSchema: createAppointmentSchema,
     onSubmit: (values) => {
-      // eslint-disable-next-line no-console
-      console.log(values);
-      alert(JSON.stringify(values));
+      dispatch(addAppointment({ values, navigate: () => { navigate('/clinic/appointments'); } }));
     },
   });
+
+  useEffect(() => {
+    dispatch(occupationSelected(formik.values.occupation));
+  }, [formik.values.occupation]);
+
+  useEffect(() => {
+    dispatch(daySelected(formik.values.day, formik.values.doctorID));
+  }, [formik.values.day]);
 
   return (
     <>
@@ -40,7 +52,7 @@ const CreateAppointment = function () {
         <SecondStep stateProvider={formik} />
         <ThirdStep stateProvider={formik} />
         <StyledSubmitWrapper>
-          <StyledSubmitButton>Submit</StyledSubmitButton>
+          <StyledSubmitButton disabled={(formik.values.time === '')}>Submit</StyledSubmitButton>
         </StyledSubmitWrapper>
       </StyledForm>
     </>

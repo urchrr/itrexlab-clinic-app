@@ -1,2 +1,2 @@
-const USER_LOGGED_IN = 'USER_LOGGED_IN';
-export default USER_LOGGED_IN;
+const USER_LOGIN = 'USER_LOGIN';
+export default USER_LOGIN;

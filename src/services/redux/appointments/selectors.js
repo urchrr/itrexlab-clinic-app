@@ -1,1 +1,1 @@
-export const appointmentsSelector = (state) => state.appointments.data;
+export const appointmentsSelector = (state) => state.appointments.appointmentList;

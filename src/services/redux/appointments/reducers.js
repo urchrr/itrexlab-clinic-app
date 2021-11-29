@@ -1,25 +1,31 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-export const getAppointmentsSlice = createSlice({
+export const appointmentsSlice = createSlice({
   name: 'appointments',
   initialState: {
     isLoading: false,
     errors: [],
-    data: [],
+    appointmentList: [],
   },
   reducers: {
     onPendingReceiveAppointments: (state) => {
       state.isLoading = true;
     },
-    onSuccessReceiveAppointments: (state, action) => {
+    onSuccessReceiveAppointments: (state, { payload }) => {
       state.isLoading = false;
-      state.data = action.payload;
+      state.appointmentList = payload;
     },
     onFailReceiveAppointments: (state, { payload }) => {
       state.isLoading = false;
       state.errors = payload;
     },
+    appointmentAdded: (state, { payload }) => {
+      state.appointmentList.push(payload);
+    },
+    appointmentDeleted: (state, { payload }) => {
+      state.appointmentList.filter((item) => item.id !== payload);
+    },
   },
 });
 
-export const appointmentReducer = getAppointmentsSlice.reducer;
+export const appointmentReducer = appointmentsSlice.reducer;

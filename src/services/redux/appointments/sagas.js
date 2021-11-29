@@ -1,16 +1,18 @@
-import { call, takeLatest, put } from 'redux-saga/effects';
+import {
+  call, takeLatest, put, fork,
+} from 'redux-saga/effects';
 import { toast } from 'react-toastify';
 import { errorReq, successReq } from 'styles/notificationFiles';
 import {
   getPatientsAllAppointments,
-  getDoctorsAllAppointments,
+  getDoctorsAllAppointments, createNewAppointment,
 } from 'services/api/appointments/requests';
 import {
   onPendingReceiveAppointments,
   onSuccessReceiveAppointments,
-  onFailReceiveAppointments,
+  onFailReceiveAppointments, appointmentAdded,
 } from 'services/redux/appointments/actions';
-import RECEIVE_APPOINTMENTS from 'services/redux/appointments/constants';
+import { RECEIVE_APPOINTMENTS, ADD_APPOINTMENTS } from 'services/redux/appointments/constants';
 
 toast.configure();
 
@@ -30,7 +32,7 @@ const request = {
   Patient: getPatientsAllAppointments,
 };
 
-function* workerAppointmentsSaga({ payload: { role } }) {
+function* workerReceiveAppointments({ payload: { role } }) {
   try {
     yield put(onPendingReceiveAppointments());
     const response = yield call(() => request[role]());
@@ -41,9 +43,27 @@ function* workerAppointmentsSaga({ payload: { role } }) {
     yield put(onFailReceiveAppointments(data));
   }
 }
+function* workerAddAppointment({ payload: { values, navigate } }) {
+  try {
+    const { data } = yield call(() => createNewAppointment(values));
+    yield put(appointmentAdded(data));
+    yield navigate();
+    // eslint-disable-next-line no-empty
+  } catch (error) {
 
-function* receiveAppointmentsSaga() {
-  yield takeLatest(RECEIVE_APPOINTMENTS, workerAppointmentsSaga);
+  }
 }
 
-export default receiveAppointmentsSaga;
+function* watcherReceiveAppointments() {
+  yield takeLatest(RECEIVE_APPOINTMENTS, workerReceiveAppointments);
+}
+
+function* watcherAddAppointment() {
+  yield takeLatest(ADD_APPOINTMENTS, workerAddAppointment);
+}
+
+function* appointmentSaga() {
+  yield fork(watcherReceiveAppointments);
+  yield fork(watcherAddAppointment);
+}
+export default appointmentSaga;
