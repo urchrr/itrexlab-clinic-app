@@ -4,11 +4,12 @@ import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import StyledSubmitButton from 'features/UserAuth/core/StyledSubmitButton';
 import { signUpInputList } from 'features/UserAuth/services/inputLists';
-import { onUserRegistration } from 'services/redux/registration/actions';
+
 import StyledForm from 'features/UserAuth/core/StyledForm';
 import { signUpSchema } from 'features/UserAuth/services/validationSchemas';
 import StyledHeader from 'features/UserAuth/core/StyledHeader';
 import StyledHeaderTitle from 'features/UserAuth/core/StyledHeaderTitle';
+import { userRegister } from 'services/redux/user/actions';
 import Input from './Input/Input';
 
 const SignUpForm = function () {
@@ -24,7 +25,7 @@ const SignUpForm = function () {
     },
     validationSchema: signUpSchema,
     onSubmit: (values) => {
-      dispatch(onUserRegistration({ values, navigate: () => { navigate('/sign-in'); } }));
+      dispatch(userRegister({ values, navigate: () => { navigate('/sign-in'); } }));
     },
   });
   return (

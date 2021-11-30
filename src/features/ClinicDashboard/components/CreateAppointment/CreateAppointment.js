@@ -25,7 +25,7 @@ const CreateAppointment = function () {
       doctorID: '',
       reason: '',
       note: '',
-      day: new Date(),
+      day: '',
       date: '',
     },
     validationSchema: createAppointmentSchema,

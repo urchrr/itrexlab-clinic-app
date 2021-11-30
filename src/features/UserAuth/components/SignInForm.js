@@ -3,15 +3,15 @@ import { useFormik } from 'formik';
 import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
+import { signInInputList } from 'features/UserAuth/services/inputLists';
+import * as constants from 'services/constants';
+import { userLogIn } from 'services/redux/user/actions';
 import Input from './Input/Input';
 import StyledForm from '../core/StyledForm';
 import { signInSchema } from '../services/validationSchemas';
 import StyledHeader from '../core/StyledHeader';
 import StyledHeaderTitle from '../core/StyledHeaderTitle';
 import StyledSubmitButton from '../core/StyledSubmitButton';
-import { signInInputList } from '../services/inputLists';
-import * as constants from '../../../services/constants';
-import { onUserLogin } from '../../../services/redux/authorization/actions';
 
 const StyledLink = styled.button`
     margin-top: 32px;
@@ -36,7 +36,7 @@ const SignInForm = function () {
     },
     validationSchema: signInSchema,
     onSubmit: (values) => {
-      dispatch(onUserLogin({ values, navigate: () => { navigate('/clinic'); } }));
+      dispatch(userLogIn({ values, navigate: () => { navigate('/clinic'); } }));
     },
   });
   return (

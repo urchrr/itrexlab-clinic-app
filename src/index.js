@@ -9,8 +9,8 @@ import App from './App';
 
 import store from './services/redux/store';
 
-/* import userAuth from './services/redux/authorization';
-import sagaWatcher from './services/redux/authorization/saga';
+/* import userAuth from './services/redux/user';
+import sagaWatcher from './services/redux/user/saga';
 
 const sagaMiddleware = createSagaMiddleware();
 

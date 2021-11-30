@@ -10,7 +10,9 @@ import RestorePassForm from 'features/UserAuth/components/RestorePassForm';
 import Patients from 'features/ClinicDashboard/components/Patients';
 import Appointments from 'features/ClinicDashboard/components/Appointments';
 import CreateAppointment from 'features/ClinicDashboard/components/CreateAppointment/CreateAppointment';
-import { isLoggedInSelector } from 'services/redux/authorization/selectors';
+import { isLoggedInSelector } from 'services/redux/user/selectors';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const RequireAuth = function ({ children }) {
   const isLoggedIn = useSelector(isLoggedInSelector);
@@ -22,32 +24,35 @@ const RequireAuth = function ({ children }) {
 
 const App = function () {
   return (
-    <Routes>
-      <Route element={<AuthPageLayout />}>
-        <Route exact path="/" element={<SignUp />} />
-        <Route path="/sign-up" element={<SignUp />} />
-        <Route path="/sign-in" element={<SignIn />} />
-        <Route path="/restore-password" element={<RestorePassForm />} />
-      </Route>
-      <Route
-        path="clinic"
-        element={(
-          <RequireAuth>
-            <ClinicDashboardLayout />
-          </RequireAuth>
-                  )}
-      >
-        <Route path="patients" element={<Patients />} />
-        <Route path="resolutions" />
-        <Route path="profile" />
-        <Route path="appointments" element={<Appointments />} />
-        <Route path="resolutions" />
+    <>
+      <Routes>
+        <Route element={<AuthPageLayout />}>
+          <Route exact path="/" element={<SignUp />} />
+          <Route path="/sign-up" element={<SignUp />} />
+          <Route path="/sign-in" element={<SignIn />} />
+          <Route path="/restore-password" element={<RestorePassForm />} />
+        </Route>
         <Route
-          path="create-appointment"
-          element={<CreateAppointment />}
-        />
-      </Route>
-    </Routes>
+          path="clinic"
+          element={(
+            <RequireAuth>
+              <ClinicDashboardLayout />
+            </RequireAuth>
+                  )}
+        >
+          <Route path="patients" element={<Patients />} />
+          <Route path="resolutions" />
+          <Route path="profile" />
+          <Route path="appointments" element={<Appointments />} />
+          <Route path="resolutions" />
+          <Route
+            path="create-appointment"
+            element={<CreateAppointment />}
+          />
+        </Route>
+      </Routes>
+      <ToastContainer />
+    </>
   );
 };
 

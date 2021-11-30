@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { userDataSelector } from 'services/redux/authorization/selectors';
+import { userDataSelector } from 'services/redux/user/selectors';
 import { receiveAppointments } from 'services/redux/appointments/actions';
 import { appointmentsSelector } from 'services/redux/appointments/selectors';
 import {

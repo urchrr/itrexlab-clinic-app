@@ -8,16 +8,16 @@ export const appointmentsSlice = createSlice({
     appointmentList: [],
   },
   reducers: {
-    onPendingReceiveAppointments: (state) => {
+    pendingAppointmentsAction: (state) => {
       state.isLoading = true;
     },
-    onSuccessReceiveAppointments: (state, { payload }) => {
-      state.isLoading = false;
-      state.appointmentList = payload;
-    },
-    onFailReceiveAppointments: (state, { payload }) => {
+    rejectedAppointmentsAction: (state, { payload }) => {
       state.isLoading = false;
       state.errors = payload;
+    },
+    appointmentsReceived: (state, { payload }) => {
+      state.isLoading = false;
+      state.appointmentList = payload;
     },
     appointmentAdded: (state, { payload }) => {
       state.appointmentList.push(payload);
