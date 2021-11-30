@@ -37,7 +37,6 @@ function* workerAddAppointment({ payload: { values, navigate } }) {
     yield put(appointmentAdded());
     yield navigate();
     notify.update(id, 'success', 'Saved!');
-    // eslint-disable-next-line no-empty
   } catch (error) {
     notify.update(id, 'error', error.message);
     yield put(rejectedAppointmentsAction(error));

@@ -19,8 +19,8 @@ export const appointmentsSlice = createSlice({
       state.isLoading = false;
       state.appointmentList = payload;
     },
-    appointmentAdded: (state, { payload }) => {
-      state.appointmentList.push(payload);
+    appointmentAdded: (state) => {
+      state.isLoading = false;
     },
     appointmentDeleted: (state, { payload }) => {
       state.appointmentList.filter((item) => item.id !== payload);

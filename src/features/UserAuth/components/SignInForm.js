@@ -21,6 +21,11 @@ const StyledLink = styled.button`
     font-weight: 500;
     text-decoration: underline;
     cursor: pointer;
+  padding: 0;
+  outline: none;
+  border: none;
+  background-color:inherit;
+  text-align: start;
 `;
 
 const SignInForm = function () {
