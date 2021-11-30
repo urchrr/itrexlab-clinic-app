@@ -1,7 +1,7 @@
-export const isLoggedInSelector = (state) => state.userAuth.isLoggedIn;
+export const isLoggedInSelector = (state) => state.user.isLoggedIn;
 export const userDataSelector = (state) => ({
-  firstName: state.userAuth.first_name,
-  secondName: state.userAuth.second_name,
-  avatar: state.userAuth.photo,
-  role: state.userAuth.role_name,
+  firstName: state.user.first_name,
+  secondName: state.user.second_name,
+  avatar: state.user.photo,
+  role: state.user.role_name,
 });

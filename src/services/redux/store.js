@@ -3,7 +3,7 @@ import createSagaMiddleware from 'redux-saga';
 import user from 'services/redux/user';
 import { appointmentReducer } from 'services/redux/appointments/reducers';
 import doctors from 'services/redux/doctors/reducers';
-import rootSaga from 'services/redux/rootSaga'
+import rootSaga from 'services/redux/rootSaga';
 
 const saga = createSagaMiddleware();
 

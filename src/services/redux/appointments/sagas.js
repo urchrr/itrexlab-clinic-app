@@ -1,7 +1,6 @@
 import {
   call, takeLatest, put, fork,
 } from 'redux-saga/effects';
-
 import {
   getPatientsAllAppointments,
   getDoctorsAllAppointments, createNewAppointment,
@@ -12,6 +11,7 @@ import {
   rejectedAppointmentsAction, appointmentAdded,
 } from 'services/redux/appointments/actions';
 import { RECEIVE_APPOINTMENTS, ADD_APPOINTMENTS } from 'services/redux/appointments/constants';
+import notify from 'services/notify';
 
 const request = {
   Doctor: getDoctorsAllAppointments,
@@ -29,14 +29,20 @@ function* workerReceiveAppointments({ payload: { role } }) {
   }
 }
 function* workerAddAppointment({ payload: { values, navigate } }) {
+  const id = notify.initial('Please wait...');
   try {
+    notify.update(id, 'info', 'Saving appointment...');
     yield put(pendingAppointmentsAction());
     yield call(() => createNewAppointment(values));
     yield put(appointmentAdded());
     yield navigate();
+    notify.update(id, 'success', 'Saved!');
     // eslint-disable-next-line no-empty
   } catch (error) {
+    notify.update(id, 'error', error.message);
     yield put(rejectedAppointmentsAction(error));
+  } finally {
+    notify.closeAll();
   }
 }
 

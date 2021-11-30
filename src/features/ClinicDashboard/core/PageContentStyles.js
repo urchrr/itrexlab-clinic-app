@@ -16,8 +16,10 @@ export const Page = styled.div`
 export const PageContent = styled.section`
     background-color: ${constants.formBackgroundColor};
     border-radius: 24px 24px 0 0;
-    //height: calc(100% - 72px);
-    height: 100%;
+    flex: 1 auto;
+    max-height: 95%;
+    display: flex;
+    flex-direction: column;
     padding: 40px 16px;
     @media only screen and (min-width: 560px) {
         padding: 40px 16px 40px 48px;

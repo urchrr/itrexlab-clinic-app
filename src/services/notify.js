@@ -24,4 +24,6 @@ const update = (id, status, message) => {
   }
 };
 
-export default { initial, update };
+const closeAll = () => toast.dismiss();
+
+export default { initial, update, closeAll };
