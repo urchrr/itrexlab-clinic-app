@@ -5,3 +5,7 @@ export const userDataSelector = (state) => ({
   avatar: state.user.photo,
   role: state.user.role_name,
 });
+
+export const userRoleSelector = (state) => ({
+  role: state.user.role_name,
+});

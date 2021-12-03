@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { userDataSelector } from 'services/redux/user/selectors';
+import { userRoleSelector } from 'services/redux/user/selectors';
 import { receiveAppointmentsAction } from 'services/redux/appointments/actions';
 import { appointmentsSelector } from 'services/redux/appointments/selectors';
 import {
@@ -16,7 +16,7 @@ import CreateButton from 'features/ClinicDashboard/components/CreateButton/Creat
 const Appointments = function () {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const { role } = useSelector(userDataSelector);
+  const role = useSelector(userRoleSelector);
   const appointments = useSelector(appointmentsSelector);
   useEffect(() => {
     dispatch(receiveAppointmentsAction({ role }));
