@@ -10,40 +10,40 @@ import {
   pendingUserAction, rejectedUserAction, userLoggedIn, userProfileUpdated, userRegistered,
 } from './actions';
 
-function* workerUserLogin({ payload: { values, navigate } }) {
+function* workerUserLogin({ payload, navigate }) {
   const notification = notify.initial('Please wait...');
   try {
-    yield notify.update(notification, 'pending', 'Processing...');
-    yield put(pendingUserAction());
-    const { data: { access_token } } = yield call(() => userLogin(values));
+    notify.update(notification, 'pending', 'Processing...');
+    put(pendingUserAction());
+    const { data: { access_token } } = yield call(() => userLogin(payload));
     setToken(access_token);
     const { data } = yield call(() => getProfile());
+    // eslint-disable-next-line no-console
+    console.log('last name', data.last_name);
     yield put(userProfileUpdated({ ...data, access_token }));
     yield workerSpecReceive();
     yield put(userLoggedIn());
-    yield notify.update(notification, 'success', 'All good');
-    yield navigate();
-  } catch (error) {
-    yield notify.update(notification, 'error', error.message);
-    yield put(rejectedUserAction(error));
-  } finally {
+    notify.update(notification, 'success', 'All good');
+    navigate('/clinic');
     notify.closeAll();
+  } catch (error) {
+    notify.update(notification, 'error', error.message);
+    yield put(rejectedUserAction(error));
   }
 }
-function* workerUserRegistration({ payload: { values, navigate } }) {
+function* workerUserRegistration({ payload, navigate }) {
   const notification = notify.initial('Please wait...');
   try {
-    yield notify.update(notification, 'pending', 'Processing...');
-    yield put(pendingUserAction());
-    yield call(() => userRegistration(values));
+    notify.update(notification, 'pending', 'Processing...');
+    put(pendingUserAction());
+    yield call(() => userRegistration(payload));
     yield put(userRegistered());
-    yield notify.update(notification, 'success', 'Logged in');
-    yield navigate();
-  } catch (error) {
-    yield notify.update(notification, 'error', error.message);
-    yield put(rejectedUserAction(error));
-  } finally {
+    notify.update(notification, 'success', 'Registration successful');
+    navigate('/sign-in');
     notify.closeAll();
+  } catch (error) {
+    notify.update(notification, 'error', error.message);
+    yield put(rejectedUserAction(error));
   }
 }
 function* watcherUserLogin() {

@@ -8,29 +8,34 @@ export const signUpInputList = [
     icon: iconPerson,
     placeholder: 'First Name',
     name: 'firstName',
+    testData: 'Greg',
   },
   {
     icon: iconPerson,
     placeholder: 'Second Name',
     name: 'lastName',
+    testData: 'NotHouse',
   },
   {
     icon: iconEmail,
     type: 'email',
     placeholder: 'Email',
     name: 'email',
+    testData: 'greg@email.com',
   },
   {
     icon: iconLock,
     type: 'password',
     placeholder: 'Password',
     name: 'password',
+    testData: '123456',
   },
   {
     icon: iconAccept,
     type: 'password',
     placeholder: 'Confirm password',
     name: 'passwordConfirm',
+    testData: '123456',
   },
 ];
 
@@ -40,12 +45,14 @@ export const signInInputList = [
     placeholder: 'Email',
     type: 'email',
     name: 'email',
+    testData: 'greg@email.com',
   },
   {
     icon: iconLock,
     placeholder: 'Password',
     type: 'password',
     name: 'password',
+    testData: '123456',
   },
 ];
 

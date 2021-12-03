@@ -14,11 +14,10 @@ import {
 
 const ClinicHeader = function ({
   user: {
-    avatar, firstName, secondName, role, status = 1,
+    avatar, firstName, lastName, role, status = 1,
   },
 }) {
-  const name = `${firstName} ${secondName}`;
-
+  const name = `${firstName} ${lastName}`;
   return (
     <StyledHeader>
       <StyledHeaderLogo src={logo} alt="logo" />
@@ -38,7 +37,7 @@ ClinicHeader.propTypes = {
   user: PropTypes.object,
   avatar: PropTypes.string,
   firstName: PropTypes.string,
-  secondName: PropTypes.string,
+  lastName: PropTypes.string,
   role: PropTypes.string,
   status: PropTypes.number,
 };

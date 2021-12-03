@@ -7,7 +7,7 @@ export const userSlice = createSlice({
     errors: [],
     id: '',
     first_name: '',
-    second_name: '',
+    last_name: '',
     photo: '',
     role_name: '',
     access_token: '',

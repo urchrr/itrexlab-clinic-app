@@ -11,9 +11,8 @@ import {
 } from '../core/PageContentStyles';
 
 const ClinicDashboard = function () {
-  const {
-    firstName, secondName, role, avatar,
-  } = useSelector(userDataSelector);
+  const user = useSelector(userDataSelector);
+  const { role } = user;
   const navigate = useNavigate();
   const routes = {
     Doctor: ['patients', 'resolutions'],
@@ -30,10 +29,7 @@ const ClinicDashboard = function () {
 
   return (
     <Page>
-      <Header user={{
-        firstName, secondName, role, avatar,
-      }}
-      />
+      <Header user={user} />
       <PageContent>
         <PageNavigationArea>
           {routes[role].map((path) => (

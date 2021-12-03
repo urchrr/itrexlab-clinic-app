@@ -35,13 +35,12 @@ function* workerAddAppointment({ payload: { values, navigate } }) {
     yield put(pendingAppointmentsAction());
     yield call(() => createNewAppointment(values));
     yield put(appointmentAdded());
-    yield navigate();
     notify.update(id, 'success', 'Saved!');
+    navigate();
+    notify.closeAll();
   } catch (error) {
     notify.update(id, 'error', error.message);
     yield put(rejectedAppointmentsAction(error));
-  } finally {
-    notify.closeAll();
   }
 }
 

@@ -8,10 +8,10 @@ import {
   ContentContainer,
   ContentHeaderTitle,
   ContentHeader,
-} from '../core/ContentStyles';
-import AppointmentsCard from './Cards/AppointmentsCard';
-import SortSelector from './SortSelector/SortSelector';
-import CreateButton from './CreateButton/CreateButton';
+} from 'features/ClinicDashboard/core/ContentStyles';
+import AppointmentsCard from 'features/ClinicDashboard/components/Cards/AppointmentsCard';
+import SortSelector from 'features/ClinicDashboard/components/SortSelector/SortSelector';
+import CreateButton from 'features/ClinicDashboard/components/CreateButton/CreateButton';
 
 const Appointments = function () {
   const navigate = useNavigate();

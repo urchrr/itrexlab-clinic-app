@@ -1,9 +1,10 @@
 {
     "env": {
         "browser": true,
-        "es6": true
+        "es6": true,
+        "jest": true
     },
-    "extends": ["plugin:react/recommended", "airbnb"],
+    "extends": ["plugin:react/recommended", "airbnb", "plugin:testing-library/react"],
     "globals": {
         "Atomics": "readonly",
         "SharedArrayBuffer": "readonly"
@@ -15,7 +16,7 @@
         "ecmaVersion": 2018,
         "sourceType": "module"
     },
-    "plugins": ["react"],
+    "plugins": ["react","testing-library"],
     "rules": {
         "no-console": ["error", { "allow": ["warn", "error"] }],
         "react/prop-types": 0,
@@ -26,7 +27,10 @@
         "no-param-reassign": "off",
         "func-names": "off",
         "camelcase": "off",
-        "import/prefer-default-export": "off"
+        "import/prefer-default-export": "off",
+        "testing-library/await-async-query": "error",
+        "testing-library/no-await-sync-query": "error",
+        "testing-library/no-dom-import": "off"
     },
     "settings": {
         "import/resolver": {
@@ -34,5 +38,12 @@
                 "paths": ["src"]
             }
         }
-    }
+    },
+    "overrides": [
+        {
+            // 3) Now we enable eslint-plugin-testing-library rules or preset only for matching files!
+            "files": ["**/__tests__/**/*.[jt]s?(x)", "**/?(*.)+(spec|test).[jt]s?(x)"],
+            "extends": ["plugin:testing-library/react"]
+        }
+    ]
 }

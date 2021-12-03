@@ -13,27 +13,27 @@ export function* workerSpecReceive() {
   try {
     const { data } = yield call(() => getSpecializations());
     yield put(specializationsReceived(data));
-    // eslint-disable-next-line no-empty
   } catch (error) {
-
+    // eslint-disable-next-line no-console
+    console.log(error);
   }
 }
 function* workerOccupationSelected({ payload }) {
   try {
     const { data } = yield call(() => getDoctorsBySpec(payload));
     yield put(bySpecIdReceived(data));
-    // eslint-disable-next-line no-empty
   } catch (error) {
-
+    // eslint-disable-next-line no-console
+    console.log(error);
   }
 }
 function* workerVisitDaySelected({ payload: { date, doctorID } }) {
   try {
     const { data } = yield call(() => getFreeAppointmentTime(date, doctorID));
     yield put(freeTimeVisitReceived(data));
-    // eslint-disable-next-line no-empty
   } catch (error) {
-
+    // eslint-disable-next-line no-console
+    console.log(error);
   }
 }
 

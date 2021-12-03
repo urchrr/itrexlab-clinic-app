@@ -1,7 +1,6 @@
 import React from 'react';
 import { useFormik } from 'formik';
 import { useNavigate } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
 import StyledSubmitButton from 'features/UserAuth/core/StyledSubmitButton';
 import { signUpInputList } from 'features/UserAuth/services/inputLists';
 
@@ -9,23 +8,19 @@ import StyledForm from 'features/UserAuth/core/StyledForm';
 import { signUpSchema } from 'features/UserAuth/services/validationSchemas';
 import StyledHeader from 'features/UserAuth/core/StyledHeader';
 import StyledHeaderTitle from 'features/UserAuth/core/StyledHeaderTitle';
-import { userRegister } from 'services/redux/user/actions';
-import Input from './Input/Input';
+
+import Input from 'features/UserAuth/components/Input/Input';
+import { getInitialValuesFromInputList, useAuthorisation } from 'features/UserAuth/services/heplers';
 
 const SignUpForm = function () {
   const navigate = useNavigate();
-  const dispatch = useDispatch();
+  const { register } = useAuthorisation();
+  const initialValues = getInitialValuesFromInputList(signUpInputList);
   const formik = useFormik({
-    initialValues: {
-      firstName: '',
-      lastName: '',
-      email: '',
-      password: '',
-      passwordConfirm: '',
-    },
+    initialValues,
     validationSchema: signUpSchema,
     onSubmit: (values) => {
-      dispatch(userRegister({ values, navigate: () => { navigate('/sign-in'); } }));
+      register(values, navigate);
     },
   });
   return (
@@ -33,21 +28,24 @@ const SignUpForm = function () {
       <StyledHeader>
         <StyledHeaderTitle>Sign Up</StyledHeaderTitle>
       </StyledHeader>
-      {signUpInputList.map((input) => (
+      {signUpInputList.map(({
+        name, icon, type, placeholder,
+      }) => (
         <Input
-          key={`signupform-${input.name}`}
-          icon={input.icon}
-          placeholder={input.placeholder}
-          type={input.type}
-          name={input.name}
+          key={`form-input-${name}`}
+          data-testid={`form-input-${name}`}
+          icon={icon}
+          placeholder={placeholder}
+          type={type}
+          name={name}
           onChange={formik.handleChange}
           onBlur={formik.handleBlur}
-          value={formik.values[input.name]}
-          touched={formik.touched[input.name]}
-          error={formik.errors[input.name]}
+          value={formik.values[name]}
+          touched={formik.touched[name]}
+          error={formik.errors[name]}
         />
       ))}
-      <StyledSubmitButton title="Sign Up" />
+      <StyledSubmitButton title="Sign Up" data-testid="form-submit-button" />
     </StyledForm>
   );
 };

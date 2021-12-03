@@ -2,13 +2,13 @@ import React from 'react';
 import { Navigate, Routes, Route } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
-import ClinicDashboardLayout from 'features/ClinicDashboard/layouts/DashboardLayout';
+import Clinic from 'features/ClinicDashboard/layouts/DashboardLayout';
 import AuthPageLayout from 'features/UserAuth/layouts/AuthPageLayout';
 import SignUp from 'features/UserAuth/SignUp';
 import SignIn from 'features/UserAuth/SignIn';
 import RestorePassForm from 'features/UserAuth/components/RestorePassForm';
 import Patients from 'features/ClinicDashboard/components/Patients';
-import Appointments from 'features/ClinicDashboard/components/Appointments';
+import Appointments from 'features/ClinicDashboard/components/Appointments/Appointments';
 import CreateAppointment from 'features/ClinicDashboard/components/CreateAppointment/CreateAppointment';
 import { isLoggedInSelector } from 'services/redux/user/selectors';
 import { ToastContainer } from 'react-toastify';
@@ -36,7 +36,7 @@ const App = function () {
           path="clinic"
           element={(
             <RequireAuth>
-              <ClinicDashboardLayout />
+              <Clinic />
             </RequireAuth>
                   )}
         >
