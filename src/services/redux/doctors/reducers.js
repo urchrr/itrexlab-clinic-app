@@ -6,16 +6,20 @@ export const doctorSlice = createSlice({
     specializations: [],
     bySpecId: [],
     freeTimeVisit: [],
+    errors: [],
   },
   reducers: {
-    specializationsReceived: (state, { payload }) => {
+    receiveSpecializations: (state, { payload }) => {
       state.specializations = payload;
     },
-    bySpecIdReceived: (state, { payload }) => {
+    receiveDoctorsBySpecId: (state, { payload }) => {
       state.bySpecId = payload;
     },
-    freeTimeVisitReceived: (state, { payload }) => {
+    receiveVisitFreeTime: (state, { payload }) => {
       state.freeTimeVisit = payload;
+    },
+    handleDoctorsErrors: (state, { payload }) => {
+      state.errors = payload;
     },
   },
 });

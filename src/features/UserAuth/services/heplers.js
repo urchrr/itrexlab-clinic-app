@@ -1,6 +1,6 @@
 import { useDispatch } from 'react-redux';
 import { useCallback } from 'react';
-import { userLogIn, userRegister } from 'services/redux/user/actions';
+import { loginAction, registerAction } from 'services/redux/user/actions';
 
 export const getInitialValuesFromInputList = (list) => list
   .reduce((init, { name }) => { init[name] = ''; return init; }, {});
@@ -8,10 +8,10 @@ export const getInitialValuesFromInputList = (list) => list
 export const useAuthorisation = () => {
   const dispatch = useDispatch();
   const login = useCallback((data, navigate) => {
-    dispatch(userLogIn(data, navigate));
+    dispatch(loginAction(data, navigate));
   }, [dispatch]);
   const register = useCallback((data, navigate) => {
-    dispatch(userRegister(data, navigate));
+    dispatch(registerAction(data, navigate));
   }, [dispatch]);
   return { login, register };
 };

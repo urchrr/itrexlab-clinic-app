@@ -6,9 +6,9 @@ import {
   getDoctorsAllAppointments, createNewAppointment,
 } from 'services/api/appointments/requests';
 import {
-  pendingAppointmentsAction,
-  appointmentsReceived,
-  rejectedAppointmentsAction, appointmentAdded,
+  receiveAppointmentAction,
+  handleAppointmentsErrorsAction,
+  addAppointmentAction,
 } from 'services/redux/appointments/actions';
 import { RECEIVE_APPOINTMENTS, ADD_APPOINTMENTS } from 'services/redux/appointments/constants';
 import notify from 'services/notify';
@@ -20,27 +20,25 @@ const request = {
 
 function* workerReceiveAppointments({ payload: { role } }) {
   try {
-    yield put(pendingAppointmentsAction());
-    const response = yield call(() => request[role]());
+    const response = yield call(request[role]);
     const { data: { appointments } } = response;
-    yield put(appointmentsReceived(appointments));
+    yield put(receiveAppointmentAction(appointments));
   } catch ({ response: { status, data } }) {
-    yield put(rejectedAppointmentsAction(data));
+    yield put(handleAppointmentsErrorsAction(data));
   }
 }
 function* workerAddAppointment({ payload: { values, navigate } }) {
   const id = notify.initial('Please wait...');
   try {
     notify.update(id, 'info', 'Saving appointment...');
-    yield put(pendingAppointmentsAction());
-    yield call(() => createNewAppointment(values));
-    yield put(appointmentAdded());
+    yield call(createNewAppointment, values);
+    yield put(addAppointmentAction());
     notify.update(id, 'success', 'Saved!');
     navigate();
     notify.closeAll();
   } catch (error) {
     notify.update(id, 'error', error.message);
-    yield put(rejectedAppointmentsAction(error));
+    yield put(handleAppointmentsErrorsAction(error));
   }
 }
 

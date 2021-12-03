@@ -3,7 +3,7 @@ import * as constants from '../../../../services/constants';
 
 export const Blocker = styled.div`
     pointer-events:${(props) => (props.blocked ? 'none' : 'all')};
-    opacity: ${(props) => (props.blocked ? 0.8 : 1)};
+    opacity: ${(props) => (props.blocked ? 0.5 : 1)};
 `;
 
 export const StyledWrapper = styled(Blocker)`

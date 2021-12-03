@@ -13,19 +13,15 @@ export const userSlice = createSlice({
     access_token: '',
   },
   reducers: {
-    pendingUserAction: (state) => {
-      state.isLoading = true;
-    },
-    rejectedUserAction: (state, { payload }) => {
-      state.isLoading = false;
+    handleUserErrors: (state, { payload }) => {
       state.errors = payload;
     },
-    userLoggedIn: (state) => {
+    loginUser: (state) => {
       state.isLoggedIn = true;
     },
-    userProfileUpdated: (state, { payload }) => ({ ...state, ...payload }),
-    userRegistered: (state) => {
-      state.isLoading = false;
+    updateUserProfile: (state, { payload }) => ({ ...state, ...payload }),
+    registerUser: (state) => {
+      state.isNewRegistered = 'true';
     },
   },
 });

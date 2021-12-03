@@ -1,8 +1,8 @@
 import React, { useEffect } from 'react';
 import { useFormik } from 'formik';
 import { useDispatch } from 'react-redux';
-import { daySelected, occupationSelected } from 'services/redux/doctors/actions';
-import { addAppointment } from 'services/redux/appointments/actions';
+import { selectDayAction, selectOccupationAction } from 'services/redux/doctors/actions';
+import { addNewAppointmentAction } from 'services/redux/appointments/actions';
 import { useNavigate } from 'react-router-dom';
 import { ContentHeader, ContentHeaderTitle } from '../../core/ContentStyles';
 import './Calendar/Calendar.css';
@@ -30,16 +30,16 @@ const CreateAppointment = function () {
     },
     validationSchema: createAppointmentSchema,
     onSubmit: (values) => {
-      dispatch(addAppointment({ values, navigate: () => { navigate('/clinic/appointments'); } }));
+      dispatch(addNewAppointmentAction({ values, navigate: () => { navigate('/clinic/appointments'); } }));
     },
   });
 
   useEffect(() => {
-    dispatch(occupationSelected(formik.values.occupation));
+    dispatch(selectOccupationAction(formik.values.occupation));
   }, [formik.values.occupation]);
 
   useEffect(() => {
-    dispatch(daySelected(formik.values.day, formik.values.doctorID));
+    dispatch(selectDayAction(formik.values.day, formik.values.doctorID));
   }, [formik.values.day]);
 
   return (

@@ -7,8 +7,7 @@ import { InputError } from '../../../UserAuth/components/Input/InputStyles';
 const SecondStep = function ({
   stateProvider: {
     values: {
-      // eslint-disable-next-line no-unused-vars
-      day, occupation, reason, doctor,
+      occupation, reason, doctor,
     },
     errors,
     touched,
@@ -27,7 +26,6 @@ const SecondStep = function ({
         blocked={!(doctor !== '' && occupation !== '' && reason !== '')}
         name="day"
         onClickDay={(value) => setFieldValue('day', date(value))}
-        // value={day}
       />
       {touched.day && errors.day ? (
         <InputError>{errors.day}</InputError>

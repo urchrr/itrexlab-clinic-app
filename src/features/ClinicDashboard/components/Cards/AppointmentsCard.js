@@ -34,10 +34,10 @@ const AppointmentsCard = function ({
     }, visit_date, reason,
   },
 }) {
-  const [isShow, setShow] = useState(false);
+  const [isSettingsVisible, setIsSettingsVisible] = useState(false);
 
   const handleShowSettings = () => {
-    setShow(!isShow);
+    setIsSettingsVisible(!isSettingsVisible);
   };
   const date = new Date(visit_date);
   const h = parseInt(moment(date).format('h'), 10);
@@ -52,7 +52,7 @@ const AppointmentsCard = function ({
           {firstLetterToUpperCase(specialization_name)}
         </CardStatusDescription>
         <CardToggleButton onClick={handleShowSettings} />
-        <CardSettings visible={isShow}>
+        <CardSettings visible={isSettingsVisible}>
           <CardSettingsButton>Create a resolution</CardSettingsButton>
           <CardSettingsButton>Edit an appointment</CardSettingsButton>
           <CardSettingsDeleteButton>Delete</CardSettingsDeleteButton>

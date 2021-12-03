@@ -7,43 +7,39 @@ import { setToken } from '../../api/instance';
 import { USER_LOG_IN, USER_REGISTER } from './constants';
 import { getProfile, userLogin, userRegistration } from '../../api/auth/requests';
 import {
-  pendingUserAction, rejectedUserAction, userLoggedIn, userProfileUpdated, userRegistered,
+  handleUserErrorsAction, loginUserAction, updateUserProfileAction, registerUserAction,
 } from './actions';
 
 function* workerUserLogin({ payload, navigate }) {
   const notification = notify.initial('Please wait...');
   try {
     notify.update(notification, 'pending', 'Processing...');
-    put(pendingUserAction());
-    const { data: { access_token } } = yield call(() => userLogin(payload));
+    const { data: { access_token } } = yield call(userLogin, payload);
     setToken(access_token);
-    const { data } = yield call(() => getProfile());
-    // eslint-disable-next-line no-console
-    console.log('last name', data.last_name);
-    yield put(userProfileUpdated({ ...data, access_token }));
+    const { data } = yield call(getProfile);
+    yield put(updateUserProfileAction({ ...data, access_token }));
     yield workerSpecReceive();
-    yield put(userLoggedIn());
+    yield put(loginUserAction());
     notify.update(notification, 'success', 'All good');
     navigate('/clinic');
     notify.closeAll();
   } catch (error) {
     notify.update(notification, 'error', error.message);
-    yield put(rejectedUserAction(error));
+    yield put(handleUserErrorsAction(error));
   }
 }
 function* workerUserRegistration({ payload, navigate }) {
   const notification = notify.initial('Please wait...');
   try {
     notify.update(notification, 'pending', 'Processing...');
-    put(pendingUserAction());
-    yield call(() => userRegistration(payload));
-    yield put(userRegistered());
+    yield call(userRegistration, payload);
+    yield put(registerUserAction());
     notify.update(notification, 'success', 'Registration successful');
     navigate('/sign-in');
     notify.closeAll();
   } catch (error) {
     notify.update(notification, 'error', error.message);
-    yield put(rejectedUserAction(error));
+    yield put(handleUserErrorsAction(error));
   }
 }
 function* watcherUserLogin() {

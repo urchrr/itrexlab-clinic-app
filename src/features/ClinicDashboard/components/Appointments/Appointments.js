@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { userDataSelector } from 'services/redux/user/selectors';
-import { receiveAppointments } from 'services/redux/appointments/actions';
+import { receiveAppointmentsAction } from 'services/redux/appointments/actions';
 import { appointmentsSelector } from 'services/redux/appointments/selectors';
 import {
   ContentContainer,
@@ -19,7 +19,7 @@ const Appointments = function () {
   const { role } = useSelector(userDataSelector);
   const appointments = useSelector(appointmentsSelector);
   useEffect(() => {
-    dispatch(receiveAppointments({ role }));
+    dispatch(receiveAppointmentsAction({ role }));
   }, []);
   return (
     <>

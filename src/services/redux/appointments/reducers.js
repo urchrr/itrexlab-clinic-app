@@ -3,26 +3,20 @@ import { createSlice } from '@reduxjs/toolkit';
 export const appointmentsSlice = createSlice({
   name: 'appointments',
   initialState: {
-    isLoading: false,
     errors: [],
     appointmentList: [],
   },
   reducers: {
-    pendingAppointmentsAction: (state) => {
-      state.isLoading = true;
-    },
-    rejectedAppointmentsAction: (state, { payload }) => {
-      state.isLoading = false;
+    handleAppointmentsErrors: (state, { payload }) => {
       state.errors = payload;
     },
-    appointmentsReceived: (state, { payload }) => {
-      state.isLoading = false;
+    receiveAppointment: (state, { payload }) => {
       state.appointmentList = payload;
     },
-    appointmentAdded: (state) => {
-      state.isLoading = false;
+    addAppointment: (state) => {
+      state.addedNew = true;
     },
-    appointmentDeleted: (state, { payload }) => {
+    deleteAppointment: (state, { payload }) => {
       state.appointmentList.filter((item) => item.id !== payload);
     },
   },
