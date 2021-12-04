@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 
-import firstLetterToUpperCase from 'features/ClinicDashboard/services/helpers';
-import moment from 'moment';
+import { getTimeOfVisit } from 'features/ClinicDashboard/services/helpers';
+import { firstLetterToUpperCase } from 'services/heplers';
 import CardToggleButton from '../CardToogleButton';
 import {
   Card,
@@ -39,9 +39,7 @@ const AppointmentsCard = function ({
   const handleShowSettings = () => {
     setIsSettingsVisible(!isSettingsVisible);
   };
-  const date = new Date(visit_date);
-  const h = parseInt(moment(date).format('h'), 10);
-  const time = moment(date).format(`ddd MMM D, YYYY ${h} a - ${h + 1} a`);
+  const time = getTimeOfVisit(visit_date);
   const name = `${first_name} ${last_name}`;
   return (
     <Card>

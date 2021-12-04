@@ -1,4 +1,4 @@
-import firstLetterToUpperCase from 'features/ClinicDashboard/services/helpers';
+import { firstLetterToUpperCase } from 'services/heplers';
 
 export const specializationsSelector = (state) => {
   const { specializations } = state.doctors;
