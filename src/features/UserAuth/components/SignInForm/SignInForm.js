@@ -10,7 +10,8 @@ import { signInSchema } from 'features/UserAuth/services/validationSchemas';
 import StyledHeader from 'features/UserAuth/core/StyledHeader';
 import StyledHeaderTitle from 'features/UserAuth/core/StyledHeaderTitle';
 import StyledSubmitButton from 'features/UserAuth/core/StyledSubmitButton';
-import { useAuthorisation, getInitialValuesFromInputList } from 'features/UserAuth/services/heplers';
+import { getInitialValuesFromInputList } from 'features/UserAuth/services/heplers';
+import { useAuthorisation } from 'features/UserAuth/hooks/useAuth';
 
 const StyledLink = styled.button`
     margin-top: 32px;

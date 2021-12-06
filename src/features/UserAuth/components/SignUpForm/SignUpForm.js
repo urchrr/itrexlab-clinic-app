@@ -10,7 +10,8 @@ import StyledHeader from 'features/UserAuth/core/StyledHeader';
 import StyledHeaderTitle from 'features/UserAuth/core/StyledHeaderTitle';
 
 import Input from 'features/UserAuth/components/Input/Input';
-import { getInitialValuesFromInputList, useAuthorisation } from 'features/UserAuth/services/heplers';
+import { getInitialValuesFromInputList } from 'features/UserAuth/services/heplers';
+import { useAuthorisation } from 'features/UserAuth/hooks/useAuth';
 
 const SignUpForm = function () {
   const navigate = useNavigate();
