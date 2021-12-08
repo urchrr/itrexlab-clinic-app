@@ -25,7 +25,7 @@ const SignUpForm = function () {
     },
   });
   return (
-    <StyledForm onSubmit={formik.handleSubmit}>
+    <StyledForm onSubmit={formik.handleSubmit} data-testid="sign-up-form">
       <StyledHeader>
         <StyledHeaderTitle>Sign Up</StyledHeaderTitle>
       </StyledHeader>

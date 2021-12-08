@@ -40,6 +40,7 @@ const CreateAppointment = function () {
 
   useEffect(() => {
     dispatch(selectDayAction(formik.values.day, formik.values.doctorID));
+    formik.values.date = '';
   }, [formik.values.day]);
 
   return (
@@ -52,7 +53,7 @@ const CreateAppointment = function () {
         <SecondStep stateProvider={formik} />
         <ThirdStep stateProvider={formik} />
         <StyledSubmitWrapper>
-          <StyledSubmitButton disabled={(formik.values.time === '')}>Submit</StyledSubmitButton>
+          <StyledSubmitButton disabled={formik.values.date === ''}>Submit</StyledSubmitButton>
         </StyledSubmitWrapper>
       </StyledForm>
     </>

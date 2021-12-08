@@ -26,7 +26,7 @@ function* workerUserLogin({ payload, navigate }) {
     const { data: { access_token, refresh_token } } = response;
     setToken(access_token);
     const { data } = yield call(getProfile);
-    yield put(updateUserProfileAction({ ...data, access_token }));
+    yield put(updateUserProfileAction({ ...data, access_token, refresh_token }));
     localStorage.setItem('userData', JSON.stringify({
       ...data,
       access_token,
@@ -59,9 +59,11 @@ function* workerUserRegistration({ payload, navigate }) {
 }
 
 function* workerUserShadowLogIn({ payload: { accessToken } }) {
-  setToken(accessToken);
   try {
-    yield call(getProfile);
+    yield call(setToken, accessToken);
+    const { data } = yield call(getProfile);
+    yield put(updateUserProfileAction({ ...data, access_token: accessToken }));
+    yield workerSpecReceive();
   } catch (error) {
     notify.printToastErrorMsg('You need to re-login');
     unsetToken();
