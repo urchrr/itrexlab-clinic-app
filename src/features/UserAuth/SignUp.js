@@ -1,5 +1,5 @@
 import React from 'react';
-import SignUpForm from './components/SignUpForm';
+import SignUpForm from 'features/UserAuth/components/SignUpForm/SignUpForm';
 import FooterLayout from './layouts/Footer';
 import NavigationLink from './components/NavigationLink';
 

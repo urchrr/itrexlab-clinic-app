@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 
+import { getTimeOfVisit } from 'features/ClinicDashboard/services/helpers';
+import { firstLetterToUpperCase } from 'services/heplers';
 import CardToggleButton from '../CardToogleButton';
 import {
   Card,
@@ -27,27 +29,28 @@ const AppointmentUserArea = styled(CardUserArea)`
 
 const AppointmentsCard = function ({
   data: {
-    avatar, name, specialist, time, symptoms,
+    doctor: {
+      photo, first_name, last_name, specialization_name,
+    }, visit_date, reason,
   },
 }) {
-  const [isShow, setShow] = useState(false);
+  const [isSettingsVisible, setIsSettingsVisible] = useState(false);
 
   const handleShowSettings = () => {
-    setShow(!isShow);
+    setIsSettingsVisible(!isSettingsVisible);
   };
-  const doctor = {
-    1: 'Therapist',
-  };
+  const time = getTimeOfVisit(visit_date);
+  const name = `${first_name} ${last_name}`;
   return (
     <Card>
       <AppointmentUserArea>
-        <CardAvatar src={avatar} alt="avatar" />
+        <CardAvatar src={photo} alt="avatar" />
         <CardTitle>{name}</CardTitle>
         <CardStatusDescription>
-          {doctor[specialist]}
+          {firstLetterToUpperCase(specialization_name)}
         </CardStatusDescription>
         <CardToggleButton onClick={handleShowSettings} />
-        <CardSettings visible={isShow}>
+        <CardSettings visible={isSettingsVisible}>
           <CardSettingsButton>Create a resolution</CardSettingsButton>
           <CardSettingsButton>Edit an appointment</CardSettingsButton>
           <CardSettingsDeleteButton>Delete</CardSettingsDeleteButton>
@@ -56,10 +59,10 @@ const AppointmentsCard = function ({
       <CardCaseArea>
         <StyledIconClock />
         <CardCaseHighlightedText>{time}</CardCaseHighlightedText>
-        {symptoms && (
+        {reason && (
         <>
           <StyledIconHeart />
-          <CardCaseText>{symptoms}</CardCaseText>
+          <CardCaseText>{firstLetterToUpperCase(reason)}</CardCaseText>
         </>
         )}
       </CardCaseArea>
@@ -69,11 +72,12 @@ const AppointmentsCard = function ({
 
 AppointmentsCard.propTypes = {
   data: PropTypes.object,
-  avatar: PropTypes.string,
-  name: PropTypes.string,
-  specialist: PropTypes.number,
-  time: PropTypes.string,
-  symptoms: PropTypes.string,
+  photo: PropTypes.string,
+  first_name: PropTypes.string,
+  last_name: PropTypes.string,
+  specialization_name: PropTypes.number,
+  visit_date: PropTypes.string,
+  reason: PropTypes.string,
 };
 
 export default AppointmentsCard;

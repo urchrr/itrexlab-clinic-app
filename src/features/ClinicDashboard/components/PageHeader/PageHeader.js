@@ -14,16 +14,17 @@ import {
 
 const ClinicHeader = function ({
   user: {
-    avatar, name, role, status,
+    avatar, firstName, lastName, role, status = 1,
   },
 }) {
+  const name = `${firstName} ${lastName}`;
   return (
     <StyledHeader>
       <StyledHeaderLogo src={logo} alt="logo" />
       <StyledHeaderUserArea>
         <StyledUserName>{name}</StyledUserName>
         <StyledUserRole>
-          {role.charAt(0).toUpperCase() + role.slice(1)}
+          {role}
         </StyledUserRole>
         <StyledUserStatusIndicator color={userStatuses[status]} />
         <StyledUserAvatar src={avatar} alt={`${name}-avatar`} />
@@ -35,8 +36,9 @@ const ClinicHeader = function ({
 ClinicHeader.propTypes = {
   user: PropTypes.object,
   avatar: PropTypes.string,
-  name: PropTypes.string,
-  role: PropTypes.number,
+  firstName: PropTypes.string,
+  lastName: PropTypes.string,
+  role: PropTypes.string,
   status: PropTypes.number,
 };
 

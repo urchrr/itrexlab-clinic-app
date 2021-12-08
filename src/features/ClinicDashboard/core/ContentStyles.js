@@ -32,8 +32,10 @@ export const ContentHeader = styled.div`
 export const ContentContainer = styled.div`
     display: flex;
     flex-direction: column;
-    overflow-y: scroll;
-    height: calc(100% - 140px);
+    overflow-y: auto;
+    
+    height: calc(100% + 52px);
+  //max-height: 100%;
     @media only screen and (min-width: 560px) {
         padding-right: 32px;
     }

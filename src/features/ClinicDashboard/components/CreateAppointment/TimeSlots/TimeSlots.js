@@ -1,31 +1,35 @@
 import React from 'react';
+import moment from 'moment';
 import {
   StyledLabel, StyledWrapper, StyledInputWrapper, StyledInput,
 } from './TimeSlotsStyles';
 
-const TimeSlots = function ({ data, value, onChange }) {
+const TimeSlots = function ({ dates, value, onChange }) {
   return (
     <StyledWrapper>
-      {data.map(({ time, isBooked }) => (
-        <StyledInputWrapper key={time}>
-          <StyledLabel
-            htmlFor={time}
-            checked={time === value}
-            isBooked={isBooked}
-          >
-            {time}
-          </StyledLabel>
-          <StyledInput
-            id={time}
-            type="radio"
-            name="time"
-            value={time}
-            onChange={onChange}
-            disabled={isBooked}
-            checked={time === value}
-          />
-        </StyledInputWrapper>
-      ))}
+      {dates.map((date) => {
+        const time = moment(date).format('hh:mm a');
+        return (
+          <StyledInputWrapper key={date}>
+            <StyledLabel
+              htmlFor={date}
+              checked={date === value}
+              isBooked={false}
+            >
+              {time}
+            </StyledLabel>
+            <StyledInput
+              id={date}
+              type="radio"
+              name="date"
+              value={date}
+              onChange={onChange}
+              disabled={false}
+              checked={date === value}
+            />
+          </StyledInputWrapper>
+        );
+      })}
     </StyledWrapper>
   );
 };

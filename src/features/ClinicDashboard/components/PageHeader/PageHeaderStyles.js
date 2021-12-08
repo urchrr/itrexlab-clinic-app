@@ -31,8 +31,10 @@ export const StyledHeaderUserArea = styled.div`
 `;
 
 export const StyledUserAvatar = styled.img`
-    border-radius: 50%;
-    grid-area: avatar;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  grid-area: avatar;
 `;
 
 export const StyledUserStatusIndicator = styled(StyledStatusIndicator)`

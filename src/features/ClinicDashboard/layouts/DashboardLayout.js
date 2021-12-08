@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
-import { Outlet, useNavigate } from 'react-router-dom';
+import { Outlet, useLocation, useNavigate } from 'react-router-dom';
+import { userDataSelector } from 'services/redux/user/selectors';
+import { useSelector } from 'react-redux';
 import Header from '../components/PageHeader/PageHeader';
 import NavigationButton from '../components/NavigationButton';
 import {
@@ -7,25 +9,18 @@ import {
   PageNavigationArea,
   PageContent,
 } from '../core/PageContentStyles';
-import getUser from '../services/getUser';
-import getPatient from '../services/getPatient';
 
 const ClinicDashboard = function () {
-  // выбор от лица кого открывать клинику
-  // eslint-disable-next-line no-unused-vars
-  const doctor = getUser();
-  const patient = getPatient();
-  //
+  const user = useSelector(userDataSelector);
+  const { role } = user;
   const navigate = useNavigate();
   const routes = {
-    doctor: ['patients', 'resolutions'],
-    patient: ['profile', 'appointments', 'resolutions'],
-    admin: {},
+    Doctor: ['patients', 'resolutions'],
+    Patient: ['profile', 'appointments', 'resolutions'],
+    admin: [],
   };
-  const [user] = useState(patient);
-
-  const firstRoute = routes[user.role][0];
-  const [activePath, setActivePath] = useState(firstRoute);
+  const currentPath = useLocation().pathname.replace('/clinic/', '');
+  const [activePath, setActivePath] = useState(currentPath === '' ? routes[role][0] : currentPath);
 
   const handleNavigate = (path) => {
     setActivePath(path);
@@ -37,7 +32,7 @@ const ClinicDashboard = function () {
       <Header user={user} />
       <PageContent>
         <PageNavigationArea>
-          {routes[user.role].map((path) => (
+          {routes[role].map((path) => (
             <NavigationButton
               isActive={activePath === path}
               key={path}

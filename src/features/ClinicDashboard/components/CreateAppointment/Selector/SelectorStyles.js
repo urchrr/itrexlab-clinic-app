@@ -26,7 +26,7 @@ const customStyles = {
     margin: '0',
     padding: '0',
   }),
-  menu: (provided) => ({
+  /*  menu: (provided) => ({
     ...provided,
     width: '100%',
     background: '#FFFFFF',
@@ -35,8 +35,31 @@ const customStyles = {
     padding: '4px',
     height: '128px',
     overflowY: 'scroll',
+  }), */
+  menu: (provided) => ({
+    ...provided,
+    padding: 4,
+    fontSize: 17,
+    borderRadius: 8,
   }),
-
+  menuList: (provided) => ({
+    ...provided,
+    overflow: 'auto',
+    height: 128,
+    '::-webkit-scrollbar': {
+      width: 8,
+      backgroundColor: 'rgba(220, 224, 236, 0.32)',
+      borderRadius: 4,
+    },
+    '::-webkit-scrollbar-thumb': {
+      backgroundColor: 'rgba(161, 171, 201, 0.32)',
+      borderRadius: 4,
+    },
+  }),
+  menuPortal: (provided) => ({
+    ...provided,
+    padding: 0,
+  }),
   valueContainer: (provided) => ({
     ...provided,
     width: '100%',

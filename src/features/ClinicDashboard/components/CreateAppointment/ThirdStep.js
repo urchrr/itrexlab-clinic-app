@@ -1,25 +1,29 @@
 import React from 'react';
+import { freeTimeVisitSelector } from 'services/redux/doctors/selectors';
+import { useSelector } from 'react-redux';
 import { StyledHeading, StyledNumber, StyledWrapper } from './styles';
 import TimeSlots from './TimeSlots/TimeSlots';
 import { InputError } from '../../../UserAuth/components/Input/InputStyles';
-import getTimeSlots from './getTimeSlots';
 
-const timeSlots = getTimeSlots();
-
-const ThirdStep = function ({ stateProvider }) {
+const ThirdStep = function ({
+  stateProvider: {
+    values, handleChange, errors, touched,
+  },
+}) {
+  const timeSlots = useSelector(freeTimeVisitSelector);
   return (
-    <StyledWrapper>
+    <StyledWrapper blocked={values.day === ''}>
       <StyledHeading>
         <StyledNumber>3</StyledNumber>
         Select an available timeslot
       </StyledHeading>
       <TimeSlots
-        data={timeSlots}
-        value={stateProvider.values.time}
-        onChange={stateProvider.handleChange}
+        dates={timeSlots}
+        value={values.date}
+        onChange={handleChange}
       />
-      {stateProvider.touched.time && stateProvider.errors.time ? (
-        <InputError>{stateProvider.errors.time}</InputError>
+      {touched.date && errors.date ? (
+        <InputError>{errors.date}</InputError>
       ) : null}
     </StyledWrapper>
   );

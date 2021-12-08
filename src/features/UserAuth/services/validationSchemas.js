@@ -3,7 +3,7 @@ import {
   minNameLength,
   maxNameLength,
   minPassLength,
-} from '../../../services/constants';
+} from 'services/constants';
 
 function equalTo(ref, msg) {
   return Yup.mixed().test({

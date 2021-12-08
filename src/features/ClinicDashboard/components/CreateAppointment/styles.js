@@ -1,7 +1,12 @@
 import styled, { css } from 'styled-components';
 import * as constants from '../../../../services/constants';
 
-export const StyledWrapper = styled.div`
+export const Blocker = styled.div`
+    pointer-events:${(props) => (props.blocked ? 'none' : 'all')};
+    opacity: ${(props) => (props.blocked ? 0.5 : 1)};
+`;
+
+export const StyledWrapper = styled(Blocker)`
     display: flex;
     flex-direction: column;
     margin-right: 104px;
@@ -10,6 +15,7 @@ export const StyledWrapper = styled.div`
         margin-right: 0;
     }
 `;
+
 export const sectionHeadingStyles = css`
     font-size: 17px;
     line-height: 24px;
@@ -18,6 +24,7 @@ export const sectionHeadingStyles = css`
     align-items: center;
     color: #a1abc9;
 `;
+
 export const StyledHeading = styled.h3`
     ${sectionHeadingStyles};
     margin-bottom: 40px;
@@ -65,10 +72,10 @@ export const StyledSubmitWrapper = styled.div`
 export const StyledSubmitButton = styled.button.attrs(() => ({
   type: 'submit',
 }))`
-    cursor: pointer;
+    cursor: ${(props) => (props.disabled ? 'default' : 'pointer')};
     border-radius: 8px;
-    background: ${constants.blue};
-    color: #ffffff;
+    background: ${(props) => (props.disabled ? constants.greySolid : constants.blue)};
+    color: ${(props) => (props.disabled ? constants.grey : constants.white)};
     padding: 16px 25px 16px 24px;
     outline: none;
     border: none;

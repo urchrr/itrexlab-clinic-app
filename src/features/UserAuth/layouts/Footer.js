@@ -16,7 +16,7 @@ const FooterText = styled.p`
 
 const FooterLayout = function ({ text, link }) {
   return (
-    <Footer>
+    <Footer data-testid="form-footer">
       <FooterText>{text}</FooterText>
       {link || ''}
     </Footer>

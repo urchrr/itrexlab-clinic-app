@@ -1,6 +1,6 @@
 import React from 'react';
+import SignInForm from 'features/UserAuth/components/SignInForm/';
 import FooterLayout from './layouts/Footer';
-import SignInForm from './components/SignInForm';
 import NavigationLink from './components/NavigationLink';
 
 const SignIn = function () {
