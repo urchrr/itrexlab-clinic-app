@@ -1,4 +1,4 @@
-import styled from 'styled-components'
+import styled from 'styled-components';
 
 const StyledButton = styled.button`
     cursor: pointer;
@@ -13,6 +13,6 @@ const StyledButton = styled.button`
     border-radius: 8px;
     display: flex;
     align-items: center;
-`
+`;
 
-export default StyledButton
+export default StyledButton;

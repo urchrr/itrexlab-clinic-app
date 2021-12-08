@@ -1,77 +1,83 @@
-import React, { useState } from 'react'
-import styled from 'styled-components'
-import PropTypes from 'prop-types'
+import React, { useState } from 'react';
+import styled from 'styled-components';
+import PropTypes from 'prop-types';
 
-import CardToggleButton from '../CardToogleButton'
+import { getTimeOfVisit } from 'features/ClinicDashboard/services/helpers';
+import { firstLetterToUpperCase } from 'services/heplers';
+import CardToggleButton from '../CardToogleButton';
 import {
-    Card,
-    CardAvatar,
-    CardCaseArea,
-    CardCaseHighlightedText,
-    CardCaseText,
-    CardSettings,
-    CardSettingsButton,
-    CardSettingsDeleteButton,
-    CardStatusDescription,
-    CardTitle,
-    CardUserArea,
-    StyledIconClock,
-    StyledIconHeart,
-} from './CardStyles'
+  Card,
+  CardAvatar,
+  CardCaseArea,
+  CardCaseHighlightedText,
+  CardCaseText,
+  CardSettings,
+  CardSettingsButton,
+  CardSettingsDeleteButton,
+  CardStatusDescription,
+  CardTitle,
+  CardUserArea,
+  StyledIconClock,
+  StyledIconHeart,
+} from './CardStyles';
 
 const AppointmentUserArea = styled(CardUserArea)`
     grid-template-areas:
         'avatar title title button'
         'avatar status status button';
-`
+`;
 
-const AppointmentsCard = ({
-    data: { avatar, name, specialist, time, symptoms },
-}) => {
-    const [isShow, setShow] = useState(false)
+const AppointmentsCard = function ({
+  data: {
+    doctor: {
+      photo, first_name, last_name, specialization_name,
+    }, visit_date, reason,
+  },
+}) {
+  const [isSettingsVisible, setIsSettingsVisible] = useState(false);
 
-    const handleShowSettings = () => {
-        setShow(!isShow)
-    }
-    const doctor = {
-        1: 'Therapist',
-    }
-    return (
-        <Card>
-            <AppointmentUserArea>
-                <CardAvatar src={avatar} alt="avatar" />
-                <CardTitle>{name}</CardTitle>
-                <CardStatusDescription>
-                    {doctor[specialist]}
-                </CardStatusDescription>
-                <CardToggleButton onClick={handleShowSettings} />
-                <CardSettings visible={isShow}>
-                    <CardSettingsButton>Create a resolution</CardSettingsButton>
-                    <CardSettingsButton>Edit an appointment</CardSettingsButton>
-                    <CardSettingsDeleteButton>Delete</CardSettingsDeleteButton>
-                </CardSettings>
-            </AppointmentUserArea>
-            <CardCaseArea>
-                <StyledIconClock />
-                <CardCaseHighlightedText>{time}</CardCaseHighlightedText>
-                {symptoms && (
-                    <>
-                        <StyledIconHeart />
-                        <CardCaseText>{symptoms}</CardCaseText>
-                    </>
-                )}
-            </CardCaseArea>
-        </Card>
-    )
-}
+  const handleShowSettings = () => {
+    setIsSettingsVisible(!isSettingsVisible);
+  };
+  const time = getTimeOfVisit(visit_date);
+  const name = `${first_name} ${last_name}`;
+  return (
+    <Card>
+      <AppointmentUserArea>
+        <CardAvatar src={photo} alt="avatar" />
+        <CardTitle>{name}</CardTitle>
+        <CardStatusDescription>
+          {firstLetterToUpperCase(specialization_name)}
+        </CardStatusDescription>
+        <CardToggleButton onClick={handleShowSettings} />
+        <CardSettings visible={isSettingsVisible}>
+          <CardSettingsButton>Create a resolution</CardSettingsButton>
+          <CardSettingsButton>Edit an appointment</CardSettingsButton>
+          <CardSettingsDeleteButton>Delete</CardSettingsDeleteButton>
+        </CardSettings>
+      </AppointmentUserArea>
+      <CardCaseArea>
+        <StyledIconClock />
+        <CardCaseHighlightedText>{time}</CardCaseHighlightedText>
+        {reason && (
+        <>
+          <StyledIconHeart />
+          <CardCaseText>{firstLetterToUpperCase(reason)}</CardCaseText>
+        </>
+        )}
+      </CardCaseArea>
+    </Card>
+  );
+};
 
 AppointmentsCard.propTypes = {
-    data: PropTypes.object,
-    avatar: PropTypes.string,
-    name: PropTypes.string,
-    specialist: PropTypes.number,
-    time: PropTypes.string,
-    symptoms: PropTypes.string,
-}
+  data: PropTypes.object,
+  photo: PropTypes.string,
+  first_name: PropTypes.string,
+  last_name: PropTypes.string,
+  specialization_name: PropTypes.number,
+  visit_date: PropTypes.string,
+  reason: PropTypes.string,
+};
 
-export default AppointmentsCard
+export default AppointmentsCard;
