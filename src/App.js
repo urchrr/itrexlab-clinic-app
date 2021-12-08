@@ -13,6 +13,7 @@ import CreateAppointment from 'features/ClinicDashboard/components/CreateAppoint
 import { isLoggedInSelector } from 'services/redux/user/selectors';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { useShadowAuth } from 'services/hooks/useShadowAuth';
 
 const RequireAuth = function ({ children }) {
   const isLoggedIn = useSelector(isLoggedInSelector);
@@ -23,6 +24,7 @@ const RequireAuth = function ({ children }) {
 };
 
 const App = function () {
+  useShadowAuth();
   return (
     <>
       <Routes>

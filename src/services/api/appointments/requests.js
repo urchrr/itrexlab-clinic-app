@@ -10,7 +10,7 @@ import {
 export const createNewAppointment = (data) => instance.post(newAppointmentEndpoint, data);
 
 // eslint-disable-next-line max-len,default-param-last
-export const getDoctorsAllAppointments = (offset = 1, limit = 10, name, sortBy, order, dateStatus) => instance.get(allDoctorsAppointmentsEndpoint, {
+export const getDoctorsAllAppointments = (offset = 0, limit = 6, name, sortBy, order, dateStatus) => instance.get(allDoctorsAppointmentsEndpoint, {
   params: {
     offset,
     limit,
@@ -22,7 +22,7 @@ export const getDoctorsAllAppointments = (offset = 1, limit = 10, name, sortBy, 
 });
 
 // eslint-disable-next-line default-param-last,max-len
-export const getPatientsAllAppointments = (offset = 0, limit = 10, name, sortBy, order, dateStatus) => instance.get(allPatientsAppointmentsEndpoint, {
+export const getPatientsAllAppointments = (offset = 0, limit = 6, name, sortBy, order, dateStatus) => instance.get(allPatientsAppointmentsEndpoint, {
   params: {
     offset,
     limit,

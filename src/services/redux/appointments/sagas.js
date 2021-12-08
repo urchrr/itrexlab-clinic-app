@@ -18,13 +18,13 @@ const request = {
   Patient: getPatientsAllAppointments,
 };
 
-function* workerReceiveAppointments({ payload: { role } }) {
+function* workerReceiveAppointments({ payload: role }) {
   try {
-    const response = yield call(request[role]);
-    const { data: { appointments } } = response;
+    const { data: { appointments } } = yield call(request[role]);
     yield put(receiveAppointmentAction(appointments));
-  } catch ({ response: { status, data } }) {
-    yield put(handleAppointmentsErrorsAction(data));
+  } catch (error) {
+    yield put(handleAppointmentsErrorsAction(error));
+    notify.printToastErrorMsg(error);
   }
 }
 function* workerAddAppointment({ payload: { values, navigate } }) {
@@ -37,7 +37,7 @@ function* workerAddAppointment({ payload: { values, navigate } }) {
     navigate();
     notify.closeAll();
   } catch (error) {
-    notify.update(id, 'error', error.message);
+    notify.update(id, 'error', notify.errorToMsg(error));
     yield put(handleAppointmentsErrorsAction(error));
   }
 }

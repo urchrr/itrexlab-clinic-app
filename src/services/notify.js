@@ -1,4 +1,5 @@
 import { toast } from 'react-toastify';
+import { firstLetterToUpperCase } from 'services/heplers';
 
 const config = {
   position: 'bottom-left',
@@ -10,6 +11,8 @@ const config = {
 };
 
 const initial = (message) => toast.loading(message, config);
+
+const errorToMsg = (error) => firstLetterToUpperCase(error.response.data.replace('message: ', ''));
 
 const update = (id, status, message) => {
   switch (status) {
@@ -24,6 +27,16 @@ const update = (id, status, message) => {
   }
 };
 
+function printToastErrorMsg(message) {
+  return toast.error(message, {
+    hideProgressBar: true,
+    draggable: false,
+    closeButton: false,
+  });
+}
+
 const closeAll = () => toast.dismiss();
 
-export default { initial, update, closeAll };
+export default {
+  initial, update, closeAll, printToastErrorMsg, errorToMsg,
+};

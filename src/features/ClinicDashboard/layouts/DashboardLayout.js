@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Outlet, useNavigate } from 'react-router-dom';
+import { Outlet, useLocation, useNavigate } from 'react-router-dom';
 import { userDataSelector } from 'services/redux/user/selectors';
 import { useSelector } from 'react-redux';
 import Header from '../components/PageHeader/PageHeader';
@@ -19,8 +19,8 @@ const ClinicDashboard = function () {
     Patient: ['profile', 'appointments', 'resolutions'],
     admin: [],
   };
-
-  const [activePath, setActivePath] = useState(routes[role][0]);
+  const currentPath = useLocation().pathname.replace('/clinic/', '');
+  const [activePath, setActivePath] = useState(currentPath === '' ? routes[role][0] : currentPath);
 
   const handleNavigate = (path) => {
     setActivePath(path);

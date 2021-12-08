@@ -19,7 +19,7 @@ const Appointments = function () {
   const role = useSelector(userRoleSelector);
   const appointments = useSelector(appointmentsSelector);
   useEffect(() => {
-    dispatch(receiveAppointmentsAction({ role }));
+    dispatch(receiveAppointmentsAction(role));
   }, []);
   return (
     <>
