@@ -42,7 +42,7 @@ const AppointmentsCard = function ({
   const time = getTimeOfVisit(visit_date);
   const name = `${first_name} ${last_name}`;
   return (
-    <Card>
+    <Card data-testid="card">
       <AppointmentUserArea>
         <CardAvatar src={photo} alt="avatar" />
         <CardTitle>{name}</CardTitle>
