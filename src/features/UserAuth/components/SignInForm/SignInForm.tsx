@@ -1,8 +1,12 @@
 import React from 'react';
-import { useFormik } from 'formik';
+import { Formik } from 'formik';
 import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
-import { signInInputList, signInpInputsInitialValues as initialValues } from 'features/UserAuth/services/inputLists';
+import {
+  IInitialValues,
+  signInInputList,
+  signInpInputsInitialValues as initialValues,
+} from 'features/UserAuth/services/inputLists';
 import * as constants from 'services/constants';
 import Input from 'features/UserAuth/components/Input/Input';
 import StyledForm from 'features/UserAuth/core/StyledForm';
@@ -34,41 +38,50 @@ const SignInForm = function () {
     navigate('/restore-password');
   };
 
-  const formik = useFormik({
-    initialValues,
-    validationSchema: signInSchema,
-    onSubmit: (values) => {
-      // eslint-disable-next-line no-console
-      console.log('click');
+  const handleSubmit = (values:IInitialValues) => {
+    // eslint-disable-next-line no-console
+    console.log('click');
+    login(values);
+  };
 
-      login(values);
-    },
-  });
   return (
-    <StyledForm onSubmit={formik.handleSubmit} data-testid="sign-in-form">
-      <StyledHeader>
-        <StyledHeaderTitle>Sign In</StyledHeaderTitle>
-      </StyledHeader>
-      {signInInputList.map(({
-        name, icon, type, placeholder,
-      }) => (
-        <Input
-          key={`form-input-${name}`}
-          data-testid={`form-input-${name}`}
-          icon={icon}
-          placeholder={placeholder}
-          type={type}
-          name={name}
-          onChange={formik.handleChange}
-          onBlur={formik.handleBlur}
-          value={formik.values[name]}
-          touched={formik.touched[name]}
-          error={formik.errors[name]}
-        />
-      ))}
-      <StyledSubmitButton title="Sign In" data-testid="form-submit-button" />
-      <StyledLink onClick={handleRestore}>Forgot Password?</StyledLink>
-    </StyledForm>
+    <Formik
+      initialValues={initialValues}
+      validationSchema={signInSchema}
+      onSubmit={handleSubmit}
+    >
+      {
+        (formik) => (
+          <StyledForm onSubmit={formik.handleSubmit} data-testid="sign-in-form">
+            <StyledHeader>
+              <StyledHeaderTitle>Sign In</StyledHeaderTitle>
+            </StyledHeader>
+            {signInInputList.map(({
+              name, icon, type, placeholder,
+            }) => (
+              <Input
+                key={`form-input-${name}`}
+                data-testid={`form-input-${name}`}
+                icon={icon}
+                placeholder={placeholder}
+                type={type}
+                name={name}
+                onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
+                value={formik.values[name]}
+                touched={formik.touched[name]}
+                error={formik.errors[name]}
+              />
+            ))}
+            <StyledSubmitButton title="Sign In" data-testid="form-submit-button" />
+            {/* eslint-disable-next-line jsx-a11y/control-has-associated-label,no-console */}
+            <button onClick={() => { console.log('dd'); }} type="button" />
+            <StyledLink onClick={handleRestore}>Forgot Password?</StyledLink>
+          </StyledForm>
+        )
+      }
+
+    </Formik>
   );
 };
 
