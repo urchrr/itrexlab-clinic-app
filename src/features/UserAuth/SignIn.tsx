@@ -4,7 +4,7 @@ import FooterLayout from './layouts/Footer';
 import NavigationLink from './components/NavigationLink';
 import { AUTH_PATHS } from '../../routes/constants';
 
-const SignIn = function (): React.ReactElement {
+const SignIn = function () {
   return (
     <>
       <SignInForm />
