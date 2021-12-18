@@ -5,7 +5,7 @@ import {
   minPassLength,
 } from 'services/constants';
 
-function equalTo(ref, msg) {
+/* function equalTo(ref: { path: any; }, msg: any) {
   return Yup.mixed().test({
     name: 'equalTo',
     exclusive: false,
@@ -18,10 +18,9 @@ function equalTo(ref, msg) {
       return value === this.resolve(ref);
     },
   });
-}
+} */
 
-// @ts-ignore
-Yup.addMethod(Yup.string, 'equalTo', equalTo);
+// Yup.addMethod(Yup.string, 'equalTo', equalTo);
 
 export const signInSchema = Yup.object().shape({
   email: Yup.string()
@@ -61,7 +60,7 @@ export const signUpSchema = Yup.object().shape({
       minPassLength,
       `Password must contain at least ${minPassLength} symbols`,
     )
-    .equalTo(Yup.ref('password'), 'Passwords must match')
+    // .equalTo(Yup.ref('password'), 'Passwords must match')
     .required('This field is required'),
 });
 

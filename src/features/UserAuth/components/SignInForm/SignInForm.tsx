@@ -10,7 +10,7 @@ import {
 import * as constants from 'services/constants';
 import Input from 'features/UserAuth/components/Input/Input';
 import StyledForm from 'features/UserAuth/core/StyledForm';
-import { signInSchema } from 'features/UserAuth/services/validationSchemas';
+// import { signInSchema } from 'features/UserAuth/services/validationSchemas';
 import StyledHeader from 'features/UserAuth/core/StyledHeader';
 import StyledHeaderTitle from 'features/UserAuth/core/StyledHeaderTitle';
 import StyledSubmitButton from 'features/UserAuth/core/StyledSubmitButton';
@@ -47,7 +47,7 @@ const SignInForm = function () {
   return (
     <Formik
       initialValues={initialValues}
-      validationSchema={signInSchema}
+      // validationSchema={signInSchema}
       onSubmit={handleSubmit}
     >
       {
@@ -74,13 +74,10 @@ const SignInForm = function () {
               />
             ))}
             <StyledSubmitButton title="Sign In" data-testid="form-submit-button" />
-            {/* eslint-disable-next-line jsx-a11y/control-has-associated-label,no-console */}
-            <button onClick={() => { console.log('dd'); }} type="button" />
             <StyledLink onClick={handleRestore}>Forgot Password?</StyledLink>
           </StyledForm>
         )
       }
-
     </Formik>
   );
 };
