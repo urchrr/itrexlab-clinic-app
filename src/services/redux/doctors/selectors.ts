@@ -15,7 +15,7 @@ export const specializationsSelector = createSelector(doctorsSelector, (state) =
 export const doctorsBySpecSelector = createSelector(doctorsSelector, (state) => {
   const doctors = state.bySpecId;
   return doctors
-    .map(({ firstName, lastName, id }) => ({ value: id, label: `${firstName} ${lastName}` }));
+    .map(({ first_name, last_name, id }) => ({ value: id, label: `${first_name} ${last_name}` }));
 });
 
 export const freeTimeVisitSelector = createSelector(doctorsSelector, (state) => state

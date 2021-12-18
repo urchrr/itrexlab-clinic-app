@@ -33,7 +33,9 @@ const Selector: React.FC<CustomSelectProps> = function ({ options, name }) {
             )
             : ''
         }
-      onChange={({ value }:any) => setFieldValue(name, value)}
+      onChange={({ value }:any) => {
+        setFieldValue(name, value);
+      }}
       onBlur={() => setFieldTouched(name, true)}
     />
   );

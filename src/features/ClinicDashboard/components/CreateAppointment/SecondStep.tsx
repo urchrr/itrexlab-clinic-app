@@ -9,7 +9,7 @@ import { StyledHeading, StyledNumber, StyledWrapper } from './styles';
 const SecondStep = function () {
   const {
     values: {
-      occupation, reason, doctor,
+      occupation, reason, doctorID,
     },
     errors,
     touched,
@@ -24,7 +24,7 @@ const SecondStep = function () {
         Choose a day for an appointment
       </StyledHeading>
       <TimeCalendar
-        blocked={!(doctor !== '' && occupation !== '' && reason !== '')}
+        blocked={!(doctorID !== '' && occupation !== '' && reason !== '')}
         onClickDay={(value:number | Date) => setFieldValue('day', date(value))}
       />
       {touched.day && errors.day ? (

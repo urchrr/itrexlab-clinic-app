@@ -1,11 +1,10 @@
-import React, { useEffect } from 'react';
-import { useFormik, Formik } from 'formik';
-import { selectDayAction, selectOccupationAction } from 'services/redux/doctors/actions';
+import React from 'react';
+import { Formik } from 'formik';
+
 import { addNewAppointmentAction } from 'services/redux/appointments/actions';
 import { ContentHeader, ContentHeaderTitle } from 'features/ClinicDashboard/core/ContentStyles';
 import './Calendar/Calendar.css';
-import { useAppDispatch } from 'services/redux/hooks/useAppDispatch';
-import { CreateAppointmentFormValues, CreateAppointmentValues } from 'types/appointments';
+import { CreateAppointmentFormValues } from 'types/appointments';
 import {
   StyledForm,
   StyledSubmitWrapper,
@@ -15,6 +14,7 @@ import createAppointmentSchema from './validationSchema';
 import FirstStep from './FirstStep';
 import SecondStep from './SecondStep';
 import ThirdStep from './ThirdStep';
+import { useAppDispatch } from '../../../../services/redux/hooks/useAppDispatch';
 
 const CreateAppointment = function () {
   const dispatch = useAppDispatch();
@@ -27,26 +27,6 @@ const CreateAppointment = function () {
     day: '',
     date: '',
   };
-  const formik = useFormik({
-    initialValues,
-    validationSchema: createAppointmentSchema,
-    onSubmit: ({
-      date, reason, note, doctorID,
-    }:CreateAppointmentValues) => {
-      dispatch(addNewAppointmentAction({
-        date, reason, note, doctorID,
-      }));
-    },
-  });
-
-  useEffect(() => {
-    dispatch(selectOccupationAction(formik.values.occupation));
-  }, [formik.values.occupation]);
-
-  useEffect(() => {
-    dispatch(selectDayAction({ date: formik.values.day, doctorID: formik.values.doctorID }));
-    formik.values.date = '';
-  }, [formik.values.day]);
 
   return (
     <>
@@ -67,7 +47,7 @@ const CreateAppointment = function () {
             <SecondStep />
             <ThirdStep />
             <StyledSubmitWrapper>
-              <StyledSubmitButton disabled={isValid}>Submit</StyledSubmitButton>
+              <StyledSubmitButton disabled={!isValid}>Submit</StyledSubmitButton>
             </StyledSubmitWrapper>
           </StyledForm>
         )}
