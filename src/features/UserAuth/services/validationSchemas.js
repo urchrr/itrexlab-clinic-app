@@ -20,6 +20,7 @@ function equalTo(ref, msg) {
   });
 }
 
+// @ts-ignore
 Yup.addMethod(Yup.string, 'equalTo', equalTo);
 
 export const signInSchema = Yup.object().shape({
