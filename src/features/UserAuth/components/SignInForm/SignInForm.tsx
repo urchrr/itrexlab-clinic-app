@@ -3,14 +3,14 @@ import { Formik } from 'formik';
 import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
 import {
-  IInitialValues,
+  ISignInFormValues,
   signInInputList,
   signInpInputsInitialValues as initialValues,
 } from 'features/UserAuth/services/inputLists';
 import * as constants from 'services/constants';
 import Input from 'features/UserAuth/components/Input/Input';
 import StyledForm from 'features/UserAuth/core/StyledForm';
-// import { signInSchema } from 'features/UserAuth/services/validationSchemas';
+import { signInSchema } from 'features/UserAuth/services/validationSchemas';
 import StyledHeader from 'features/UserAuth/core/StyledHeader';
 import StyledHeaderTitle from 'features/UserAuth/core/StyledHeaderTitle';
 import StyledSubmitButton from 'features/UserAuth/core/StyledSubmitButton';
@@ -38,16 +38,14 @@ const SignInForm = function () {
     navigate('/restore-password');
   };
 
-  const handleSubmit = (values:IInitialValues) => {
-    // eslint-disable-next-line no-console
-    console.log('click');
+  const handleSubmit = (values:ISignInFormValues) => {
     login(values);
   };
 
   return (
     <Formik
       initialValues={initialValues}
-      // validationSchema={signInSchema}
+      validationSchema={signInSchema}
       onSubmit={handleSubmit}
     >
       {

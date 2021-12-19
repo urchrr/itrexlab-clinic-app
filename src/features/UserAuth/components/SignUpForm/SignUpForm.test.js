@@ -19,19 +19,24 @@ describe('SignIp form', () => {
     const { getByTestId } = render(
       <BrowserRouter><SignUpForm /></BrowserRouter>,
     );
-    signUpInputList
-      .map(({ name, testData }) => userEvent
-        .type(getByTestId(`form-input-${name}`), testData));
+    userEvent.type(getByTestId('form-input-firstName'), 'Greg');
+    userEvent.type(getByTestId('form-input-lastName'), 'NotHouse');
+    userEvent.type(getByTestId('form-input-userName'), 'greg@email.com');
+    userEvent.type(getByTestId('form-input-password'), '123456');
+    userEvent.type(getByTestId('form-input-passwordConfirm'), '123456');
 
     userEvent.click(getByTestId('form-submit-button'));
-    const waitParams = signUpInputList
-      .reduce((init, { name, testData }) => {
-        init[name] = testData;
-        return init;
-      }, {});
 
     await waitFor(() => {
-      expect(authMock).toHaveBeenCalledWith(waitParams);
+      expect(authMock).toHaveBeenCalledWith(
+        {
+          firstName: 'Greg',
+          lastName: 'NotHouse',
+          userName: 'greg@email.com',
+          password: '123456',
+          passwordConfirm: '123456',
+        },
+      );
     });
   });
 });

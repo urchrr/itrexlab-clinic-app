@@ -13,14 +13,20 @@ import StyledHeaderTitle from 'features/UserAuth/core/StyledHeaderTitle';
 
 import Input from 'features/UserAuth/components/Input/Input';
 import { useAuthorisation } from 'features/UserAuth/hooks/useAuth';
+import { SignUpValues } from '../../../../types/userDataTypes';
 
 const SignUpForm = function () {
   const { register } = useAuthorisation();
   const formik = useFormik({
     initialValues,
     validationSchema: signUpSchema,
-    onSubmit: (values) => {
-      register(values);
+    onSubmit: ({
+      userName, password, firstName, lastName,
+    }) => {
+      const data : SignUpValues = {
+        userName, password, firstName, lastName,
+      };
+      register(data);
     },
   });
   return (
@@ -45,7 +51,7 @@ const SignUpForm = function () {
           error={formik.errors[name]}
         />
       ))}
-      <StyledSubmitButton title="Sign Up" data-testid="form-submit-button" />
+      <StyledSubmitButton disabled={!formik.isValid} title="Sign Up" data-testid="form-submit-button" />
     </StyledForm>
   );
 };

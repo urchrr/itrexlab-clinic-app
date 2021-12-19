@@ -8,10 +8,10 @@ import SignIn from 'features/UserAuth/SignIn';
 import { BrowserRouter } from 'react-router-dom';
 
 describe('App component', () => {
-  test('it displays a sign in form', async () => {
+  it('it displays a sign in form', () => {
     render(<BrowserRouter><Provider store={store}><SignIn /></Provider></BrowserRouter>);
 
-    expect(screen.getByTestId('sign-in-form')).toBeDefined();
-    expect(screen.getByTestId('form-footer')).toBeDefined();
+    expect(screen.getByTestId('sign-in-form')).toBeInTheDocument();
+    expect(screen.getByTestId('form-footer')).toBeInTheDocument();
   });
 });

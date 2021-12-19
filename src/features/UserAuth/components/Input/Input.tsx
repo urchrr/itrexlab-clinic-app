@@ -6,9 +6,11 @@ import {
   InputWrapper,
   StyledIconEye,
 } from './InputStyles';
-import { IInput } from '../../services/inputLists';
+import {
+  IInput, SignInInputNames, SignUpInputNames, UserInputName,
+} from '../../services/inputLists';
 
-interface InputProps extends IInput{
+interface InputProps extends IInput<UserInputName | SignInInputNames | SignUpInputNames>{
   onChange: ChangeEventHandler,
   onBlur: FocusEventHandler,
   value?: string,

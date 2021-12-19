@@ -1,6 +1,6 @@
 import React from 'react';
 import { render } from '@testing-library/react';
-import AppointmentCard from 'src/features/ClinicDashboard/components/Cards/AppointmentsCard';
+import AppointmentCard from 'features/ClinicDashboard/components/Cards/AppointmentsCard';
 
 describe('Appointment Card', () => {
   it('should render card', () => {

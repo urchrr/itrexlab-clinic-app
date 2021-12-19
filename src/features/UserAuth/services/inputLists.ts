@@ -3,35 +3,48 @@ import iconEmail from '../images/icon-mail.svg';
 import iconLock from '../images/icon-lock.svg';
 import iconAccept from '../images/icon-accept.svg';
 
-export interface IInput {
+export interface IInput<I> {
   icon: string,
   placeholder: string,
-  name: 'firstName' | 'lastName' | 'password' | 'userName' | 'passwordConfirm'
+  name: I
   type?: 'email' | 'text' | 'password',
   testData?: string,
 }
-export interface IInitialValues {
-  userName?: string,
-  password?: string,
-  firstName?: string,
-  lastName?: string,
-  passwordConfirm?: string
+type UserName = string;
+export type UserInputName = 'userName';
+export type SignInInputNames = 'password' | UserInputName;
+export type SignUpInputNames = SignInInputNames | 'firstName' | 'lastName' | 'passwordConfirm';
+
+export interface IRestoreFormValues {
+  userName: UserName
 }
-export const signUpInputsInitialValues : IInitialValues = {
-  userName: '',
-  password: '',
+export interface ISignInFormValues {
+  userName: UserName,
+  password: string,
+}
+
+export interface ISignUpFormValues extends ISignInFormValues {
+  firstName: string,
+  lastName: string,
+  passwordConfirm: string
+}
+
+export const signUpInputsInitialValues : ISignUpFormValues = {
   firstName: '',
   lastName: '',
+  userName: '',
+  password: '',
   passwordConfirm: '',
 };
-export const signInpInputsInitialValues : IInitialValues = {
+export const signInpInputsInitialValues : ISignInFormValues = {
   userName: '',
   password: '',
 };
-export const restorePasswordInitialValues : IInitialValues = {
+export const restorePasswordInitialValues : IRestoreFormValues = {
   userName: '',
 };
-export const signUpInputList : IInput[] = [
+
+export const signUpInputList : IInput<SignUpInputNames>[] = [
   {
     icon: iconPerson,
     placeholder: 'First Name',
@@ -67,7 +80,7 @@ export const signUpInputList : IInput[] = [
   },
 ];
 
-export const signInInputList : IInput[] = [
+export const signInInputList : IInput<SignInInputNames>[] = [
   {
     icon: iconEmail,
     placeholder: 'Email',
@@ -84,7 +97,7 @@ export const signInInputList : IInput[] = [
   },
 ];
 
-export const restorePasswordInputList: IInput[] = [
+export const restorePasswordInputList: IInput<UserInputName>[] = [
   {
     icon: iconEmail,
     placeholder: 'Email',

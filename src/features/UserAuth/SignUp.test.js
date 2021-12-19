@@ -8,10 +8,10 @@ import SignUp from 'features/UserAuth/SignUp';
 import { BrowserRouter } from 'react-router-dom';
 
 describe('App component', () => {
-  test('it displays a sign up form', async () => {
+  test('it displays a sign up form', () => {
     render(<BrowserRouter><Provider store={store}><SignUp /></Provider></BrowserRouter>);
 
-    expect(screen.getByTestId('sign-up-form')).toBeDefined();
-    expect(screen.getByTestId('form-footer')).toBeDefined();
+    expect(screen.getByTestId('sign-up-form')).toBeInTheDocument();
+    expect(screen.getByTestId('form-footer')).toBeInTheDocument();
   });
 });

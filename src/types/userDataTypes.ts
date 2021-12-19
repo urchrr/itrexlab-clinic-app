@@ -6,6 +6,13 @@ export type SignUpFormValues = {
   passwordConfirm: string;
 };
 
+export type SignUpValues = {
+  firstName: string;
+  lastName: string;
+  userName: string;
+  password: string;
+};
+
 export type SignInFormValues = {
   userName: string;
   password: string;

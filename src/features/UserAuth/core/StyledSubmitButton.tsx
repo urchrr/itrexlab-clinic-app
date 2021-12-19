@@ -7,10 +7,10 @@ import imgChevron from '../images/schevron.svg';
 const StyledSubmitButton = styled.button.attrs(() => ({
   type: 'submit',
 }))`
-    cursor: pointer;
+    cursor: ${(props) => (props.disabled ? 'default' : 'pointer')};;
     border-radius: 8px;
-    background: ${constants.blue};
-    color: ${constants.white};
+    background: ${(props) => (props.disabled ? constants.greySolid : constants.blue)};
+    color: ${(props) => (props.disabled ? constants.grey : constants.white)};
     padding: 12px 16px 12px 16px;
     outline: none;
     border: none;
@@ -23,7 +23,8 @@ const StyledSubmitButton = styled.button.attrs(() => ({
     align-items: center;
 
     &:disabled {
-        background: ${constants.grey};
+      background: #dce0ec;
+      cursor: default;
     }
 
     @media only screen and (min-width: 560px) {
@@ -48,6 +49,7 @@ const Chevron = styled.span`
 `;
 type SubmitButtonProps = {
   title: string,
+  disabled?: boolean
 };
 const SubmitButton = function ({ title, ...props }:SubmitButtonProps) {
   return (

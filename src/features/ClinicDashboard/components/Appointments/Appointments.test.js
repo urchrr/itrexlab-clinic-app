@@ -4,7 +4,7 @@ import { Provider } from 'react-redux';
 import configureStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
 import { BrowserRouter } from 'react-router-dom';
-import Appointments from 'src/features/ClinicDashboard/components/Appointments/Appointments';
+import Appointments from 'features/ClinicDashboard/components/Appointments/Appointments';
 
 const appointmentList = [
   {

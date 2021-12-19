@@ -27,9 +27,6 @@ function* workerUserLogin({ payload } : PayloadAction<SignInFormValues>) {
     setToken(access_token);
     const { data } = yield call(getProfile);
     yield put(updateUserProfileAction({ ...data, access_token, refresh_token }));
-    localStorage.setItem('userData', JSON.stringify({
-      ...data, access_token, refresh_token, isLoggedIn: true,
-    }));
     yield workerSpecReceive();
     yield put(loginUserAction());
     notify.update(notification, 'success', 'All good');
