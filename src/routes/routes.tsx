@@ -7,20 +7,18 @@ import Appointments from 'features/ClinicDashboard/components/Appointments';
 import { AUTH_PATHS, CLINIC_PATHS } from './constants';
 import RestorePassForm from '../features/UserAuth/components/RestorePassForm';
 import Patients from '../features/ClinicDashboard/components/Patients';
+import { LoadingBlock } from '../features/ClinicDashboard/LoadingBlock';
 
 export const authRoutes = [
   {
-    exact: false,
     path: AUTH_PATHS.SIGN_IN,
     component: <SignIn />,
   },
   {
-    exact: false,
     path: AUTH_PATHS.SIGN_UP,
     component: <SignUp />,
   },
   {
-    exact: false,
     path: AUTH_PATHS.RESTORE_PASSWORD,
     component: <RestorePassForm />,
   },
@@ -28,19 +26,23 @@ export const authRoutes = [
 
 export const appRoutes = [
   {
-    exact: false,
     path: CLINIC_PATHS.APPOINTMENTS,
     component: <Appointments />,
   },
   {
-    exact: false,
     path: CLINIC_PATHS.CREATE_APPOINTMENT,
     component: <CreateAppointment />,
   },
   {
-    exact: false,
     path: CLINIC_PATHS.PATIENTS,
     component: <Patients />,
   },
-
+  {
+    path: CLINIC_PATHS.RESOLUTIONS,
+    component: <LoadingBlock />,
+  },
+  {
+    path: CLINIC_PATHS.PROFILE,
+    component: <LoadingBlock />,
+  },
 ];
