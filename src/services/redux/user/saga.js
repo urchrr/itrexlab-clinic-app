@@ -5,9 +5,7 @@ import { workerSpecReceive } from 'services/redux/doctors/saga';
 import notify from 'services/notify';
 import { setToken, unsetToken } from 'services/api/instance';
 import {
-  getProfile,
-  userLogin,
-  userRegistration,
+  getProfile, userLogin, userRegistration,
 } from 'services/api/auth/requests';
 import { USER_LOG_IN, USER_REGISTER, USER_SHADOW_LOG_IN } from './constants';
 import {
@@ -28,10 +26,7 @@ function* workerUserLogin({ payload, navigate }) {
     const { data } = yield call(getProfile);
     yield put(updateUserProfileAction({ ...data, access_token, refresh_token }));
     localStorage.setItem('userData', JSON.stringify({
-      ...data,
-      access_token,
-      refresh_token,
-      isLoggedIn: true,
+      ...data, access_token, refresh_token, isLoggedIn: true,
     }));
     yield workerSpecReceive();
     yield put(loginUserAction());
@@ -43,6 +38,7 @@ function* workerUserLogin({ payload, navigate }) {
     yield put(handleUserErrorsAction(error));
   }
 }
+
 function* workerUserRegistration({ payload, navigate }) {
   const notification = notify.initial('Please wait...');
   try {
@@ -75,9 +71,11 @@ function* workerUserShadowLogIn({ payload: { accessToken } }) {
 function* watcherUserLogin() {
   yield takeLatest(USER_LOG_IN, workerUserLogin);
 }
+
 function* watcherUserRegistration() {
   yield takeLatest(USER_REGISTER, workerUserRegistration);
 }
+
 function* watcherUserShadowLogIn() {
   yield takeLatest(USER_SHADOW_LOG_IN, workerUserShadowLogIn);
 }
@@ -87,4 +85,5 @@ function* userSaga() {
   yield fork(watcherUserLogin);
   yield fork(watcherUserRegistration);
 }
+
 export default userSaga;

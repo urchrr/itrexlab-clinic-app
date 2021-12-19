@@ -32,7 +32,7 @@ const Appointments = function () {
           }}
         />
       </ContentHeader>
-      <ContentContainer>
+      <ContentContainer data-testid="cards-container">
         {appointments.map((card) => (
           <AppointmentsCard data={card} key={card.id} />
         ))}

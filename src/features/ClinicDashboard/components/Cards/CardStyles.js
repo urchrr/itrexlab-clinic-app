@@ -18,7 +18,7 @@ export const Card = styled.article`
 
 export const CardUserArea = styled.div`
     position: relative;
-    padding: 16px 24px;
+    padding: 16px 24px; 
     border-bottom: 1px solid ${constants.greySolid};
     display: grid;
     grid-template-columns: 64px 16px auto 40px;
