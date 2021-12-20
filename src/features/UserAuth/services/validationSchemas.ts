@@ -60,6 +60,7 @@ export const signUpSchema = Yup.object().shape({
       minPassLength,
       `Password must contain at least ${minPassLength} symbols`,
     )
+    .oneOf([Yup.ref('password')], 'Passwords must match')
     // .equalTo(Yup.ref('password'), 'Passwords must match')
     .required('This field is required'),
 });
