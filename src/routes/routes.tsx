@@ -4,45 +4,45 @@ import SignUp from 'features/UserAuth/SignUp';
 import CreateAppointment
   from 'features/ClinicDashboard/components/CreateAppointment/CreateAppointment';
 import Appointments from 'features/ClinicDashboard/components/Appointments';
-import { authPaths, clinicPaths } from './constants';
+import { AuthPaths, ClinicPaths } from './constants';
 import RestorePassForm from '../features/UserAuth/components/RestorePassForm';
 import Patients from '../features/ClinicDashboard/components/Patients';
 import { LoadingBlock } from '../features/ClinicDashboard/LoadingBlock';
 
 export const authRoutes = [
   {
-    path: authPaths.signIn,
+    path: AuthPaths.signIn,
     component: <SignIn />,
   },
   {
-    path: authPaths.signUp,
+    path: AuthPaths.signUp,
     component: <SignUp />,
   },
   {
-    path: authPaths.restorePassword,
+    path: AuthPaths.restorePassword,
     component: <RestorePassForm />,
   },
 ];
 
 export const appRoutes = [
   {
-    path: clinicPaths.appointments,
+    path: ClinicPaths.appointments,
     component: <Appointments />,
   },
   {
-    path: clinicPaths.createAppointment,
+    path: ClinicPaths.createAppointment,
     component: <CreateAppointment />,
   },
   {
-    path: clinicPaths.patients,
+    path: ClinicPaths.patients,
     component: <Patients />,
   },
   {
-    path: clinicPaths.resolutions,
+    path: ClinicPaths.resolutions,
     component: <LoadingBlock />,
   },
   {
-    path: clinicPaths.profile,
+    path: ClinicPaths.profile,
     component: <LoadingBlock />,
   },
 ];

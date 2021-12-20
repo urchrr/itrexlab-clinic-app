@@ -1,9 +1,10 @@
 import avatar from '../images/avatar.png';
+import { StatusesTypes } from '../../../types/appointments';
 
 type Card = {
   name: string,
   avatar: string,
-  status:'confirmed' | 'waiting' | 'canceled',
+  status:StatusesTypes,
   time: string,
   result: string
 };

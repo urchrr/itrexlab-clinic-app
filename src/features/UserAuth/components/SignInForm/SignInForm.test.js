@@ -11,7 +11,7 @@ import { BrowserRouter } from 'react-router-dom';
 describe('SignIp form', () => {
   it('should take correct parameters', async () => {
     // eslint-disable-next-line no-console
-    const loginMock = jest.fn((values) => console.log(values));
+    const loginMock = jest.fn();
     jest.spyOn(useAuthorisation, 'useAuthorisation')
       .mockImplementation(() => ({ login: (values) => loginMock(values) }));
 

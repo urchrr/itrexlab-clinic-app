@@ -23,10 +23,9 @@ const SignUpForm = function () {
     onSubmit: ({
       userName, password, firstName, lastName,
     }) => {
-      const data : SignUpValues = {
+      register({
         userName, password, firstName, lastName,
-      };
-      register(data);
+      } as SignUpValues);
     },
   });
   return (

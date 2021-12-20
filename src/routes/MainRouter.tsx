@@ -6,7 +6,7 @@ import { useSelector } from 'react-redux';
 import AuthPageLayout from '../features/UserAuth/layouts/AuthPageLayout';
 import Clinic from '../features/ClinicDashboard/layouts/DashboardLayout';
 import { isLoggedInSelector } from '../services/redux/user/selectors';
-import { authPaths, clinicPaths } from './constants';
+import { AuthPaths, ClinicPaths } from './constants';
 import ProtectedComponent from './ProtectedComponent';
 import { appRoutes, authRoutes } from './routes';
 import useNavigator from '../services/hooks/useNavigator';
@@ -16,7 +16,7 @@ const MainRouter = function () {
   const navigate = useNavigate();
 
   useEffect(() => {
-    navigate(isLoggedIn ? clinicPaths.root : authPaths.signIn);
+    navigate(isLoggedIn ? ClinicPaths.root : AuthPaths.signIn);
   }, [isLoggedIn]);
   useNavigator();
   return (
@@ -32,19 +32,19 @@ const MainRouter = function () {
                 <ProtectedComponent
                   element={component}
                   hasAccess={!isLoggedIn}
-                  defaultPath={clinicPaths.root}
+                  defaultPath={ClinicPaths.root}
                 />
                   )}
             />
           ))}
       </Route>
       <Route
-        path={clinicPaths.root}
+        path={ClinicPaths.root}
         element={(
           <ProtectedComponent
             element={<Clinic />}
             hasAccess={isLoggedIn}
-            defaultPath={authPaths.signIn}
+            defaultPath={AuthPaths.signIn}
           />
           )}
       >
@@ -57,7 +57,7 @@ const MainRouter = function () {
                 <ProtectedComponent
                   element={component}
                   hasAccess={isLoggedIn}
-                  defaultPath={authPaths.signIn}
+                  defaultPath={AuthPaths.signIn}
                 />
                     )}
             />

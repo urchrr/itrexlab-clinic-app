@@ -37,17 +37,9 @@ export const userSlice = createSlice({
     loginUser: (state) => {
       state.isLoggedIn = true;
     },
-    logoutUser: (state) => {
-      state.isLoggedIn = false;
-      state.id = '';
-      state.first_name = '';
-      state.last_name = '';
-      state.photo = '';
-      state.role_name = 'unknown';
-      state.access_token = '';
-      state.refresh_token = '';
-      state.status = 'offline';
-    },
+    logoutUser: (state) => ({
+      ...state, ...initialState,
+    }),
     updateUserProfile: (state, { payload }) => ({
       ...state, ...payload, status: 'online',
     }),
