@@ -63,7 +63,7 @@ describe('Appointment List', () => {
   const middlewares = [thunk];
   const mockStore = configureStore(middlewares);
 
-  it('should render nothing when there is no appointments', async () => {
+  it('should render nothing when there is no appointments', () => {
     const initialState = {
       appointments: {
         appointmentList: [],
@@ -82,7 +82,7 @@ describe('Appointment List', () => {
     );
     expect(screen.getByTestId('cards-container')).toBeEmpty();
   });
-  it('should render cards', async () => {
+  it('should render cards', () => {
     const initialState = {
       appointments: {
         appointmentList,

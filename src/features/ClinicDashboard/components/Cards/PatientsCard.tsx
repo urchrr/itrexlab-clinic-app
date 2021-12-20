@@ -16,15 +16,17 @@ import {
   StyledIconClipboard,
   StyledIconClock,
 } from 'features/ClinicDashboard/components/Cards/CardStyles';
+import { StatusesTypes } from 'types/appointments';
 import CardToggleButton from '../CardToggleButton';
 
-type CaseCardData = {
+interface CaseCardData {
   avatar:string,
   name:string,
-  status: 'confirmed' | 'waiting' | 'canceled',
+  status: StatusesTypes,
   time : string,
   result : string
-};
+}
+
 const CaseCard = function (data :CaseCardData) {
   const {
     avatar, name, status, time, result,

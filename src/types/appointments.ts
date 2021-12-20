@@ -5,7 +5,7 @@ export interface IAppointmentForPatient {
   patient_id: string,
   doctor_id: string,
   visit_date: string,
-  status: StatusType,
+  status: StatusesTypes,
   doctor: IDoctor,
 }
 
@@ -24,7 +24,7 @@ export interface IAppointmentForDoctor {
   patient_id: string,
   doctor_id: string,
   visit_date: string,
-  status: StatusType,
+  status: StatusesTypes,
   patient: IPatient,
 }
 
@@ -35,7 +35,7 @@ export interface IPatient {
   photo: string
 }
 
-export type StatusType = 'canceled' | 'confirmed' | 'waiting';
+export type StatusesTypes = 'canceled' | 'confirmed' | 'waiting';
 
 export interface IOptions {
   value: string,

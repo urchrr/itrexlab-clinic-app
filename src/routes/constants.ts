@@ -1,16 +1,16 @@
-export const AUTH_PATHS = {
-  SIGN_IN: '/sign-in',
-  SIGN_UP: '/sign-up',
-  RESTORE_PASSWORD: '/restore-password',
+export const authPaths = {
+  signIn: '/sign-in',
+  signUp: '/sign-up',
+  restorePassword: '/restore-password',
 };
 
-const APP_PATH = '/clinic';
+const appPath = '/clinic';
 
-export const CLINIC_PATHS = {
-  ROOT: APP_PATH,
-  PATIENTS: `${APP_PATH}/patients`,
-  RESOLUTIONS: `${APP_PATH}/resolutions`,
-  APPOINTMENTS: `${APP_PATH}/appointments`,
-  CREATE_APPOINTMENT: `${APP_PATH}/create-appointment`,
-  PROFILE: `${APP_PATH}/profile`,
+export const clinicPaths = {
+  root: appPath,
+  patients: `${appPath}/patients`,
+  resolutions: `${appPath}/resolutions`,
+  appointments: `${appPath}/appointments`,
+  createAppointment: `${appPath}/create-appointment`,
+  profile: `${appPath}/profile`,
 };

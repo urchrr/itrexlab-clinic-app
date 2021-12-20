@@ -15,8 +15,7 @@ describe('Appointment Card', () => {
       },
     };
 
-    const { getByText } = render(<AppointmentCard data={appointment} />);
-
+    const { getByText } = render(<AppointmentCard {...appointment} />);
     expect(getByText(/Dublyanin/i)).toBeInTheDocument();
     expect(getByText(/Oleg/i)).toBeInTheDocument();
     expect(getByText(/surgeon/i)).toBeInTheDocument();

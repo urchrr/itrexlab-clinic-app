@@ -5,7 +5,7 @@ type ButtonProps = {
   onClick: () => void
 };
 
-const CardToggleButton = function (props: ButtonProps):React.ReactElement {
+const CardToggleButton = function (props: ButtonProps) {
   const { onClick } = props;
   const [isActive, setActive] = useState(false);
   const handleButtonClick = () => {

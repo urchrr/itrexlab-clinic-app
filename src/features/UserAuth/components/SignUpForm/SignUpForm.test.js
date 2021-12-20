@@ -5,11 +5,10 @@ import {
 import SignUpForm from 'features/UserAuth/components/SignUpForm';
 import userEvent from '@testing-library/user-event';
 import '@testing-library/jest-dom';
-import { signUpInputList } from 'features/UserAuth/services/inputLists';
 import * as useAuthorisation from 'features/UserAuth/hooks/useAuth';
 import { BrowserRouter } from 'react-router-dom';
 
-describe('SignIp form', () => {
+describe('SignIn form', () => {
   it('should take correct parameters', async () => {
     // eslint-disable-next-line no-console
     const authMock = jest.fn((values) => console.log(values));

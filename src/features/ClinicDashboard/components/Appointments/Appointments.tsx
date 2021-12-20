@@ -11,7 +11,7 @@ import {
 import AppointmentsCard from 'features/ClinicDashboard/components/Cards/AppointmentsCard';
 import SortSelector from 'features/ClinicDashboard/components/SortSelector/SortSelector';
 import CreateButton from 'features/ClinicDashboard/components/CreateButton/CreateButton';
-import { CLINIC_PATHS } from 'routes/constants';
+import { clinicPaths } from 'routes/constants';
 import { useAppDispatch } from 'services/redux/hooks/useAppDispatch';
 import { useAppSelector } from 'services/redux/hooks/useAppSelector';
 
@@ -30,7 +30,7 @@ const Appointments = function () {
         <SortSelector label="Show:" text="Upcoming" />
         <CreateButton
           onClick={() => {
-            navigate(CLINIC_PATHS.CREATE_APPOINTMENT);
+            navigate(clinicPaths.createAppointment);
           }}
         />
       </ContentHeader>

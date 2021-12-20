@@ -2,7 +2,7 @@ import React from 'react';
 import SignInForm from 'features/UserAuth/components/SignInForm';
 import FooterLayout from './layouts/Footer';
 import NavigationLink from './components/NavigationLink';
-import { AUTH_PATHS } from '../../routes/constants';
+import { authPaths } from '../../routes/constants';
 
 const SignIn = function () {
   return (
@@ -10,7 +10,7 @@ const SignIn = function () {
       <SignInForm />
       <FooterLayout
         text="Don`t have an account?"
-        link={<NavigationLink path={AUTH_PATHS.SIGN_UP} text="Sign up" />}
+        link={<NavigationLink path={authPaths.signUp} text="Sign up" />}
       />
     </>
   );

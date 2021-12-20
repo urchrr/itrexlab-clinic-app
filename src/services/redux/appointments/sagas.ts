@@ -13,7 +13,7 @@ import {
   receiveAppointmentsAction,
 } from 'services/redux/appointments/actions';
 import notify from 'services/notify';
-import { CLINIC_PATHS } from 'routes/constants';
+import { clinicPaths } from 'routes/constants';
 import { setNavigationPathAction } from 'services/redux/user/actions';
 import { PayloadAction } from '@reduxjs/toolkit';
 import { AppointmentRequestParams, CreateAppointmentValues } from 'types/appointments';
@@ -51,7 +51,7 @@ PayloadAction<CreateAppointmentValues>) {
     notify.update(id, 'info', 'Saving appointment...');
     yield call(createNewAppointment, payload);
     notify.update(id, 'success', 'Saved!');
-    yield put(setNavigationPathAction(CLINIC_PATHS.APPOINTMENTS));
+    yield put(setNavigationPathAction(clinicPaths.appointments));
     notify.closeAll();
   } catch (error:any) {
     notify.update(id, 'error', notify.errorToMsg(error));
