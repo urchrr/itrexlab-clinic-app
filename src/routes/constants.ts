@@ -5,6 +5,7 @@ export enum AuthPaths {
 }
 
 export enum ClinicPaths {
+
   root = '/clinic',
   patients = '/clinic/patients',
   resolutions = '/clinic/resolutions',

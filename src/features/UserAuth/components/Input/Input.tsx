@@ -7,10 +7,16 @@ import {
   StyledIconEye,
 } from './InputStyles';
 import {
-  IInput, SignInInputNames, SignUpInputNames, UserInputName,
+  IInput,
+  IRestoreFormValues,
+  ISignInFormValues,
+  ISignUpFormValues,
 } from '../../services/inputLists';
 
-interface InputProps extends IInput<UserInputName | SignInInputNames | SignUpInputNames>{
+interface InputProps extends IInput<
+keyof ISignInFormValues |
+keyof IRestoreFormValues |
+keyof ISignUpFormValues>{
   onChange: ChangeEventHandler,
   onBlur: FocusEventHandler,
   value?: string,

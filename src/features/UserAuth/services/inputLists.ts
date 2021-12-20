@@ -6,20 +6,16 @@ import iconAccept from '../images/icon-accept.svg';
 export interface IInput<I> {
   icon: string,
   placeholder: string,
-  name: I
+  name: I,
   type?: 'email' | 'text' | 'password',
   testData?: string,
 }
-type UserName = string;
-export type UserInputName = 'userName';
-export type SignInInputNames = 'password' | UserInputName;
-export type SignUpInputNames = SignInInputNames | 'firstName' | 'lastName' | 'passwordConfirm';
 
 export interface IRestoreFormValues {
-  userName: UserName
+  userName: string
 }
 export interface ISignInFormValues {
-  userName: UserName,
+  userName: string,
   password: string,
 }
 
@@ -44,7 +40,7 @@ export const restorePasswordInitialValues : IRestoreFormValues = {
   userName: '',
 };
 
-export const signUpInputList : IInput<SignUpInputNames>[] = [
+export const signUpInputList : IInput<keyof ISignUpFormValues>[] = [
   {
     icon: iconPerson,
     placeholder: 'First Name',
@@ -80,7 +76,7 @@ export const signUpInputList : IInput<SignUpInputNames>[] = [
   },
 ];
 
-export const signInInputList : IInput<SignInInputNames>[] = [
+export const signInInputList : IInput<keyof ISignInFormValues>[] = [
   {
     icon: iconEmail,
     placeholder: 'Email',
@@ -97,7 +93,7 @@ export const signInInputList : IInput<SignInInputNames>[] = [
   },
 ];
 
-export const restorePasswordInputList: IInput<UserInputName>[] = [
+export const restorePasswordInputList: IInput<keyof IRestoreFormValues>[] = [
   {
     icon: iconEmail,
     placeholder: 'Email',
