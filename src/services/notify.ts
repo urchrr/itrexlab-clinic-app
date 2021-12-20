@@ -14,11 +14,13 @@ const config:ToastOptions = {
   pauseOnHover: true,
   draggable: true,
 };
+export type NotifyError = { response: { data: string; }; };
 type Message = boolean | ReactChild | ReactFragment | ReactPortal |
 ((props: ToastContentProps<{}>) => ReactNode) | null | undefined;
 const initial = (message: Message) => toast.loading(message, config);
 
-const errorToMsg = (error: { response: { data: string; }; }) => firstLetterToUpperCase(error.response.data.replace('message: ', ''));
+const errorToMsg = (error: NotifyError) => firstLetterToUpperCase(error
+  .response.data.replace('message: ', ''));
 
 const update = (id: Id, status: any, message: any) => {
   switch (status) {

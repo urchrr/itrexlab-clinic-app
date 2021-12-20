@@ -2,7 +2,7 @@ import {
   call, takeLatest, put, fork,
 } from 'redux-saga/effects';
 import { workerSpecReceive } from 'services/redux/doctors/saga';
-import notify from 'services/notify';
+import notify, { NotifyError } from 'services/notify';
 import { setToken, unsetToken } from 'services/api/instance';
 import {
   getProfile, userLogin, userRegistration,
@@ -31,8 +31,9 @@ function* workerUserLogin({ payload } : PayloadAction<SignInFormValues>) {
     yield put(loginUserAction());
     notify.update(notification, 'success', 'All good');
     notify.closeAll();
-  } catch (error:any) {
-    notify.update(notification, 'error', notify.errorToMsg(error));
+  } catch (error) {
+    const message = notify.errorToMsg(error as NotifyError);
+    notify.update(notification, 'error', message);
     yield put(handleUserErrorsAction(error));
   }
 }
@@ -45,8 +46,9 @@ function* workerUserRegistration({ payload } : PayloadAction<SignUpFormValues>) 
     notify.update(notification, 'success', 'Registration successful');
     yield put(setNavigationPathAction('/sign-in'));
     notify.closeAll();
-  } catch (error:any) {
-    notify.update(notification, 'error', error);
+  } catch (error) {
+    const message = notify.errorToMsg(error as NotifyError);
+    notify.update(notification, 'error', message);
     yield put(handleUserErrorsAction(error));
   }
 }

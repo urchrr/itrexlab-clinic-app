@@ -19,6 +19,7 @@ const MainRouter = function () {
     navigate(isLoggedIn ? ClinicPaths.root : AuthPaths.signIn);
   }, [isLoggedIn]);
   useNavigator();
+  // @ts-ignore
   return (
     <Routes>
       {/* @ts-ignore */}
@@ -38,6 +39,7 @@ const MainRouter = function () {
             />
           ))}
       </Route>
+
       <Route
         path={ClinicPaths.root}
         element={(

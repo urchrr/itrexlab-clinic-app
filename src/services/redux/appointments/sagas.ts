@@ -12,7 +12,7 @@ import {
   receiveAppointmentAction,
   receiveAppointmentsAction,
 } from 'services/redux/appointments/actions';
-import notify from 'services/notify';
+import notify, { NotifyError } from 'services/notify';
 import { ClinicPaths } from 'routes/constants';
 import { setNavigationPathAction } from 'services/redux/user/actions';
 import { PayloadAction } from '@reduxjs/toolkit';
@@ -29,18 +29,20 @@ function* workerReceiveAppointments({ payload }: PayloadAction<UserRoles>) {
     try {
       const { data: { appointments } } = yield call(getDoctorsAllAppointments, requestParams);
       yield put(receiveAppointmentAction(appointments));
-    } catch (error:any) {
+    } catch (error) {
+      const message = notify.errorToMsg(error as NotifyError);
       yield put(handleAppointmentsErrorsAction(error));
-      notify.printToastErrorMsg(error);
+      notify.printToastErrorMsg(message);
     }
   }
   if (payload === 'Patient') {
     try {
       const { data: { appointments } } = yield call(getPatientsAllAppointments, requestParams);
       yield put(receiveAppointmentAction(appointments));
-    } catch (error:any) {
+    } catch (error) {
+      const message = notify.errorToMsg(error as NotifyError);
       yield put(handleAppointmentsErrorsAction(error));
-      notify.printToastErrorMsg(error);
+      notify.printToastErrorMsg(message);
     }
   }
 }
@@ -53,8 +55,9 @@ PayloadAction<CreateAppointmentValues>) {
     notify.update(id, 'success', 'Saved!');
     yield put(setNavigationPathAction(ClinicPaths.appointments));
     notify.closeAll();
-  } catch (error:any) {
-    notify.update(id, 'error', notify.errorToMsg(error));
+  } catch (error) {
+    const message = notify.errorToMsg(error as NotifyError);
+    notify.update(id, 'error', message);
     yield put(handleAppointmentsErrorsAction(error));
   }
 }

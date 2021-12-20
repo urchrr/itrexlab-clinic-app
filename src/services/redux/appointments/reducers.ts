@@ -3,7 +3,7 @@ import { IAppointmentForPatient } from 'types/appointments';
 
 interface InitialState {
   errors: string[],
-  appointmentList:IAppointmentForPatient[] | []
+  appointmentList:IAppointmentForPatient[]
 }
 
 const initialState : InitialState = {
