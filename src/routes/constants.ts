@@ -3,12 +3,12 @@ export enum AuthPaths {
   signUp = '/sign-up',
   restorePassword = '/restore-password',
 }
-const appPath = 'clinic';
-export const ClinicPaths = {
-  root: appPath,
-  patients: 'clinic/patients',
-  resolutions: 'clinic/resolutions',
-  appointments: `${appPath}/appointments`,
-  createAppointment: 'clinic/create-appointment',
-  profile: 'clinic/profile',
-};
+
+export enum ClinicPaths {
+  root = '/clinic',
+  patients = '/clinic/patients',
+  resolutions = '/clinic/resolutions',
+  appointments = '/clinic/appointments',
+  createAppointment = '/clinic/create-appointment',
+  profile = '/clinic/profile',
+}
